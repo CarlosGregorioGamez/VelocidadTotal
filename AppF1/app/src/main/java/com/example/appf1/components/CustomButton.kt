@@ -42,7 +42,7 @@ fun CustomButton(buttonText: String, action: () -> Unit) {
 
 @Preview
 @Composable
-fun CustomButtonPreview(){
+fun CustomButtonPreview() {
     CustomButton(
         buttonText = "Texto de prueba"
     ) {
