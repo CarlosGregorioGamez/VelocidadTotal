@@ -23,8 +23,8 @@ fun CustomImage(painter: Painter = painterResource(R.drawable.ic_launcher_foregr
         .height(height = 100.dp)
         .width(width = 50.dp)) {
         Image(
-            painter = painterResource(R.drawable.ic_launcher_foreground),
-            contentDescription = "Imagen de prueba",
+            painter = painter,
+            contentDescription = descripcion,
             modifier = Modifier.fillMaxSize()
         )
     }
@@ -33,5 +33,5 @@ fun CustomImage(painter: Painter = painterResource(R.drawable.ic_launcher_foregr
 @Preview
 @Composable
 fun CustomImagePreview() {
-    CustomImage()
+    CustomImage(painter = painterResource(R.drawable.ic_launcher_background))
 }
