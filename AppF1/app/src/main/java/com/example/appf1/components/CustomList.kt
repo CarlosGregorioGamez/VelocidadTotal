@@ -12,19 +12,18 @@ import androidx.compose.ui.tooling.preview.Preview
 class Piloto(var name: String, var team: String)
 
 @Composable
-fun CustomList(pilotos: List<Piloto>){
-    Column(modifier = Modifier.fillMaxWidth()){
-        pilotos.forEach{
-                Piloto ->
-                Piloto(Piloto.name,Piloto.team)
+fun CustomList(pilotos: List<Piloto>) {
+    Column(modifier = Modifier.fillMaxWidth()) {
+        pilotos.forEach { Piloto ->
+            Piloto(Piloto.name, Piloto.team)
         }
     }
 }
 
 @Preview
 @Composable
-fun listaPreview(){
-    val piloto= ArrayList<Piloto>()
+fun listaPreview() {
+    val piloto = ArrayList<Piloto>()
     piloto.add(Piloto("ooo", "aaa"))
     piloto.add(Piloto("1", "2"))
     piloto.add(Piloto("3", "4"))

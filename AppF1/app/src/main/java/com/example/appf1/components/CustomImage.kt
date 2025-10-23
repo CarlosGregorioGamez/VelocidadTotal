@@ -1,6 +1,6 @@
 package com.example.appf1.components
 
-import android.media.Image
+
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -16,12 +16,16 @@ import com.example.appf1.R
 
 
 @Composable
-fun CustomImage(painter: Painter = painterResource(R.drawable.ic_launcher_foreground),
-                descripcion: String = "Imagen de prueba") {
+fun CustomImage(
+    painter: Painter = painterResource(R.drawable.ic_launcher_foreground),
+    descripcion: String = "Imagen de prueba"
+) {
 
-    Box(modifier = Modifier
-        .height(height = 100.dp)
-        .width(width = 50.dp)) {
+    Box(
+        modifier = Modifier
+            .height(height = 100.dp)
+            .width(width = 50.dp)
+    ) {
         Image(
             painter = painterResource(R.drawable.ic_launcher_foreground),
             contentDescription = "Imagen de prueba",
