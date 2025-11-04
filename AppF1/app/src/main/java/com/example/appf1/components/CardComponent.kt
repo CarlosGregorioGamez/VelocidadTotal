@@ -22,7 +22,7 @@ class CardDetails(var imgId: Int, var imgDesc: String = "", var title: String)
 
 
 @Composable
-fun CardComponent(CardInfo: CardDetails) {
+fun CardComponent(cardInfo: CardDetails) {
     Card(
         modifier = Modifier
             .width(width = 250.dp)
@@ -35,8 +35,8 @@ fun CardComponent(CardInfo: CardDetails) {
             verticalAlignment = Alignment.CenterVertically
         ) {
             Image(
-                painter = painterResource(id = CardInfo.imgId),
-                contentDescription = CardInfo.imgDesc,
+                painter = painterResource(id = cardInfo.imgId),
+                contentDescription = cardInfo.imgDesc,
                 modifier = Modifier.padding(6.dp)
             )
             TitleComponent(
@@ -53,7 +53,7 @@ fun CardComponent(CardInfo: CardDetails) {
 @Composable
 fun CardComponentPreview() {
     CardComponent(
-        CardInfo = CardDetails(
+        cardInfo = CardDetails(
             imgId = R.drawable.ic_launcher_foreground,
             imgDesc = "Descripcion",
             title = "Titulo de ejemplo"
