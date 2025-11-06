@@ -20,7 +20,11 @@ import com.example.appf1.R
 
 class CardDetails(var imgId: Int, var imgDesc: String = "", var title: String)
 
-
+/**
+ * Componente por defecto para las tarjetas
+ *
+ * @param cardInfo recibe datos de CardDetails para definir el contenido de cada tarjeta
+ */
 @Composable
 fun CardComponent(cardInfo: CardDetails) {
     Card(

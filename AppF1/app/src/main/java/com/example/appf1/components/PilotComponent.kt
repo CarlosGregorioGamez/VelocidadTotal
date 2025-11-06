@@ -14,6 +14,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
+/**
+ * Componente que identifica los pilotos para listar
+ *
+ * @param name
+ * @param team
+ */
 @Composable
 fun pilot(name: String, team: String) {
 
@@ -22,7 +28,7 @@ fun pilot(name: String, team: String) {
         modifier = Modifier
             .fillMaxWidth()
             .background(color = backgroundColor)
-            .border(1.dp, color =  Color.Black)
+            .border(1.dp, color = Color.Black)
             .padding(all = 4.dp)
 
     ) {

@@ -14,6 +14,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
+/**
+ * Componente por defecto para un botón
+ *
+ * @param buttonText define el texto que contendrá el botón
+ * @param action define la funcionalidad del botón
+ */
 @Composable
 fun CustomButton(buttonText: String, action: () -> Unit) {
 

@@ -14,6 +14,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
+/**
+ * Componente que identifica los equipos para listar
+ *
+ * @param name
+ * @param piloto1
+ * @param piloto2
+ */
 @Composable
 fun team(name: String, piloto1: String, piloto2: String) {
 

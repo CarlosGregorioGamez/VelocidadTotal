@@ -7,13 +7,19 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 
-class Piloto(var name: String, var team: String)
 
+class Detalle(var name: String, var team: String)
+
+/**
+ * Componente que define una lista reutilizable (posible que tenga otra lista similar mas especifica)
+ *
+ * @param detalles define una lista de elementos
+ */
 @Composable
-fun CustomList(pilotos: List<Piloto>) {
+fun CustomList(detalles: List<Detalle>) {
     Column(modifier = Modifier.fillMaxWidth()) {
-        pilotos.forEach { Piloto ->
-            pilot(Piloto.name, Piloto.team)
+        detalles.forEach { Detalle ->
+            pilot(Detalle.name, Detalle.team)
         }
     }
 }
@@ -21,9 +27,9 @@ fun CustomList(pilotos: List<Piloto>) {
 @Preview
 @Composable
 fun listaPreview() {
-    val piloto = ArrayList<Piloto>()
-    piloto.add(Piloto("ooo", "aaa"))
-    piloto.add(Piloto("1", "2"))
-    piloto.add(Piloto("3", "4"))
-    CustomList(piloto)
+    val detalle = ArrayList<Detalle>()
+    detalle.add(Detalle("ooo", "aaa"))
+    detalle.add(Detalle("1", "2"))
+    detalle.add(Detalle("3", "4"))
+    CustomList(detalle)
 }

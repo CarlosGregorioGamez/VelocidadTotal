@@ -14,6 +14,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
+/**
+ * Componente que identifica las carreras para listar
+ *
+ * @param name
+ * @param cantidad
+ */
 @Composable
 fun race(name: String, cantidad: Int) {
 

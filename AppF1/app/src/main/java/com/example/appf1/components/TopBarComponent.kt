@@ -1,5 +1,6 @@
 package com.example.appf1.components
 
+
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -19,8 +20,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.appf1.R
 
+
+/**
+ * Componente por defecto para el topBar del Scaffold
+ *
+ * @param title Mensaje de texto que aparce como titulo de la pagina
+ */
 @Composable
-fun TopBarExample(title: String) {
+fun TopBarF1(title: String) {
     Row(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceEvenly,
@@ -34,6 +41,13 @@ fun TopBarExample(title: String) {
     }
 }
 
+/**
+ * Componente que detalla la configuración de la topBar
+ *
+ * @param topBarTitle recibe el topBarF1 detallado en esta misma clase
+ * @param navIcon icono que permite volver a la pantalla anterior
+ * @param infoIcon icono que despliega un menú de opciones para el usuario
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopBarComponent(
@@ -44,7 +58,7 @@ fun TopBarComponent(
 
     TopAppBar(
         title = {
-            TopBarExample(topBarTitle)
+            TopBarF1(topBarTitle)
         },
         navigationIcon = {
             IconButton(

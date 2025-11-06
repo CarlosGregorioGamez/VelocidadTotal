@@ -18,6 +18,13 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
+/**
+ * Componente por defecto para un título de página
+ *
+ * @param title
+ * @param textColor (tiene valor por defecto)
+ * @param textStyle (tiene valor por defecto)
+ */
 @Composable
 fun TitleComponent(title: String, textColor: Color = MaterialTheme.colorScheme.primary, textStyle: TextStyle= MaterialTheme.typography.titleLarge) {
 

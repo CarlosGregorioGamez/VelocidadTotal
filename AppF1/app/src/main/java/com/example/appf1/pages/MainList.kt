@@ -12,7 +12,10 @@ import com.example.appf1.components.CardDetails
 import com.example.appf1.components.TitleComponent
 
 /**
+ * Página que muestra un listado de tarjetas con información, en una lazycolumn para poder scrollear libremente
  *
+ * @param options recibe una lista de Tarjetas reutilizable
+ * @param Mensaje de texto que aparce como titulo de la pagina
  */
 @Composable
 fun MainList(options: List<CardDetails>, titlePage: String){
