@@ -19,7 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun TitleComponent(title: String, textColor: Color, textStyle: TextStyle) {
+fun TitleComponent(title: String, textColor: Color = MaterialTheme.colorScheme.primary, textStyle: TextStyle= MaterialTheme.typography.titleLarge) {
 
     Box(
         modifier = Modifier
@@ -43,7 +43,6 @@ fun TitleComponent(title: String, textColor: Color, textStyle: TextStyle) {
 fun TitleComponentPreview() {
     TitleComponent(
         title = "Ejemplo de Titulo",
-        textColor = MaterialTheme.colorScheme.primary,
         textStyle = MaterialTheme.typography.titleLarge
     )
 }
