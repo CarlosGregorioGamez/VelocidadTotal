@@ -10,6 +10,7 @@ import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
@@ -33,7 +34,7 @@ fun TopBarF1(title: String) {
         horizontalArrangement = Arrangement.SpaceEvenly,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Text(text = title, textAlign = TextAlign.Center)
+        Text(text = title, textAlign = TextAlign.Center, color = MaterialTheme.colorScheme.primary)
         Icon(
             painter = painterResource(id = R.drawable.ic_launcher_foreground),
             contentDescription = "Ejemplo"
