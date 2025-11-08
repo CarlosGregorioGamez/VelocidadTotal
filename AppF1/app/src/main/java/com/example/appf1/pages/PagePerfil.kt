@@ -26,7 +26,7 @@ import com.example.compose.backgroundLight
 @Composable
 fun pagePerfil() {
     Column(
-        modifier = Modifier,
+        modifier = Modifier.padding(top = 100.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -40,7 +40,7 @@ fun pagePerfil() {
                 painter = painterResource(R.drawable.perfil),
                 contentDescription = "Imagen de perfil",
                 modifier = Modifier
-                    .padding(8.dp)
+                    .padding(end = 60.dp, bottom = 18.dp)
             )
         }
         Text(text = "Usuario", modifier = Modifier, backgroundLight)
