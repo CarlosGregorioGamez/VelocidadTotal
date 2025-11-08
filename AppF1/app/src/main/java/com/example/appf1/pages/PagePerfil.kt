@@ -30,10 +30,19 @@ fun pagePerfil() {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Image(
-            painter = painterResource(R.drawable.formula1),
-            contentDescription = "Logo principal de la App"
-        )
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = 16.dp),
+            horizontalArrangement = Arrangement.End
+        ) {
+            Image(
+                painter = painterResource(R.drawable.perfil),
+                contentDescription = "Imagen de perfil",
+                modifier = Modifier
+                    .padding(8.dp)
+            )
+        }
         Text(text = "Usuario", modifier = Modifier, backgroundLight)
         TextField(
             "",
@@ -56,10 +65,10 @@ fun pagePerfil() {
             horizontalArrangement = Arrangement.SpaceEvenly,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            CustomButton("Iniciar") {
+            CustomButton("Cambiar") {
 
             }
-            CustomButton("Salir") {
+            CustomButton("Volver") {
 
             }
         }
@@ -69,7 +78,7 @@ fun pagePerfil() {
 @Preview
 @Composable
 fun PerfilPreview() {
-    pagePrincipal(
+    pagePerfil(
 
     )
 }
