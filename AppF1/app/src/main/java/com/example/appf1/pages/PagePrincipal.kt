@@ -31,7 +31,7 @@ fun pagePrincipal() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Image(
-            painter = painterResource(R.drawable.ic_launcher_foreground),
+            painter = painterResource(R.drawable.formula1),
             contentDescription = "Logo principal de la App"
         )
         Text(text = "Usuario", modifier = Modifier, backgroundLight)
