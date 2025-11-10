@@ -11,14 +11,29 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.appf1.components.CardDetails
 import com.example.appf1.components.TopBarComponent
+import com.example.appf1.pages.MainList
 import com.example.compose.AppF1Theme
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
+
+            val testList = mutableListOf<CardDetails>()
+
+            (1..10).forEach {
+                testList.add(
+                    CardDetails(
+                        imgId = R.drawable.ic_launcher_foreground,
+                        imgDesc = "Descripción #$it",
+                        title = "Elemento $it"
+                    )
+                )
+            }
             AppF1Theme {
                 Scaffold(
                     topBar = {
@@ -34,8 +49,9 @@ class MainActivity : ComponentActivity() {
                     },
                     modifier = Modifier.fillMaxSize()
                 ) { innerPadding ->
-                    Greeting(
-                        name = "Pedro",
+                    MainList(
+                        options = testList,
+                        titlePage = "Pagina principal",
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
@@ -56,6 +72,6 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 @Composable
 fun GreetingPreview() {
     AppF1Theme {
-        Greeting("pedro")
+        Greeting(name = "a")
     }
 }
