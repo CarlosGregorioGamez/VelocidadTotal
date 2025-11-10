@@ -23,6 +23,9 @@ import com.example.appf1.components.CustomButton
 import com.example.appf1.components.TitleComponent
 import com.example.compose.backgroundLight
 
+/**
+ * Página para poder ver el perfil del usuario activo
+ */
 @Composable
 fun pagePerfil() {
     Column(

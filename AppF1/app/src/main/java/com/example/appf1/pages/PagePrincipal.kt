@@ -23,6 +23,9 @@ import com.example.appf1.components.CustomButton
 import com.example.appf1.components.TitleComponent
 import com.example.compose.backgroundLight
 
+/**
+ * Página para el inicio de la aplicacion donde se registrará el usuario
+ */
 @Composable
 fun pagePrincipal() {
     Column(
