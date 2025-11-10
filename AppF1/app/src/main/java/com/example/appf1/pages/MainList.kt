@@ -18,7 +18,7 @@ import com.example.appf1.components.TitleComponent
  * @param Mensaje de texto que aparce como titulo de la pagina
  */
 @Composable
-fun MainList(options: List<CardDetails>, titlePage: String){
+fun MainList(options: List<CardDetails>, titlePage: String, modifier: Modifier = Modifier){
     Column(modifier = Modifier.height(height = 500.dp)
         .width(width = 275.dp)) {
         TitleComponent(titlePage)
