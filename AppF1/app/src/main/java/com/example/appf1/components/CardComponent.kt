@@ -31,7 +31,8 @@ fun CardComponent(cardInfo: CardDetails) {
     Card(
         modifier = Modifier
             .width(width = 250.dp)
-            .height(height = 125.dp),
+            .height(height = 125.dp)
+            .padding(6.dp),
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surfaceContainerHigh
         )
@@ -48,7 +49,7 @@ fun CardComponent(cardInfo: CardDetails) {
                 modifier = Modifier.padding(6.dp)
             )
             TitleComponent(
-                title = "Ejemplo de titulo",
+                title = cardInfo.title,
                 textStyle = MaterialTheme.typography.titleSmall,
                 textColor = MaterialTheme.colorScheme.secondary
             )
