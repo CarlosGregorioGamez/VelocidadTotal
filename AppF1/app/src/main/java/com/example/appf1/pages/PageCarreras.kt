@@ -21,6 +21,14 @@ import com.example.compose.backgroundLight
 import com.example.compose.onPrimaryLight
 import com.example.compose.primaryLight
 
+/**
+ * Página para ver los datos en detalle de una carrera en específico
+ *
+ * @param nombreCarrera
+ * @param ediciones nº de veces que se ha realizado esta carrera
+ * @param curvas nº de curvas
+ * @param pais
+ */
 @Composable
 fun pageCarrearas(nombreCarrera: String, ediciones: Int, curvas: Int, pais: String) {
     Column(
@@ -32,10 +40,10 @@ fun pageCarrearas(nombreCarrera: String, ediciones: Int, curvas: Int, pais: Stri
             painter = painterResource(R.drawable.vegas),
             contentDescription = "Logo principal de la App"
         )
-        Text(text = "Carrera :" + nombreCarrera, modifier = Modifier, onPrimaryLight)
-        Text(text = "Ediciones : " + ediciones, modifier = Modifier, onPrimaryLight)
-        Text(text = "Numero de curvas : " + curvas, modifier = Modifier, onPrimaryLight)
-        Text(text = "Pais : " + pais, modifier = Modifier, onPrimaryLight)
+        Text(text = "Carrera :$nombreCarrera", modifier = Modifier, onPrimaryLight)
+        Text(text = "Ediciones : $ediciones", modifier = Modifier, onPrimaryLight)
+        Text(text = "Numero de curvas : $curvas", modifier = Modifier, onPrimaryLight)
+        Text(text = "Pais : $pais", modifier = Modifier, onPrimaryLight)
         /**
          *Row(
          *             modifier = Modifier.fillMaxWidth(),

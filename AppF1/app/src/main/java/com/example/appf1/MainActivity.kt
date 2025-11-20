@@ -60,18 +60,25 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
+
 
 @Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
+fun MainListPreview() {
     AppF1Theme {
-        Greeting(name = "a")
+        val testList = mutableListOf<CardDetails>()
+
+        (1..10).forEach {
+            testList.add(
+                CardDetails(
+                    imgId = R.drawable.ic_launcher_foreground,
+                    imgDesc = "Descripción #$it",
+                    title = "Elemento $it"
+                )
+            )
+        }
+        MainList(
+            options = testList,
+            titlePage = "Pagina principal")
     }
 }
