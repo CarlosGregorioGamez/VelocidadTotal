@@ -44,21 +44,6 @@ fun pageCarrearas(nombreCarrera: String, ediciones: Int, curvas: Int, pais: Stri
         Text(text = "Ediciones : $ediciones", modifier = Modifier, onPrimaryLight)
         Text(text = "Numero de curvas : $curvas", modifier = Modifier, onPrimaryLight)
         Text(text = "Pais : $pais", modifier = Modifier, onPrimaryLight)
-        /**
-         *Row(
-         *             modifier = Modifier.fillMaxWidth(),
-         *             horizontalArrangement = Arrangement.SpaceEvenly,
-         *             verticalAlignment = Alignment.CenterVertically
-         *         ) {
-         *             CustomButton("Iniciar") {
-         *
-         *             }
-         *             CustomButton("Salir") {
-         *
-         *             }
-         *         }
-         */
-
     }
 }
 
