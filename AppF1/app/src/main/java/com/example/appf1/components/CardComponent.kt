@@ -46,7 +46,6 @@ fun CardComponent(cardInfo: CardDetails) {
             Image(
                 painter = painterResource(id = cardInfo.imgId),
                 contentDescription = cardInfo.imgDesc,
-                modifier = Modifier.padding(6.dp)
             )
             TitleComponent(
                 title = cardInfo.title,

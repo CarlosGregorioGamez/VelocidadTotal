@@ -7,7 +7,6 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -28,7 +27,7 @@ class MainActivity : ComponentActivity() {
             (1..10).forEach {
                 testList.add(
                     CardDetails(
-                        imgId = R.drawable.ic_launcher_foreground,
+                        imgId = R.drawable.calendario_carreras,
                         imgDesc = "Descripción #$it",
                         title = "Elemento $it"
                     )
@@ -71,7 +70,7 @@ fun MainListPreview() {
         (1..10).forEach {
             testList.add(
                 CardDetails(
-                    imgId = R.drawable.ic_launcher_foreground,
+                    imgId = R.drawable.calendario_carreras,
                     imgDesc = "Descripción #$it",
                     title = "Elemento $it"
                 )
