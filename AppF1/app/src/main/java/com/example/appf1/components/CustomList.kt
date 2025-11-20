@@ -8,7 +8,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 
 
-class Detalle(var name: String, var team: String)
+class Detalle(var name: String, var detalleList: List <String>)
 
 /**
  * Componente que define una lista reutilizable (posible que tenga otra lista similar mas especifica)
@@ -18,8 +18,8 @@ class Detalle(var name: String, var team: String)
 @Composable
 fun CustomList(detalles: List<Detalle>) {
     Column(modifier = Modifier.fillMaxWidth()) {
-        detalles.forEach { Detalle ->
-            pilot(Detalle.name, Detalle.team)
+        detalles.forEach { detalle  ->
+            pilot(detalle.name, detalle.detalleList)
         }
     }
 }
