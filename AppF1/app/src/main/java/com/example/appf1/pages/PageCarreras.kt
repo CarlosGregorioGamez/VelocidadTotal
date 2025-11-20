@@ -32,6 +32,7 @@ import com.example.compose.primaryLight
 @Composable
 fun pageCarrearas(nombreCarrera: String, ediciones: Int, curvas: Int, pais: String) {
     Column(
+        
         modifier = Modifier,
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
