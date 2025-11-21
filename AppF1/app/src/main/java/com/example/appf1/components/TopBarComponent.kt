@@ -36,8 +36,8 @@ fun TopBarF1(title: String) {
     ) {
         Text(text = title, textAlign = TextAlign.Center, color = MaterialTheme.colorScheme.primary)
         Icon(
-            painter = painterResource(id = R.drawable.ic_launcher_foreground),
-            contentDescription = "Ejemplo"
+            painter = painterResource(R.drawable.formula1),
+            contentDescription = "Tu gran logo de f1"
         )
     }
 }
@@ -87,5 +87,5 @@ fun TopBarComponent(
 @Preview
 @Composable
 fun TopBarComponentPreview() {
-    TopBarComponent(topBarTitle = "Prueba ")
+    TopBarComponent(topBarTitle = "Aplicacion f1 ")
 }
