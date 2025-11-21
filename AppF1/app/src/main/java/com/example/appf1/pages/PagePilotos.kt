@@ -35,40 +35,53 @@ import com.example.compose.surfaceContainerLight
  * @param poles
  */
 @Composable
-fun pagePilotos(nombrePiloto: String, apellidos: String, equipo: String, carrerasCorridas: Int, victorias: Int, poles: Int) {
-    Card(
-        modifier = Modifier
-            .padding(24.dp)
-            .fillMaxWidth(),
-        shape = RoundedCornerShape(16.dp),
-        colors = CardDefaults.cardColors(
-            containerColor = surfaceContainerLight
-        ),
-        elevation = CardDefaults.cardElevation(defaultElevation = 6.dp)
+fun pagePilotos(
+    nombrePiloto: String,
+    apellidos: String,
+    equipo: String,
+    carrerasCorridas: Int,
+    victorias: Int,
+    poles: Int
+) {
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,        // centra verticalmente
+        horizontalAlignment = Alignment.CenterHorizontally // centra horizontalmente
     ){
-        Column(
-
-            modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
+        Card(
+            modifier = Modifier
+                .padding(24.dp)
+                .height(400.dp)
+                .fillMaxWidth(),
+            shape = RoundedCornerShape(16.dp),
+            colors = CardDefaults.cardColors(
+                containerColor = surfaceContainerLight
+            ),
+            elevation = CardDefaults.cardElevation(defaultElevation = 6.dp)
         ) {
-            Image(
-                painter = painterResource(R.drawable.piloto),
-                contentDescription = "Foto de $nombrePiloto",
-                modifier = Modifier.size(180.dp)
-            )
+            Column(
+                modifier = Modifier.fillMaxSize(),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Image(
+                    painter = painterResource(R.drawable.piloto),
+                    contentDescription = "Foto de $nombrePiloto",
+                    modifier = Modifier.size(180.dp)
+                )
 
-            Spacer(modifier = Modifier.height(16.dp))
+                Spacer(modifier = Modifier.height(16.dp))
 
-            Text(text = "Nombre :$nombrePiloto", modifier = Modifier, onSurfaceLight)
-            Text(text = "Apellidos : $apellidos", modifier = Modifier, onSurfaceLight)
-            Text(text = "Equipo : $equipo", modifier = Modifier, onSurfaceLight)
+                Text(text = "Nombre :$nombrePiloto", modifier = Modifier, onSurfaceLight)
+                Text(text = "Apellidos : $apellidos", modifier = Modifier, onSurfaceLight)
+                Text(text = "Equipo : $equipo", modifier = Modifier, onSurfaceLight)
 
-            Spacer(modifier = Modifier.height(16.dp))
+                Spacer(modifier = Modifier.height(16.dp))
 
-            Text(text = "Carreras : $carrerasCorridas", modifier = Modifier, onSurfaceLight)
-            Text(text = "Victorias : $victorias", modifier = Modifier, onSurfaceLight)
-            Text(text = "Poles : $poles", modifier = Modifier, onSurfaceLight)
+                Text(text = "Carreras : $carrerasCorridas", modifier = Modifier, onSurfaceLight)
+                Text(text = "Victorias : $victorias", modifier = Modifier, onSurfaceLight)
+                Text(text = "Poles : $poles", modifier = Modifier, onSurfaceLight)
+            }
         }
     }
 }
@@ -76,5 +89,5 @@ fun pagePilotos(nombrePiloto: String, apellidos: String, equipo: String, carrera
 @Preview
 @Composable
 fun pagePreviewP() {
-   pagePilotos("Piloto 1","ni idea","alguno",6,3,1)
+    pagePilotos("Piloto 1", "ni idea", "alguno", 6, 3, 1)
 }
