@@ -72,12 +72,12 @@ fun pageEquipos(
                 Spacer(modifier = Modifier.height(16.dp))
 
                 Text(text = "Nombre :$equipo", modifier = Modifier, onSurfaceLight)
-                Text(text = "Nombre : $apellidos", modifier = Modifier, onSurfaceLight)
-                Text(text = "Equipo : $equipo", modifier = Modifier, onSurfaceLight)
+                Text(text = "Nombre piloto 1 : $nombrePiloto1", modifier = Modifier, onSurfaceLight)
+                Text(text = "Nombre piloto 2 : $nombrePiloto2", modifier = Modifier, onSurfaceLight)
+                Text(text = "Lider equipo : $liderEquipo", modifier = Modifier, onSurfaceLight)
 
                 Spacer(modifier = Modifier.height(16.dp))
-
-                Text(text = "Carreras : $carrerasCorridas", modifier = Modifier, onSurfaceLight)
+                
                 Text(text = "Victorias : $victorias", modifier = Modifier, onSurfaceLight)
                 Text(text = "Poles : $poles", modifier = Modifier, onSurfaceLight)
             }
