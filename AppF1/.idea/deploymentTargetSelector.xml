@@ -11,10 +11,7 @@
       <SelectionState runConfigName="pagePreview1">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="TopBarComponentPreview">
-        <option name="selectionMode" value="DROPDOWN" />
-      </SelectionState>
-      <SelectionState runConfigName="PreviewTopBarComponent">
+      <SelectionState runConfigName="pagePreviewE">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>
