@@ -79,8 +79,7 @@ fun TopBarComponent(
             }
         },
         actions = {
-            IconButton(
-                onClick = burguerIcon
+            IconButton(onClick = { menuExpanded = true }
             ) {
                 Icon(
                     imageVector = Icons.Default.Menu,
