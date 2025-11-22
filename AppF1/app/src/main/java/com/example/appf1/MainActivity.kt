@@ -41,8 +41,7 @@ class MainActivity : ComponentActivity() {
                             navIcon = {
 
                             },
-                            infoIcon = {
-
+                            burguerIcon = {
                             }
                         )
                     },

@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -14,6 +16,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -47,15 +53,16 @@ fun TopBarF1(title: String) {
  *
  * @param topBarTitle recibe el topBarF1 detallado en esta misma clase
  * @param navIcon icono que permite volver a la pantalla anterior
- * @param infoIcon icono que despliega un menú de opciones para el usuario
+ * @param burguerIcon icono que despliega un menú de opciones para el usuario
  */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopBarComponent(
     topBarTitle: String,
     navIcon: () -> Unit = {},
-    infoIcon: () -> Unit = {}
+    burguerIcon: () -> Unit = {}
 ) {
+    var menuExpanded by remember { mutableStateOf(false) }
 
     TopAppBar(
         title = {
@@ -72,12 +79,24 @@ fun TopBarComponent(
             }
         },
         actions = {
-            IconButton(
-                onClick = infoIcon
+            IconButton(onClick = { menuExpanded = true }
             ) {
                 Icon(
                     imageVector = Icons.Default.Menu,
-                    contentDescription = "Volver Atras",
+                    contentDescription = "Burguer",
+                )
+            }
+            DropdownMenu(
+                expanded = menuExpanded,
+                onDismissRequest = { menuExpanded = false }
+            ) {
+                DropdownMenuItem(
+                    text = { Text("Perfil") },
+                    onClick = { menuExpanded = false }
+                )
+                DropdownMenuItem(
+                    text = { Text("Salir") },
+                    onClick = { menuExpanded = false }
                 )
             }
         }
