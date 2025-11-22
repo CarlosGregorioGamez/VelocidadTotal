@@ -54,9 +54,8 @@ fun TopBarF1(title: String) {
 fun TopBarComponent(
     topBarTitle: String,
     navIcon: () -> Unit = {},
-    infoIcon: () -> Unit = {}
+    burguerIcon: () -> Unit = {}
 ) {
-
     TopAppBar(
         title = {
             TopBarF1(topBarTitle)
@@ -73,11 +72,11 @@ fun TopBarComponent(
         },
         actions = {
             IconButton(
-                onClick = infoIcon
+                onClick = burguerIcon
             ) {
                 Icon(
                     imageVector = Icons.Default.Menu,
-                    contentDescription = "Volver Atras",
+                    contentDescription = "Burguer",
                 )
             }
         }
