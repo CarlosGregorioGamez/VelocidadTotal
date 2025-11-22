@@ -47,7 +47,7 @@ fun TopBarF1(title: String) {
  *
  * @param topBarTitle recibe el topBarF1 detallado en esta misma clase
  * @param navIcon icono que permite volver a la pantalla anterior
- * @param infoIcon icono que despliega un menú de opciones para el usuario
+ * @param burguerIcon icono que despliega un menú de opciones para el usuario
  */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
