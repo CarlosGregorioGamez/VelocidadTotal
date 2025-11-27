@@ -17,6 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.appf1.R
@@ -26,11 +27,12 @@ import com.example.compose.surfaceContainerLight
 /**
  * Página para ver los datos en detalle de un piloto en específico
  *
- * @param nombrePiloto
- * @param apellidos
+ * @param nombrePiloto1
+ * @param nombrePiloto2
  * @param equipo
- * @param carrerasCorridas nº de carrera en las que particico
+ * @param liderEquipo estimación de qué piloto es el prioritario dentro del equipo
  * @param victorias
+ * @param podios
  * @param poles
  */
 @Composable
@@ -40,6 +42,7 @@ fun pageEquipos(
     equipo: String,
     liderEquipo: String,
     victorias: Int,
+    podios: Int,
     poles: Int
 ) {
     Column(
@@ -71,14 +74,15 @@ fun pageEquipos(
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-                Text(text = "Nombre :$equipo", modifier = Modifier, onSurfaceLight)
-                Text(text = "Nombre pilotos : $nombrePiloto1 , $nombrePiloto2", modifier = Modifier, onSurfaceLight)
-                Text(text = "Lider equipo : $liderEquipo", modifier = Modifier, onSurfaceLight)
+                Text(text = stringResource(id = R.string.object_name) + ": $equipo", modifier = Modifier, onSurfaceLight)
+                Text(text = stringResource(id = R.string.drivers_name) + ": $nombrePiloto1 , $nombrePiloto2", modifier = Modifier, onSurfaceLight)
+                Text(text = stringResource(id = R.string.leader_name) + ": $liderEquipo", modifier = Modifier, onSurfaceLight)
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-                Text(text = "Victorias : $victorias", modifier = Modifier, onSurfaceLight)
-                Text(text = "Poles : $poles", modifier = Modifier, onSurfaceLight)
+                Text(text = stringResource(id = R.string.victories_name) + ": $victorias", modifier = Modifier, onSurfaceLight)
+                Text(text = stringResource(id = R.string.podium_name) + ": $podios", modifier = Modifier, onSurfaceLight)
+                Text(text = stringResource(id = R.string.polepos_name) + ": $poles", modifier = Modifier, onSurfaceLight)
             }
         }
     }
@@ -87,5 +91,5 @@ fun pageEquipos(
 @Preview
 @Composable
 fun pagePreviewE() {
-    pageEquipos("Piloto 1", "ni idea", "alguno", "doku", 3, 1)
+    pageEquipos("Piloto 1", "ni idea", "alguno", "doku", 3, 5, 1)
 }

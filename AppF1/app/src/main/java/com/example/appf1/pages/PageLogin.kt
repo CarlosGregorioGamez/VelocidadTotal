@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -33,7 +34,7 @@ fun pagePrincipal() {
             painter = painterResource(R.drawable.formula1),
             contentDescription = "Logo principal de la App"
         )
-        Text(text = "Usuario", modifier = Modifier, backgroundLight)
+        Text(text = stringResource(id = R.string.user_name), modifier = Modifier, backgroundLight)
         TextField(
             "",
             onValueChange = {
@@ -41,7 +42,7 @@ fun pagePrincipal() {
             },
             modifier = Modifier.padding(9.dp)
         )
-        Text(text = "Contraseña", modifier = Modifier, backgroundLight)
+        Text(text = stringResource(id = R.string.password_name), modifier = Modifier, backgroundLight)
         TextField(
             "",
             onValueChange = {
@@ -55,10 +56,10 @@ fun pagePrincipal() {
             horizontalArrangement = Arrangement.SpaceEvenly,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            CustomButton("Iniciar") {
+            CustomButton(stringResource(id = R.string.confirm_button)) {
 
             }
-            CustomButton("Salir") {
+            CustomButton(stringResource(id = R.string.exit_button)) {
 
             }
         }
