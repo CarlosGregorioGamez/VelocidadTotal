@@ -17,6 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -63,10 +64,10 @@ fun pageCarrearas(nombreCarrera: String, ediciones: Int, curvas: Int, pais: Stri
                     painter = painterResource(R.drawable.vegas),
                     contentDescription = "Logo principal de la App"
                 )
-                Text(text = "Carrera :$nombreCarrera", modifier = Modifier, onPrimaryLight)
-                Text(text = "Ediciones : $ediciones", modifier = Modifier, onPrimaryLight)
-                Text(text = "Numero de curvas : $curvas", modifier = Modifier, onPrimaryLight)
-                Text(text = "Pais : $pais", modifier = Modifier, onPrimaryLight)
+                Text(text = stringResource(id = R.string.object_name) + " : $nombreCarrera", modifier = Modifier, onPrimaryLight)
+                Text(text = stringResource(id = R.string.editions_name) + " : $ediciones", modifier = Modifier, onPrimaryLight)
+                Text(text = stringResource(id = R.string.turns_name) + " : $curvas", modifier = Modifier, onPrimaryLight)
+                Text(text = stringResource(id = R.string.country_name) + " : $pais", modifier = Modifier, onPrimaryLight)
             }
         }
     }
