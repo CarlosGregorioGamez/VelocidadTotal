@@ -15,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -46,7 +47,7 @@ fun pagePerfil() {
                     .padding(end = 60.dp, bottom = 18.dp)
             )
         }
-        Text(text = "Usuario", modifier = Modifier, backgroundLight)
+        Text(text = stringResource(id = R.string.user_name), modifier = Modifier, backgroundLight)
         TextField(
             "",
             onValueChange = {
@@ -54,7 +55,7 @@ fun pagePerfil() {
             },
             modifier = Modifier.padding(9.dp)
         )
-        Text(text = "Contraseña", modifier = Modifier, backgroundLight)
+        Text(text = stringResource(id = R.string.password_name), modifier = Modifier, backgroundLight)
         TextField(
             "",
             onValueChange = {
@@ -68,10 +69,10 @@ fun pagePerfil() {
             horizontalArrangement = Arrangement.SpaceEvenly,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            CustomButton("Cambiar") {
+            CustomButton(stringResource(id = R.string.update_name)) {
 
             }
-            CustomButton("Volver") {
+            CustomButton(stringResource(id = R.string.return_name)) {
 
             }
         }

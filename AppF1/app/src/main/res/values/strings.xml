@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">AppF1</string>
+    <string name="confirm_button">Confirmar</string>
+    <string name="exit_button">Salir</string>
+    <string name="user_name">Usuario</string>
+    <string name="password_name">Contraseña</string>
+    <string name="object_name">Nombre</string>
+    <string name="drivers_name">Nombre de los pilotos</string>
+    <string name="leader_name">Lider del equipo</string>
+    <string name="victories_name">Nº de victorias</string>
+    <string name="podium_name">Nº de podios</string>
+    <string name="polepos_name">Nº de poles</string>
+    <string name="editions_name">Nº de ediciones</string>
+    <string name="turns_name">Nº de curvas</string>
+    <string name="country_name">Pais</string>
+    <string name="update_name">Cambiar</string>
+    <string name="return_name">Volver</string>
+    <string name="second_name">Volver</string>
+    <string name="team_name">Volver</string>
+    <string name="race_name">Volver</string>
 </resources>
