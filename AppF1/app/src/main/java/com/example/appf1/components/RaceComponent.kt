@@ -18,23 +18,33 @@ import androidx.compose.ui.unit.dp
  * Componente que identifica las carreras para listar
  *
  * @param name
- * @param cantidad
+ * @param editions
  */
+
+data class Track(
+    val name: String,
+    val editions: Int,
+    val country: String,
+    val winner: Driver,
+    val podium: List<Driver>,
+    val lenght: Double
+)
+
 @Composable
-fun race(name: String, cantidad: Int) {
+fun race(track: Track) {
 
     val backgroundColor = Color.White
     Box(
         modifier = Modifier
             .fillMaxWidth()
             .background(color = backgroundColor)
-            .border(1.dp, color =  Color.Black)
+            .border(1.dp, color = Color.Black)
             .padding(all = 4.dp)
 
     ) {
         Column {
-            Text(text = name, modifier = Modifier.fillMaxWidth())
-            Text(text = "$cantidad", modifier = Modifier.fillMaxWidth())
+            Text(text = track.name, modifier = Modifier.fillMaxWidth())
+            Text(text = track.editions.toString(), modifier = Modifier.fillMaxWidth())
         }
 
     }
@@ -44,11 +54,27 @@ fun race(name: String, cantidad: Int) {
 @Composable
 
 fun carreraPreview() {
-    race("Barcelona",399)
+    race(
+        Track(
+            name = "Barcelona",
+            editions = 46,
+            country = TODO(),
+            winner = TODO(),
+            podium = TODO(),
+            lenght = TODO()
+        )
+    )
 }
 
 @Preview
 @Composable
 fun pruebaCarrerasPreview() {
-   race("marte",13)
+    race(Track(
+        name = TODO(),
+        editions = TODO(),
+        country = TODO(),
+        winner = TODO(),
+        podium = TODO(),
+        lenght = TODO()
+    ))
 }
