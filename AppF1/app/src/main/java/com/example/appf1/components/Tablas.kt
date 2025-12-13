@@ -22,7 +22,6 @@ fun TablaSimple(
 
     // Agrupar filas en bloques de 5
     val grupos = filas.chunked(5)
-
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -30,7 +29,6 @@ fun TablaSimple(
             .border(1.dp, onSurfaceLight, RoundedCornerShape(8.dp))
             .padding(8.dp)
     ) {
-
         // Cabecera
         Row {
             cabecera.forEach { titulo ->
@@ -43,9 +41,7 @@ fun TablaSimple(
                 )
             }
         }
-
         Spacer(modifier = Modifier.height(8.dp))
-
         // Slider horizontal
         Row(
             modifier = Modifier
@@ -53,12 +49,10 @@ fun TablaSimple(
         ) {
 
             grupos.forEach { grupo ->
-
-                // ✅ Cada bloque ocupa su propio ancho
                 Box(
                     modifier = Modifier
-                        .width((120.dp + 8.dp) * cabecera.size) // ancho total de la tabla
-                        .padding(end = 24.dp) // separación entre tablas
+                        .width((120.dp + 8.dp) * cabecera.size)
+                        .padding(end = 24.dp)
                 ) {
 
                     Column {
