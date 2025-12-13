@@ -78,13 +78,17 @@ fun pagePilotos(
                 Text(text = stringResource(id = R.string.object_name) + " : $nombrePiloto", modifier = Modifier, onSurfaceLight)
                 Text(text = stringResource(id = R.string.second_name) + " : $apellidos", modifier = Modifier, onSurfaceLight)
                 Text(text = stringResource(id = R.string.team_name) + " : $equipo", modifier = Modifier, onSurfaceLight)
+                Text(text = stringResource(id = R.string.race_name) + " : $carrerasCorridas", modifier = Modifier, onSurfaceLight)
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-                Text(text = stringResource(id = R.string.race_name) + " : $carrerasCorridas", modifier = Modifier, onSurfaceLight)
                 Text(text = stringResource(id = R.string.victories_name) + " : $victorias", modifier = Modifier, onSurfaceLight)
                 Text(text = stringResource(id = R.string.podium_name) + " : $podios", modifier = Modifier, onSurfaceLight)
                 Text(text = stringResource(id = R.string.polepos_name) + " : $poles", modifier = Modifier, onSurfaceLight)
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+
             }
         }
     }
