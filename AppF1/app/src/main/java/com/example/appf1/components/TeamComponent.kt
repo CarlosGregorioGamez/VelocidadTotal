@@ -21,22 +21,34 @@ import androidx.compose.ui.unit.dp
  * @param piloto1
  * @param piloto2
  */
+
+data class Constructor(
+    val name: String,
+    val drivers: List<Driver>,
+    val championships: Int,
+    val wins: Int,
+    val podiums: Int
+)
+
 @Composable
-fun team(name: String, piloto1: String, piloto2: String) {
+fun team(constructor: Constructor) {
 
     val backgroundColor = Color.White
     Box(
         modifier = Modifier
             .fillMaxWidth()
             .background(color = backgroundColor)
-            .border(1.dp, color =  Color.Black)
+            .border(1.dp, color = Color.Black)
             .padding(all = 4.dp)
 
     ) {
         Column {
-            Text(text = name, modifier = Modifier.fillMaxWidth())
-            Text(text = piloto1, modifier = Modifier.fillMaxWidth())
-            Text(text = piloto2, modifier = Modifier.fillMaxWidth())
+            Text(text = constructor.name, modifier = Modifier.fillMaxWidth())
+            Text(text = constructor.drivers[0].toString(), modifier = Modifier.fillMaxWidth())
+            Text(text = constructor.drivers[1].toString(), modifier = Modifier.fillMaxWidth())
+            Text(text = constructor.championships.toString(), modifier = Modifier.fillMaxWidth())
+            Text(text = constructor.wins.toString(), modifier = Modifier.fillMaxWidth())
+            Text(text = constructor.podiums.toString(), modifier = Modifier.fillMaxWidth())
         }
 
     }
@@ -46,12 +58,28 @@ fun team(name: String, piloto1: String, piloto2: String) {
 @Composable
 
 fun teamPreview() {
-    team("Barcelona","399", "aaaaa")
+    team(
+        Constructor(
+            name = TODO(),
+            drivers = TODO(),
+            championships = TODO(),
+            wins = TODO(),
+            podiums = TODO()
+        )
+    )
 }
 
 @Preview
 @Composable
 fun pruebateamPreview() {
-    team("marte","13","marvin")
+    team(
+        Constructor(
+            name = TODO(),
+            drivers = TODO(),
+            championships = TODO(),
+            wins = TODO(),
+            podiums = TODO()
+        )
+    )
 }
 

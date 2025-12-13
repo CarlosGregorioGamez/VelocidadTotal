@@ -16,10 +16,10 @@ class Detalle(var name: String, var team: String)
  * @param detalles define una lista de elementos
  */
 @Composable
-fun CustomList(detalles: List<Detalle>) {
+fun CustomList(driver: List<Driver>) {
     Column(modifier = Modifier.fillMaxWidth()) {
-        detalles.forEach { Detalle ->
-            pilot(Detalle.name, Detalle.team)
+        driver.forEach { detalle ->
+            pilot(driver = detalle)
         }
     }
 }
@@ -27,9 +27,11 @@ fun CustomList(detalles: List<Detalle>) {
 @Preview
 @Composable
 fun listaPreview() {
-    val detalle = ArrayList<Detalle>()
-    detalle.add(Detalle("ooo", "aaa"))
-    detalle.add(Detalle("1", "2"))
-    detalle.add(Detalle("3", "4"))
-    CustomList(detalle)
+    val drivers = listOf(
+        Driver("ooo", "aaa"),
+        Driver("1", "2"),
+        Driver("3", "4")
+    )
+
+    CustomList(drivers)
 }

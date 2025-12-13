@@ -2,6 +2,7 @@ package com.example.appf1.pages
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -42,7 +43,7 @@ fun pageCarrearas(nombreCarrera: String, ediciones: Int, curvas: Int, pais: Stri
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,        // centra verticalmente
         horizontalAlignment = Alignment.CenterHorizontally // centra horizontalmente
-    ){
+    ) {
         Card(
             modifier = Modifier
                 .padding(24.dp)
@@ -53,9 +54,8 @@ fun pageCarrearas(nombreCarrera: String, ediciones: Int, curvas: Int, pais: Stri
                 containerColor = surfaceContainerLight
             ),
             elevation = CardDefaults.cardElevation(defaultElevation = 6.dp)
-        ){
+        ) {
             Column(
-
                 modifier = Modifier,
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
@@ -64,15 +64,32 @@ fun pageCarrearas(nombreCarrera: String, ediciones: Int, curvas: Int, pais: Stri
                     painter = painterResource(R.drawable.vegas),
                     contentDescription = "Logo principal de la App"
                 )
-                Text(text = stringResource(id = R.string.object_name) + " : $nombreCarrera", modifier = Modifier, onPrimaryLight)
-                Text(text = stringResource(id = R.string.editions_name) + " : $ediciones", modifier = Modifier, onPrimaryLight)
-                Text(text = stringResource(id = R.string.turns_name) + " : $curvas", modifier = Modifier, onPrimaryLight)
-                Text(text = stringResource(id = R.string.country_name) + " : $pais", modifier = Modifier, onPrimaryLight)
+                Text(
+                    text = stringResource(id = R.string.object_name) + " : $nombreCarrera",
+                    modifier = Modifier,
+                    onPrimaryLight
+                )
+                Text(
+                    text = stringResource(id = R.string.editions_name) + " : $ediciones",
+                    modifier = Modifier,
+                    onPrimaryLight
+                )
+                Text(
+                    text = stringResource(id = R.string.turns_name) + " : $curvas",
+                    modifier = Modifier,
+                    onPrimaryLight
+                )
+                Text(
+                    text = stringResource(id = R.string.country_name) + " : $pais",
+                    modifier = Modifier,
+                    onPrimaryLight
+                )
             }
         }
     }
-
 }
+
+
 @Preview
 @Composable
 fun pagePreview1() {

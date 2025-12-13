@@ -20,8 +20,11 @@ import androidx.compose.ui.unit.dp
  * @param name
  * @param team
  */
+
+data class Driver(val name: String, val team: String)
+
 @Composable
-fun pilot(name: String, team: String) {
+fun pilot(driver: Driver) {
 
     val backgroundColor = Color.White
     Box(
@@ -33,8 +36,8 @@ fun pilot(name: String, team: String) {
 
     ) {
         Column {
-            Text(text = name, modifier = Modifier.fillMaxWidth())
-            Text(text = team, modifier = Modifier.fillMaxWidth())
+            Text(text = driver.name, modifier = Modifier.fillMaxWidth())
+            Text(text = driver.team, modifier = Modifier.fillMaxWidth())
         }
 
     }
@@ -44,13 +47,21 @@ fun pilot(name: String, team: String) {
 @Composable
 
 fun pilotoPreview() {
-    pilot("paco", "ninguno")
+    pilot(
+        driver = Driver(
+            name = "Paco",
+            team = "Ninguno"
+        )
+    )
 }
 
 @Preview
 @Composable
 fun pruebasPreview() {
-    pilot("no", "troll")
+    pilot(driver = Driver(
+        name = "No",
+        team = "Troll"
+    ))
 }
 
 
