@@ -16,13 +16,13 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.ui.Alignment
 
 @Composable
-fun TablaSimple(
-    cabecera: List<String>,
-    filas: List<List<String>>
+fun RaceTableComponent(
+    header: List<String>,
+    row: List<List<String>>,
 ) {
     val horizontalScrollState = rememberScrollState()
     // Agrupar filas en bloques de 5
-    val grupos = filas.chunked(5)
+    val groups = row.chunked(5)
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -31,14 +31,14 @@ fun TablaSimple(
             .padding(8.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Row {
-            cabecera.forEach { titulo ->
+        Row(horizontalArrangement = Arrangement.Center) {
+            header.forEach { titulo ->
                 Text(
                     text = titulo,
                     color = onSurfaceLight,
                     modifier = Modifier
-                        .width(120.dp)
-                        .padding(end = 8.dp)
+                        .width(128.dp)
+                        .padding(8.dp),
                 )
             }
         }
@@ -47,22 +47,22 @@ fun TablaSimple(
             modifier = Modifier.horizontalScroll(horizontalScrollState),
             horizontalArrangement = Arrangement.Center
         ) {
-            grupos.forEach { grupo ->
+            groups.forEach { group ->
                 Box(
                     modifier = Modifier
-                        .width((120.dp + 8.dp) * cabecera.size)
-                        .padding(end = 24.dp),
+                        .width((128.dp) * header.size)
+                        .padding(8.dp),
                     contentAlignment = Alignment.Center
                 ) {
                     Column {
-                        grupo.forEach { fila ->
+                        group.forEach { row ->
                             Row {
-                                fila.forEach { celda ->
+                                row.forEach { cell ->
                                     Text(
-                                        text = celda,
+                                        text = cell,
                                         color = onSurfaceLight,
                                         modifier = Modifier
-                                            .width(120.dp)
+                                            .width(128.dp)
                                             .padding(end = 8.dp)
                                     )
                                 }
@@ -79,19 +79,17 @@ fun TablaSimple(
 
 @Preview(showBackground = true)
 @Composable
-fun PreviewTablaCarreras() {
+fun PreviewRaceTableComponent() {
     val filas = (1..5).map { i ->
         listOf("Gran Premio $i", "Temporada ${2020 + i}")
     }
 
-    TablaSimple(
-        cabecera = listOf("Gran Premio", "Año"),
-        filas = filas
+    RaceTableComponent(
+        header = listOf("Gran Premio", "Año"),
+        row = filas
     )
 }
 
-//Se pueden pasar objetos diferentes ? o es mejor ponerlo directamente en en las pages.
-//Como limito bien las tablas para que los datos se visualicen correctamente.
 
 
 
