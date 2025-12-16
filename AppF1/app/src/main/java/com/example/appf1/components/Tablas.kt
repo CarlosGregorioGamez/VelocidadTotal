@@ -19,7 +19,6 @@ fun TablaSimple(
     filas: List<List<String>>
 ) {
     val horizontalScrollState = rememberScrollState()
-
     // Agrupar filas en bloques de 5
     val grupos = filas.chunked(5)
     Column(
@@ -29,7 +28,6 @@ fun TablaSimple(
             .border(1.dp, onSurfaceLight, RoundedCornerShape(8.dp))
             .padding(8.dp)
     ) {
-        // Cabecera
         Row {
             cabecera.forEach { titulo ->
                 Text(
@@ -42,19 +40,16 @@ fun TablaSimple(
             }
         }
         Spacer(modifier = Modifier.height(8.dp))
-        // Slider horizontal
         Row(
             modifier = Modifier
                 .horizontalScroll(horizontalScrollState)
         ) {
-
             grupos.forEach { grupo ->
                 Box(
                     modifier = Modifier
                         .width((120.dp + 8.dp) * cabecera.size)
                         .padding(end = 24.dp)
                 ) {
-
                     Column {
                         grupo.forEach { fila ->
                             Row {
@@ -78,10 +73,6 @@ fun TablaSimple(
 }
 
 
-
-
-
-
 @Preview(showBackground = true)
 @Composable
 fun PreviewTablaCarreras() {
@@ -94,6 +85,9 @@ fun PreviewTablaCarreras() {
         filas = filas
     )
 }
+
+//Se pueden pasar objetos diferentes ? o es mejor ponerlo directamente en en las pages.
+//Como limito bien las tablas para que los datos se visualicen correctamente.
 
 
 
