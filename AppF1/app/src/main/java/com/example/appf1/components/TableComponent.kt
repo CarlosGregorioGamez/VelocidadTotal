@@ -11,7 +11,9 @@ import androidx.compose.ui.unit.dp
 import com.example.compose.onSurfaceLight
 
 import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.ui.Alignment
 
 @Composable
 fun TablaSimple(
@@ -26,7 +28,8 @@ fun TablaSimple(
             .fillMaxWidth()
             .padding(12.dp)
             .border(1.dp, onSurfaceLight, RoundedCornerShape(8.dp))
-            .padding(8.dp)
+            .padding(8.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Row {
             cabecera.forEach { titulo ->
@@ -41,14 +44,15 @@ fun TablaSimple(
         }
         Spacer(modifier = Modifier.height(8.dp))
         Row(
-            modifier = Modifier
-                .horizontalScroll(horizontalScrollState)
+            modifier = Modifier.horizontalScroll(horizontalScrollState),
+            horizontalArrangement = Arrangement.Center
         ) {
             grupos.forEach { grupo ->
                 Box(
                     modifier = Modifier
                         .width((120.dp + 8.dp) * cabecera.size)
-                        .padding(end = 24.dp)
+                        .padding(end = 24.dp),
+                    contentAlignment = Alignment.Center
                 ) {
                     Column {
                         grupo.forEach { fila ->
@@ -76,7 +80,7 @@ fun TablaSimple(
 @Preview(showBackground = true)
 @Composable
 fun PreviewTablaCarreras() {
-    val filas = (1..30).map { i ->
+    val filas = (1..5).map { i ->
         listOf("Gran Premio $i", "Temporada ${2020 + i}")
     }
 
