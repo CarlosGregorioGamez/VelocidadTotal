@@ -12,71 +12,92 @@ import com.example.compose.onSurfaceLight
 
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.ui.Alignment
 
 @Composable
 fun RaceTableComponent(
     header: List<String>,
-    row: List<List<String>>,
+    rows: List<List<String>>,
 ) {
-    val horizontalScrollState = rememberScrollState()
-    // Agrupar filas en bloques de 5
-    val groups = row.chunked(5)
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(12.dp)
-            .border(1.dp, onSurfaceLight, RoundedCornerShape(8.dp))
-            .padding(8.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Row(horizontalArrangement = Arrangement.Center) {
-            header.forEach { titulo ->
-                Text(
-                    text = titulo,
-                    color = onSurfaceLight,
-                    modifier = Modifier
-                        .width(128.dp)
-                        .padding(8.dp),
-                )
-            }
+    Column {
+        Row {
+            tituloTabla(header)
         }
-        Spacer(modifier = Modifier.height(8.dp))
-        Row(
-            modifier = Modifier.horizontalScroll(horizontalScrollState),
-            horizontalArrangement = Arrangement.Center
-        ) {
-            groups.forEach { group ->
-                Box(
-                    modifier = Modifier
-                        .width((128.dp) * header.size)
-                        .padding(8.dp),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Column {
-                        group.forEach { row ->
-                            Row {
-                                row.forEach { cell ->
-                                    Text(
-                                        text = cell,
-                                        color = onSurfaceLight,
-                                        modifier = Modifier
-                                            .width(128.dp)
-                                            .padding(end = 8.dp)
-                                    )
-                                }
-                            }
-                            Spacer(modifier = Modifier.height(4.dp))
-                        }
+
+        Row {
+            LazyColumn (
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(200.dp)
+                    .padding(12.dp)
+                    .border(1.dp, onSurfaceLight, RoundedCornerShape(8.dp)),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                rows.forEach { data ->
+                    item {
+                        filaTabla(data, header)
                     }
+
                 }
             }
         }
     }
+
+    // Agrupar filas en bloques de 5
+
 }
 
+@Composable
+fun tituloTabla(header: List<String>){
 
+    Row(horizontalArrangement = Arrangement.SpaceBetween, modifier = Modifier.fillMaxWidth()) {
+        header.forEach { titulo ->
+            Column( modifier = Modifier
+                .weight(1f)
+                .padding(8.dp),
+                horizontalAlignment = Alignment.CenterHorizontally) {
+                Text(
+                    text = titulo,
+                    color = onSurfaceLight,
+                    modifier = Modifier
+                        .padding(8.dp),
+                )
+            }
+
+        }
+    }
+
+}
+
+@Composable
+fun filaTabla(data: List<String>, header: List<String>){
+    Row(
+        horizontalArrangement = Arrangement.SpaceBetween,
+        modifier = Modifier.fillMaxWidth()
+    ) {
+        data.forEach { d ->
+            Column(
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(8.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Text(
+                    text = d,
+                    color = onSurfaceLight,
+                    modifier = Modifier
+                        .padding(end = 8.dp)
+                )
+
+
+                Spacer(modifier = Modifier.height(4.dp))
+            }
+
+        }
+    }
+}
 @Preview(showBackground = true)
 @Composable
 fun PreviewRaceTableComponent() {
@@ -86,7 +107,7 @@ fun PreviewRaceTableComponent() {
 
     RaceTableComponent(
         header = listOf("Gran Premio", "Año"),
-        row = filas
+        rows = filas
     )
 }
 
