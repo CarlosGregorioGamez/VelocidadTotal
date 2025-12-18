@@ -12,11 +12,10 @@ import com.example.compose.onSurfaceLight
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.shape.AbsoluteCutCornerShape
 import androidx.compose.ui.Alignment
 
 @Composable
-fun RaceTableComponent(
+fun TableComponent(
     header: List<String>,
     rows: List<List<String>>,
 ) {
@@ -45,9 +44,6 @@ fun RaceTableComponent(
             }
         }
     }
-
-    // Agrupar filas en bloques de 5
-
 }
 
 @Composable
@@ -112,7 +108,7 @@ fun PreviewRaceTableComponent() {
         listOf("Gran Premio $i", "Temporada ${2020 + i}")
     }
 
-    RaceTableComponent(
+    TableComponent(
         header = listOf("Gran Premio", "Año"),
         rows = filas
     )

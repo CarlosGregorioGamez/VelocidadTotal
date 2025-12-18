@@ -18,7 +18,11 @@ import androidx.compose.ui.unit.dp
  * Componente que identifica las carreras para listar
  *
  * @param name
- * @param editions
+ * @param editions veces que se ha realizado esta carrera en el mundial
+ * @param country
+ * @param winner
+ * @param podium
+ * @param lenght longitud en kms del circuito
  */
 
 data class Track(
