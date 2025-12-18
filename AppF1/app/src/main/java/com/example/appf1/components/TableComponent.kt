@@ -10,10 +10,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.compose.onSurfaceLight
 
-import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.AbsoluteCutCornerShape
 import androidx.compose.ui.Alignment
 
 @Composable
@@ -21,23 +20,25 @@ fun RaceTableComponent(
     header: List<String>,
     rows: List<List<String>>,
 ) {
-    Column {
+    Column(
+        modifier = Modifier
+            .padding(12.dp)
+            .border(1.dp, onSurfaceLight, RoundedCornerShape(8.dp)),
+    ) {
         Row {
-            tituloTabla(header)
+            TableTitle(header)
         }
 
         Row {
-            LazyColumn (
+            LazyColumn(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(200.dp)
-                    .padding(12.dp)
-                    .border(1.dp, onSurfaceLight, RoundedCornerShape(8.dp)),
+                    .height(200.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 rows.forEach { data ->
                     item {
-                        filaTabla(data, header)
+                        TableRow(data, header)
                     }
 
                 }
@@ -50,14 +51,16 @@ fun RaceTableComponent(
 }
 
 @Composable
-fun tituloTabla(header: List<String>){
+fun TableTitle(header: List<String>) {
 
     Row(horizontalArrangement = Arrangement.SpaceBetween, modifier = Modifier.fillMaxWidth()) {
         header.forEach { titulo ->
-            Column( modifier = Modifier
-                .weight(1f)
-                .padding(8.dp),
-                horizontalAlignment = Alignment.CenterHorizontally) {
+            Column(
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(8.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
                 Text(
                     text = titulo,
                     color = onSurfaceLight,
@@ -72,10 +75,13 @@ fun tituloTabla(header: List<String>){
 }
 
 @Composable
-fun filaTabla(data: List<String>, header: List<String>){
+fun TableRow(data: List<String>, header: List<String>) {
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(12.dp)
+            .border(1.dp, onSurfaceLight),
     ) {
         data.forEach { d ->
             Column(
@@ -98,10 +104,11 @@ fun filaTabla(data: List<String>, header: List<String>){
         }
     }
 }
+
 @Preview(showBackground = true)
 @Composable
 fun PreviewRaceTableComponent() {
-    val filas = (1..5).map { i ->
+    val filas = (1..20).map { i ->
         listOf("Gran Premio $i", "Temporada ${2020 + i}")
     }
 
