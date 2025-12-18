@@ -2,8 +2,9 @@ package com.example.appf1.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -19,15 +20,15 @@ import androidx.compose.ui.unit.dp
 import com.example.appf1.R
 
 
-class CardDetails(var imgId: Int, var imgDesc: String = "", var title: String)
+class CardSliderDetails(var imgId: Int, var imgDesc: String = "", var title: String)
 
 /**
  * Componente por defecto para las tarjetas
  *
- * @param cardInfo recibe datos de CardDetails para definir el contenido de cada tarjeta
+ * @param cardSliderInfo recibe datos de CardDetails para definir el contenido de cada tarjeta
  */
 @Composable
-fun CardComponent(cardInfo: CardSliderDetails) {
+fun SliderCardComponent(cardSliderInfo: CardSliderDetails) {
     Card(
         modifier = Modifier
             .padding(6.dp),
@@ -35,16 +36,16 @@ fun CardComponent(cardInfo: CardSliderDetails) {
             containerColor = MaterialTheme.colorScheme.surfaceContainerHigh
         )
     ) {
-        Row(
-            horizontalArrangement = Arrangement.Center,
-            verticalAlignment = Alignment.CenterVertically
+        Column (
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Image(
-                painter = painterResource(id = cardInfo.imgId),
-                contentDescription = cardInfo.imgDesc,
+                painter = painterResource(id = cardSliderInfo.imgId),
+                contentDescription = cardSliderInfo.imgDesc,
             )
             TitleComponent(
-                title = cardInfo.title,
+                title = cardSliderInfo.title,
                 textStyle = MaterialTheme.typography.titleSmall,
                 textColor = MaterialTheme.colorScheme.secondary
             )
@@ -55,10 +56,10 @@ fun CardComponent(cardInfo: CardSliderDetails) {
 
 @Preview
 @Composable
-fun CardComponentPreview() {
-    CardComponent(
-        cardInfo = CardSliderDetails(
-            imgId = R.drawable.ic_launcher_foreground,
+fun CardSliderComponentPreview() {
+    SliderCardComponent(
+        cardSliderInfo = CardSliderDetails(
+            imgId = R.drawable.f1simple,
             imgDesc = "Descripcion",
             title = "Titulo de ejemplo"
         )

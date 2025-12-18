@@ -19,9 +19,11 @@ import androidx.compose.ui.unit.dp
  *
  * @param name
  * @param team
+ * @param wins
+ * @param podiums
  */
 
-data class Driver(val name: String, val team: String)
+data class Driver(val name: String, val team: String, val wins: Int = 0, val podiums: Int = 0)
 
 @Composable
 fun pilot(driver: Driver) {
@@ -50,7 +52,9 @@ fun pilotoPreview() {
     pilot(
         driver = Driver(
             name = "Paco",
-            team = "Ninguno"
+            team = "Ninguno",
+            wins = 2,
+            podiums = 7
         )
     )
 }
@@ -60,7 +64,8 @@ fun pilotoPreview() {
 fun pruebasPreview() {
     pilot(driver = Driver(
         name = "No",
-        team = "Troll"
+        team = "Troll",
+        podiums = 4
     ))
 }
 

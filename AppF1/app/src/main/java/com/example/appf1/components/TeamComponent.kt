@@ -18,8 +18,10 @@ import androidx.compose.ui.unit.dp
  * Componente que identifica los equipos para listar
  *
  * @param name
- * @param piloto1
- * @param piloto2
+ * @param drivers lista de pilotos que conforman el equipo
+ * @param championships
+ * @param wins
+ * @param podiums
  */
 
 data class Constructor(

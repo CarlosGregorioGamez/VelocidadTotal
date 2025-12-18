@@ -3,7 +3,6 @@ package com.example.appf1.pages
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
@@ -13,7 +12,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.appf1.components.CardComponent
-import com.example.appf1.components.CardDetails
+import com.example.appf1.components.CardSliderDetails
 import com.example.appf1.components.TitleComponent
 
 /**
@@ -23,7 +22,7 @@ import com.example.appf1.components.TitleComponent
  * @param Mensaje de texto que aparce como titulo de la pagina
  */
 @Composable
-fun MainList(options: List<CardDetails>, titlePage: String, modifier: Modifier = Modifier) {
+fun MainList(options: List<CardSliderDetails>, titlePage: String, modifier: Modifier = Modifier) {
 
     Box(
         modifier = modifier.fillMaxSize(),

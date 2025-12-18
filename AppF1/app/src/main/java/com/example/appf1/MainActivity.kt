@@ -10,7 +10,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.appf1.components.CardDetails
+import com.example.appf1.components.CardSliderDetails
 import com.example.appf1.components.TopBarComponent
 import com.example.appf1.pages.MainList
 import com.example.compose.AppF1Theme
@@ -22,11 +22,11 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
 
-            val testList = mutableListOf<CardDetails>()
+            val testList = mutableListOf<CardSliderDetails>()
 
             (1..10).forEach {
                 testList.add(
-                    CardDetails(
+                    CardSliderDetails(
                         imgId = R.drawable.calendario_carreras,
                         imgDesc = "Descripción #$it",
                         title = "Elemento $it"
@@ -64,11 +64,11 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MainListPreview() {
     AppF1Theme {
-        val testList = mutableListOf<CardDetails>()
+        val testList = mutableListOf<CardSliderDetails>()
 
         (1..10).forEach {
             testList.add(
-                CardDetails(
+                CardSliderDetails(
                     imgId = R.drawable.calendario_carreras,
                     imgDesc = "Descripción #$it",
                     title = "Elemento $it"
