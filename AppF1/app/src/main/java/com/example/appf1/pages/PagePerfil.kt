@@ -38,13 +38,12 @@ fun pagePerfil() {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(bottom = 16.dp),
-            horizontalArrangement = Arrangement.End
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically
         ) {
             Image(
                 painter = painterResource(R.drawable.perfil),
                 contentDescription = "Imagen de perfil",
-                modifier = Modifier
-                    .padding(end = 60.dp, bottom = 18.dp)
             )
         }
         Text(text = stringResource(id = R.string.user_name), modifier = Modifier, backgroundLight)

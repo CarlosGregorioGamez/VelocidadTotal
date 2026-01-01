@@ -17,6 +17,7 @@ import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -39,51 +40,55 @@ import com.example.compose.surfaceContainerLight
  */
 @Composable
 fun pageCarrearas(nombreCarrera: String, ediciones: Int, curvas: Int, pais: String) {
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Center,        // centra verticalmente
-        horizontalAlignment = Alignment.CenterHorizontally // centra horizontalmente
-    ) {
-        Card(
-            modifier = Modifier
-                .padding(24.dp)
-                .height(400.dp)
-                .fillMaxWidth(),
-            shape = RoundedCornerShape(16.dp),
-            colors = CardDefaults.cardColors(
-                containerColor = surfaceContainerLight
-            ),
-            elevation = CardDefaults.cardElevation(defaultElevation = 6.dp)
+    Box(
+        contentAlignment = Alignment.Center
+    ){
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.Center,        // centra verticalmente
+            horizontalAlignment = Alignment.CenterHorizontally // centra horizontalmente
         ) {
-            Column(
-                modifier = Modifier,
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
+            Card(
+                modifier = Modifier
+                    .padding(24.dp)
+                    .height(400.dp)
+                    .fillMaxWidth(),
+                shape = RoundedCornerShape(16.dp),
+                colors = CardDefaults.cardColors(
+                    containerColor = surfaceContainerLight
+                ),
+                elevation = CardDefaults.cardElevation(defaultElevation = 6.dp)
             ) {
-                Image(
-                    painter = painterResource(R.drawable.vegas),
-                    contentDescription = "Logo principal de la App"
-                )
-                Text(
-                    text = stringResource(id = R.string.object_name) + " : $nombreCarrera",
-                    modifier = Modifier,
-                    onPrimaryLight
-                )
-                Text(
-                    text = stringResource(id = R.string.editions_name) + " : $ediciones",
-                    modifier = Modifier,
-                    onPrimaryLight
-                )
-                Text(
-                    text = stringResource(id = R.string.turns_name) + " : $curvas",
-                    modifier = Modifier,
-                    onPrimaryLight
-                )
-                Text(
-                    text = stringResource(id = R.string.country_name) + " : $pais",
-                    modifier = Modifier,
-                    onPrimaryLight
-                )
+                Column(
+                    modifier = Modifier.fillMaxSize(),
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Image(
+                        painter = painterResource(R.drawable.vegas),
+                        contentDescription = "Logo principal de la App"
+                    )
+                    Text(
+                        text = stringResource(id = R.string.object_name) + " : $nombreCarrera",
+                        modifier = Modifier,
+                        onPrimaryLight
+                    )
+                    Text(
+                        text = stringResource(id = R.string.editions_name) + " : $ediciones",
+                        modifier = Modifier,
+                        onPrimaryLight
+                    )
+                    Text(
+                        text = stringResource(id = R.string.turns_name) + " : $curvas",
+                        modifier = Modifier,
+                        onPrimaryLight
+                    )
+                    Text(
+                        text = stringResource(id = R.string.country_name) + " : $pais",
+                        modifier = Modifier,
+                        onPrimaryLight
+                    )
+                }
             }
         }
     }
