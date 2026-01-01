@@ -32,11 +32,11 @@ fun SliderComponentPreview(){
             title = "Ejemplo 1"
         ),
         CardSliderDetails(
-            imgId = R.drawable.f1simple,
+            imgId = R.drawable.calendario_carreras,
             title = "Ejemplo 2"
         ),
         CardSliderDetails(
-            imgId = R.drawable.f1simple,
+            imgId = R.drawable.perfil,
             title = "Ejemplo 3"
         )
     )
