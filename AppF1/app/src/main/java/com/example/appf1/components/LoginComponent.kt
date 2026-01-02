@@ -15,7 +15,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import com.example.appf1.R
 
-data class Login(val email: String, val contrasenha: String)
+data class Login(val email: String="", val contrasenha: String="")
 
 
 @Composable
