@@ -9,6 +9,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -18,6 +22,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.appf1.R
 import com.example.appf1.components.CustomButton
+import com.example.appf1.components.Login
+import com.example.appf1.components.LoginComponent
 import com.example.compose.backgroundLight
 
 /**
@@ -25,46 +31,45 @@ import com.example.compose.backgroundLight
  */
 @Composable
 fun pagePrincipal() {
+
+    var email by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
+
     Column(
-        modifier = Modifier,
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+
         Image(
             painter = painterResource(R.drawable.formula1),
             contentDescription = "Logo principal de la App"
         )
-        Text(text = stringResource(id = R.string.user_name), modifier = Modifier, backgroundLight)
-        TextField(
-            "",
-            onValueChange = {
 
-            },
-            modifier = Modifier.padding(9.dp)
+        LoginComponent(
+            email = email,
+            password = password,
+            onEmailChange = { email = it },
+            onPasswordChange = { password = it }
         )
-        Text(text = stringResource(id = R.string.password_name), modifier = Modifier, backgroundLight)
-        TextField(
-            "",
-            onValueChange = {
 
-            },
-            modifier = Modifier.padding(9.dp),
-            visualTransformation = PasswordVisualTransformation()
-        )
         Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceEvenly,
-            verticalAlignment = Alignment.CenterVertically
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 16.dp),
+            horizontalArrangement = Arrangement.SpaceEvenly
         ) {
             CustomButton(stringResource(id = R.string.confirm_button)) {
-
+                val login = Login(email, password)
+                println(login)
             }
-            CustomButton(stringResource(id = R.string.exit_button)) {
 
+            CustomButton(stringResource(id = R.string.exit_button)) {
+                // salir
             }
         }
     }
 }
+
 
 @Preview
 @Composable
