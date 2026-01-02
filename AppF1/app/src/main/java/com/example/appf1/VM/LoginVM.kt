@@ -9,18 +9,18 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 
-class LoginVM: ViewModel() {
+class LoginVM : ViewModel() {
 
     private val _uiState = MutableStateFlow(Login())
     private val _userRepo = UserRepostoryMemory()
 
     val uiState: StateFlow<Login> = _uiState.asStateFlow()
 
-    fun onEmailChange(newEmail: String ){
+    fun onEmailChange(newEmail: String) {
         _uiState.update { it.copy(email = newEmail) }
     }
 
-    fun onPasswordChange(newPassword: String ){
+    fun onPasswordChange(newPassword: String) {
         _uiState.update { it.copy(contrasenha = newPassword) }
     }
 }

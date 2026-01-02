@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -21,19 +22,22 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.appf1.R
+import com.example.appf1.VM.LoginVM
 import com.example.appf1.components.CustomButton
 import com.example.appf1.components.Login
 import com.example.appf1.components.LoginComponent
-import com.example.compose.backgroundLight
+import androidx.lifecycle.viewmodel.compose.viewModel
+
+
+
 
 /**
  * Página para el inicio de la aplicacion donde se registrará el usuario
  */
 @Composable
-fun pagePrincipal() {
+fun pagePrincipal(loginVM: LoginVM=viewModel()) {
 
-    var email by remember { mutableStateOf("") }
-    var password by remember { mutableStateOf("") }
+    val uiState by loginVM.uiState.collectAsState()
 
     Column(
         verticalArrangement = Arrangement.Center,
@@ -46,10 +50,10 @@ fun pagePrincipal() {
         )
 
         LoginComponent(
-            email = email,
-            password = password,
-            onEmailChange = { email = it },
-            onPasswordChange = { password = it }
+            email = uiState.email,
+            password = uiState.contrasenha,
+            onEmailChange = { loginVM.onEmailChange(it)},
+            onPasswordChange = { loginVM.onPasswordChange(it)}
         )
 
         Row(
@@ -59,8 +63,7 @@ fun pagePrincipal() {
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
             CustomButton(stringResource(id = R.string.confirm_button)) {
-                val login = Login(email, password)
-                println(login)
+                println(uiState)
             }
 
             CustomButton(stringResource(id = R.string.exit_button)) {
