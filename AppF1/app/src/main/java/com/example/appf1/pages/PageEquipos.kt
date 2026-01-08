@@ -21,6 +21,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.appf1.R
+import com.example.appf1.components.CardSliderDetails
+import com.example.appf1.components.SliderCardComponent
+import com.example.appf1.components.SliderComponent
 import com.example.compose.onSurfaceLight
 import com.example.compose.surfaceContainerLight
 
@@ -45,6 +48,22 @@ fun pageEquipos(
     podios: Int,
     poles: Int
 ) {
+
+    val sliderList = listOf(
+        CardSliderDetails(
+            imgId = R.drawable.f1simple,
+            title = "Ejemplo 1"
+        ),
+        CardSliderDetails(
+            imgId = R.drawable.calendario_carreras,
+            title = "Ejemplo 2"
+        ),
+        CardSliderDetails(
+            imgId = R.drawable.perfil,
+            title = "Ejemplo 3"
+        )
+    )
+
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,        // centra verticalmente
@@ -85,11 +104,14 @@ fun pageEquipos(
                 Text(text = stringResource(id = R.string.polepos_name) + ": $poles", modifier = Modifier, onSurfaceLight)
             }
         }
+
+        SliderComponent(sliderList)
     }
 }
 
 @Preview
 @Composable
-fun pagePreviewE() {
+fun pagePreviewEquipos() {
     pageEquipos("Piloto 1", "ni idea", "alguno", "doku", 3, 5, 1)
+
 }

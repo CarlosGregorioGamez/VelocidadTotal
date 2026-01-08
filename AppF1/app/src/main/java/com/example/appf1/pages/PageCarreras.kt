@@ -24,7 +24,9 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.appf1.R
+import com.example.appf1.components.CardSliderDetails
 import com.example.appf1.components.CustomButton
+import com.example.appf1.components.SliderComponent
 import com.example.compose.backgroundLight
 import com.example.compose.onPrimaryLight
 import com.example.compose.primaryLight
@@ -40,6 +42,22 @@ import com.example.compose.surfaceContainerLight
  */
 @Composable
 fun pageCarrearas(nombreCarrera: String, ediciones: Int, curvas: Int, pais: String) {
+
+    val sliderList = listOf(
+        CardSliderDetails(
+            imgId = R.drawable.f1simple,
+            title = "Ejemplo 1"
+        ),
+        CardSliderDetails(
+            imgId = R.drawable.calendario_carreras,
+            title = "Ejemplo 2"
+        ),
+        CardSliderDetails(
+            imgId = R.drawable.perfil,
+            title = "Ejemplo 3"
+        )
+    )
+
     Box(
         contentAlignment = Alignment.Center
     ){
@@ -90,6 +108,7 @@ fun pageCarrearas(nombreCarrera: String, ediciones: Int, curvas: Int, pais: Stri
                     )
                 }
             }
+            SliderComponent(sliderList)
         }
     }
 }
