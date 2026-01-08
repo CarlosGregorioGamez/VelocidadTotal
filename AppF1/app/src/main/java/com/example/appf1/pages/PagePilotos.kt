@@ -21,6 +21,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.appf1.R
+import com.example.appf1.components.CardSliderDetails
+import com.example.appf1.components.SliderComponent
 import com.example.compose.onPrimaryLight
 import com.example.compose.onSurfaceLight
 import com.example.compose.surfaceContainerLight
@@ -46,6 +48,22 @@ fun pagePilotos(
     podios: Int,
     poles: Int
 ) {
+
+    val sliderList = listOf(
+        CardSliderDetails(
+            imgId = R.drawable.f1simple,
+            title = "Ejemplo 1"
+        ),
+        CardSliderDetails(
+            imgId = R.drawable.calendario_carreras,
+            title = "Ejemplo 2"
+        ),
+        CardSliderDetails(
+            imgId = R.drawable.perfil,
+            title = "Ejemplo 3"
+        )
+    )
+
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,        // centra verticalmente
@@ -91,6 +109,8 @@ fun pagePilotos(
 
             }
         }
+        SliderComponent(sliderList)
+
     }
 }
 

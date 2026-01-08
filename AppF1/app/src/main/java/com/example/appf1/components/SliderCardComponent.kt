@@ -46,8 +46,8 @@ fun SliderCardComponent(cardSliderInfo: CardSliderDetails) {
                 painter = painterResource(id = cardSliderInfo.imgId),
                 contentDescription = cardSliderInfo.imgDesc,
                 contentScale = ContentScale.Crop,
-                modifier = Modifier.fillMaxWidth()
-                .aspectRatio(16f / 9f)
+                modifier = Modifier.width(100.dp)
+                .aspectRatio(1f / 1f)
             )
             TitleComponent(
                 title = cardSliderInfo.title,
