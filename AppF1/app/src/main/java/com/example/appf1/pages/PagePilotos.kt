@@ -42,10 +42,31 @@ import com.example.compose.surfaceContainerLight
  * @param poles
  */
 
-fun carrerasPilotoList() {
-    val sliderList = listOf(
-        CardSliderDetails(imgId = R.drawable.abu_dhabi, title = "Ejemplo 1"),
-
+fun carrerasPilotoList(): List<CardSliderDetails> {
+    return listOf(
+        CardSliderDetails(imgId = R.drawable.abu_dhabi, title = "GP de Abu Dhabi"),
+        CardSliderDetails(imgId = R.drawable.arabia_saudi, title = "GP de Arabia Saudí"),
+        CardSliderDetails(imgId = R.drawable.austin_usa, title = "GP de las Américas"),
+        CardSliderDetails(imgId = R.drawable.australia, title = "Gp de Australia"),
+        CardSliderDetails(imgId = R.drawable.austria, title = "GP de Austria"),
+        CardSliderDetails(imgId = R.drawable.azerbaijan, title = "GP de Azerbaijan"),
+        CardSliderDetails(imgId = R.drawable.bahrein, title = "GP de Bahrain"),
+        CardSliderDetails(imgId = R.drawable.belgica, title = "GP de Bélgica"),
+        CardSliderDetails(imgId = R.drawable.brasil, title = "GP de Brasil"),
+        CardSliderDetails(imgId = R.drawable.canada, title = "GP de Canadá"),
+        CardSliderDetails(imgId = R.drawable.china, title = "GP de China"),
+        CardSliderDetails(imgId = R.drawable.espana, title = "GP de España"),
+        CardSliderDetails(imgId = R.drawable.gran_bretana, title = "GP de Gran Bretaña"),
+        CardSliderDetails(imgId = R.drawable.hungria, title = "GP de Hungría"),
+        CardSliderDetails(imgId = R.drawable.italia, title = "GP de Italia"),
+        CardSliderDetails(imgId = R.drawable.japon, title = "GP de Japón"),
+        CardSliderDetails(imgId = R.drawable.mexico, title = "GP de México"),
+        CardSliderDetails(imgId = R.drawable.miami, title = "GP de Miami"),
+        CardSliderDetails(imgId = R.drawable.monaco, title = "GP de Mónaco"),
+        CardSliderDetails(imgId = R.drawable.paises_bajos, title = "GP de Países Bajos"),
+        CardSliderDetails(imgId = R.drawable.qatar, title = "GP de Qatar"),
+        CardSliderDetails(imgId = R.drawable.singapur, title = "GP de Singapur"),
+        CardSliderDetails(imgId = R.drawable.vegas, title = "GP de Las Vegas"),
         )
 }
 
@@ -62,7 +83,6 @@ fun pagePilotos(
         Card(
             modifier = Modifier
                 .padding(24.dp)
-                .height(400.dp)
                 .fillMaxWidth(),
             shape = RoundedCornerShape(16.dp),
             colors = CardDefaults.cardColors(
@@ -122,6 +142,7 @@ fun pagePilotos(
                     onSurfaceLight
                 )
                 Spacer(modifier = Modifier.height(16.dp))
+                SliderComponent(carrerasPilotoList())
             }
         }
     }
@@ -135,7 +156,7 @@ fun CarrerasList(
 ) {
     LazyColumn(modifier = modifier) {
         items(carreras) { carrera ->
-
+            carreras
         }
     }
 }
@@ -145,4 +166,5 @@ fun CarrerasList(
 @Composable
 fun pagePreviewP() {
     pagePilotos(driver = Driver("Piloto 1", "Apellido 1", "ni idea", 6, 3, 7))
+    CarrerasList(carreras = carrerasPilotoList())
 }
