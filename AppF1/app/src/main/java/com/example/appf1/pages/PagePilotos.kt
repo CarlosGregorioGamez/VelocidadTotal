@@ -148,20 +148,6 @@ fun pagePilotos(
     }
 }
 
-@Composable
-fun CarrerasList(
-    carreras: List<CardSliderDetails>,
-    modifier: Modifier = Modifier,
-    onRaceClick: (Int) -> Unit = {}
-) {
-    LazyColumn(modifier = modifier) {
-        items(carreras) { carrera ->
-            carreras
-        }
-    }
-}
-
-
 @Preview
 @Composable
 fun pagePreviewP() {
