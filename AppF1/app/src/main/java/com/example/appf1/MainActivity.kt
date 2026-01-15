@@ -9,11 +9,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ModifierLocalBeyondBoundsLayout
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.appf1.components.CardSliderDetails
 import com.example.appf1.components.TopBarComponent
-import com.example.appf1.pages.MainList
+import com.example.appf1.pages.MainMenu
 import com.example.compose.AppF1Theme
 
 
@@ -48,7 +47,7 @@ class MainActivity : ComponentActivity() {
                     },
                     modifier = Modifier.fillMaxSize()
                 ) { innerPadding ->
-                    MainList(
+                    MainMenu(
                         races = testList,
                         drivers = testList,
                         teams = testList,
@@ -78,7 +77,7 @@ fun MainListPreview() {
                 )
             )
         }
-        MainList(
+        MainMenu(
             races = testList,
             drivers = testList,
             teams = testList,

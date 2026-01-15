@@ -13,7 +13,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.appf1.R
-import com.example.appf1.components.CardComponent
 import com.example.appf1.components.CardSliderDetails
 import com.example.appf1.components.SliderComponent
 import com.example.appf1.components.TitleComponent
@@ -25,7 +24,7 @@ import com.example.appf1.components.TitleComponent
  * @param Mensaje de texto que aparce como titulo de la pagina
  */
 @Composable
-fun MainList(racesList: List<CardSliderDetails> = emptyList(), drivers: List<CardSliderDetails> = emptyList(), teams: List<CardSliderDetails> = emptyList(), titlePage: String, modifier: Modifier = Modifier) {
+fun MainMenu(racesList: List<CardSliderDetails> = emptyList(), drivers: List<CardSliderDetails> = emptyList(), teams: List<CardSliderDetails> = emptyList(), titlePage: String = "", modifier: Modifier = Modifier) {
 
     Box(
         modifier = modifier.fillMaxSize(),
@@ -81,6 +80,6 @@ fun racesList(): List<CardSliderDetails> {
 
 @Preview
 @Composable
-fun MainListPreview() {
-    MainList(emptyList(), emptyList(), emptyList(), "Titulo")
+fun MainMenuPreview() {
+    MainMenu(emptyList(), emptyList(), emptyList(), "Titulo")
 }
