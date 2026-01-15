@@ -28,9 +28,9 @@ fun CustomList(driver: List<Driver>) {
 @Composable
 fun listaPreview() {
     val drivers = listOf(
-        Driver("ooo", "aaa"),
-        Driver("1", "2"),
-        Driver("3", "4")
+        Driver("ooo", "aaa", "aa"),
+        Driver("1", "2", "ab"),
+        Driver("3", "4", "ba")
     )
 
     CustomList(drivers)
