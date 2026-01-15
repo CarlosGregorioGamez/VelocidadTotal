@@ -38,6 +38,14 @@ import com.example.compose.surfaceContainerLight
  * @param podios
  * @param poles
  */
+
+fun equiposPilotosList(): List<CardSliderDetails> {
+    return listOf(
+        CardSliderDetails(imgId = R.drawable.perfil, title = "GP de Abu Dhabi"),
+        CardSliderDetails(imgId = R.drawable.perfil, title = "GP de Arabia Saudí"),
+    )
+}
+
 @Composable
 fun pageEquipos(
     nombrePiloto1: String,
@@ -48,22 +56,6 @@ fun pageEquipos(
     podios: Int,
     poles: Int
 ) {
-
-    val sliderList = listOf(
-        CardSliderDetails(
-            imgId = R.drawable.f1simple,
-            title = "Ejemplo 1"
-        ),
-        CardSliderDetails(
-            imgId = R.drawable.calendario_carreras,
-            title = "Ejemplo 2"
-        ),
-        CardSliderDetails(
-            imgId = R.drawable.perfil,
-            title = "Ejemplo 3"
-        )
-    )
-
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,        // centra verticalmente
@@ -105,7 +97,7 @@ fun pageEquipos(
             }
         }
 
-        SliderComponent(sliderList)
+        SliderComponent(equiposPilotosList())
     }
 }
 
@@ -113,5 +105,4 @@ fun pageEquipos(
 @Composable
 fun pagePreviewEquipos() {
     pageEquipos("Piloto 1", "ni idea", "alguno", "doku", 3, 5, 1)
-
 }

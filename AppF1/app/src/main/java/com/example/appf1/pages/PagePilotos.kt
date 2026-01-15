@@ -83,6 +83,7 @@ fun pagePilotos(
         Card(
             modifier = Modifier
                 .padding(24.dp)
+                .height(400.dp)
                 .fillMaxWidth(),
             shape = RoundedCornerShape(16.dp),
             colors = CardDefaults.cardColors(
@@ -141,10 +142,9 @@ fun pagePilotos(
                     modifier = Modifier,
                     onSurfaceLight
                 )
-                Spacer(modifier = Modifier.height(16.dp))
-                SliderComponent(carrerasPilotoList())
             }
         }
+        SliderComponent(carrerasPilotoList())
     }
 }
 
@@ -166,5 +166,4 @@ fun CarrerasList(
 @Composable
 fun pagePreviewP() {
     pagePilotos(driver = Driver("Piloto 1", "Apellido 1", "ni idea", 6, 3, 7))
-    CarrerasList(carreras = carrerasPilotoList())
 }

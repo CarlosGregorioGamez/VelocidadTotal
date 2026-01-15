@@ -33,24 +33,24 @@ import com.example.compose.surfaceContainerLight
  * @param curvas nº de curvas
  * @param pais
  */
+
+fun pilotoCarrerasList(): List<CardSliderDetails> {
+    return listOf(
+        CardSliderDetails(imgId = R.drawable.perfil, title = "GP de Abu Dhabi"),
+        CardSliderDetails(imgId = R.drawable.perfil, title = "GP de Arabia Saudí"),
+        CardSliderDetails(imgId = R.drawable.perfil, title = "GP de las Américas"),
+        CardSliderDetails(imgId = R.drawable.perfil, title = "Gp de Australia"),
+        CardSliderDetails(imgId = R.drawable.perfil, title = "GP de Austria"),
+        CardSliderDetails(imgId = R.drawable.perfil, title = "GP de Azerbaijan"),
+        CardSliderDetails(imgId = R.drawable.perfil, title = "GP de Bahrain"),
+        CardSliderDetails(imgId = R.drawable.perfil, title = "GP de Bélgica"),
+        CardSliderDetails(imgId = R.drawable.perfil, title = "GP de Brasil"),
+        CardSliderDetails(imgId = R.drawable.perfil, title = "GP de Canadá")
+    )
+}
+
 @Composable
 fun pageCarreras(nombreCarrera: String, ediciones: Int, curvas: Int, pais: String) {
-
-    val sliderList = listOf(
-        CardSliderDetails(
-            imgId = R.drawable.f1simple,
-            title = "Ejemplo 1"
-        ),
-        CardSliderDetails(
-            imgId = R.drawable.calendario_carreras,
-            title = "Ejemplo 2"
-        ),
-        CardSliderDetails(
-            imgId = R.drawable.perfil,
-            title = "Ejemplo 3"
-        )
-    )
-
     Box(
         contentAlignment = Alignment.Center
     ){
@@ -101,7 +101,7 @@ fun pageCarreras(nombreCarrera: String, ediciones: Int, curvas: Int, pais: Strin
                     )
                 }
             }
-            SliderComponent(sliderList)
+            SliderComponent(cardsInfo = pilotoCarrerasList())
         }
     }
 }
