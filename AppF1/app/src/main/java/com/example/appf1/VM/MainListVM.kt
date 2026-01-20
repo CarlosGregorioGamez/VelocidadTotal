@@ -14,7 +14,7 @@ class MainListVM: ViewModel() {
     private val _uiState = MutableStateFlow(MainList(
         races = _mainListRepo.getRaces(),
         drivers = TODO(),
-        teams = TODO()
+        teams = _mainListRepo.getTeams()
     ))
 
 
