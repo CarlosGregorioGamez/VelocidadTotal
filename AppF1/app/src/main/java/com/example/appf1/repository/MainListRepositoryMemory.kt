@@ -4,7 +4,6 @@ import com.example.appf1.R
 import com.example.appf1.components.CardSliderDetails
 
 class MainListRepositoryMemory {
-
     fun getRaces(): List<CardSliderDetails> = listOf(
             CardSliderDetails(imgId = R.drawable.abu_dhabi, title = "GP de Abu Dhabi"),
             CardSliderDetails(imgId = R.drawable.arabia_saudi, title = "GP de Arabia Saudí"),
@@ -30,4 +29,18 @@ class MainListRepositoryMemory {
             CardSliderDetails(imgId = R.drawable.singapur, title = "GP de Singapur"),
             CardSliderDetails(imgId = R.drawable.vegas, title = "GP de Las Vegas"),
         )
+
+    fun getTeams(): List<CardSliderDetails> = listOf(
+        CardSliderDetails(imgId = R.drawable.alpine, title = "Alpine F1"),
+        CardSliderDetails(imgId = R.drawable.aston_martin, title = "Aston Martin F1"),
+        CardSliderDetails(imgId = R.drawable.audi, title = "Audi F1"),
+        CardSliderDetails(imgId = R.drawable.cadillac, title = "Cadillac F1"),
+        CardSliderDetails(imgId = R.drawable.ferrari, title = "Ferrari F1"),
+        CardSliderDetails(imgId = R.drawable.haas, title = "Haas F1"),
+        CardSliderDetails(imgId = R.drawable.mclaren, title = "McLaren F1"),
+        CardSliderDetails(imgId = R.drawable.mercedes, title = "Mercedes AMG F1"),
+        CardSliderDetails(imgId = R.drawable.racing_bulls, title = "Visa CashApp Racing Bulls F1"),
+        CardSliderDetails(imgId = R.drawable.red_bull_racing, title = "Red Bull Racing F1"),
+        CardSliderDetails(imgId = R.drawable.williams, title = "Williams F1"),
+    )
 }
