@@ -41,8 +41,8 @@ import com.example.compose.surfaceContainerLight
 
 fun equiposPilotosList(): List<CardSliderDetails> {
     return listOf(
-        CardSliderDetails(imgId = R.drawable.perfil, title = "GP de Abu Dhabi"),
-        CardSliderDetails(imgId = R.drawable.perfil, title = "GP de Arabia Saudí"),
+        CardSliderDetails(imgId = R.drawable.perfil, title = "Piloto 1"),
+        CardSliderDetails(imgId = R.drawable.perfil, title = "Piloto 2"),
     )
 }
 
