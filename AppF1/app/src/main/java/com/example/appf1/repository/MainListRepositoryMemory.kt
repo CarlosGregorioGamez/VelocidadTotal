@@ -43,4 +43,29 @@ class MainListRepositoryMemory {
         CardSliderDetails(imgId = R.drawable.red_bull_racing, title = "Red Bull Racing F1"),
         CardSliderDetails(imgId = R.drawable.williams, title = "Williams F1"),
     )
+
+    fun getPilots(): List<CardSliderDetails> = listOf(
+        CardSliderDetails(imgId = R.drawable.albon, title = "Albon"),
+        CardSliderDetails(imgId = R.drawable.bortoleto, title = "Bartoleto"),
+        CardSliderDetails(imgId = R.drawable.hadjar, title = "Hadjar"),
+        CardSliderDetails(imgId = R.drawable.charles, title = "Charles"),
+        CardSliderDetails(imgId = R.drawable.perez, title = "Perez"),
+        CardSliderDetails(imgId = R.drawable.stroll, title = "Stroll"),
+        CardSliderDetails(imgId = R.drawable.alonso, title = "Alonso"),
+        CardSliderDetails(imgId = R.drawable.bottas, title = "Bottas"),
+        CardSliderDetails(imgId = R.drawable.hamilton, title = "Hamilton"),
+        CardSliderDetails(imgId = R.drawable.lindblad, title = "Lindblad"),
+        CardSliderDetails(imgId = R.drawable.piastri, title = "Piastri"),
+        CardSliderDetails(imgId = R.drawable.verstappen, title = "Verstappen"),
+        CardSliderDetails(imgId = R.drawable.antonelli, title = "Antonelli"),
+        CardSliderDetails(imgId = R.drawable.colapinto, title = "Colapinto"),
+        CardSliderDetails(imgId = R.drawable.hulkenberg, title = "Hulkenberg"),
+        CardSliderDetails(imgId = R.drawable.norris, title = "Norris"),
+        CardSliderDetails(imgId = R.drawable.russell, title = "Russell"),
+        CardSliderDetails(imgId = R.drawable.bearman, title = "Bearman"),
+        CardSliderDetails(imgId = R.drawable.gasly, title = "Gasly"),
+        CardSliderDetails(imgId = R.drawable.lawson, title = "Lawson"),
+        CardSliderDetails(imgId = R.drawable.ocon, title = "Ocon"),
+        CardSliderDetails(imgId = R.drawable.sainz, title = "Sainz"),
+    )
 }
