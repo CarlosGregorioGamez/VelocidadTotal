@@ -66,7 +66,7 @@ fun CardSliderComponentPreview() {
         cardSliderInfo = CardSliderDetails(
             imgId = R.drawable.f1simple,
             imgDesc = "Descripcion",
-            title = "Titulo de ejemplo"
+            title = "Titulo de ejemplo",
         )
     )
 }

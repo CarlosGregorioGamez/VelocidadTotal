@@ -49,6 +49,10 @@ fun race(track: Track) {
         Column {
             Text(text = track.name, modifier = Modifier.fillMaxWidth())
             Text(text = track.editions.toString(), modifier = Modifier.fillMaxWidth())
+            Text(text = track.country.toString(), modifier = Modifier.fillMaxWidth())
+            Text(text = track.winner.toString(), modifier = Modifier.fillMaxWidth())
+            Text(text = track.podium.toString(), modifier = Modifier.fillMaxWidth())
+            Text(text = track.lenght.toString() + "km", modifier = Modifier.fillMaxWidth())
         }
 
     }
@@ -62,23 +66,11 @@ fun carreraPreview() {
         Track(
             name = "Barcelona",
             editions = 46,
-            country = TODO(),
-            winner = TODO(),
-            podium = TODO(),
-            lenght = TODO()
+            country = "España",
+            winner = Driver("Fernando", "Alonso", "Aston Martin"),
+            podium = emptyList(),
+            lenght = 4.5
         )
     )
 }
 
-@Preview
-@Composable
-fun pruebaCarrerasPreview() {
-    race(Track(
-        name = TODO(),
-        editions = TODO(),
-        country = TODO(),
-        winner = TODO(),
-        podium = TODO(),
-        lenght = TODO()
-    ))
-}

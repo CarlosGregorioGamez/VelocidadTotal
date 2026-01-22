@@ -53,7 +53,7 @@ fun pilotoCarrerasList(): List<CardSliderDetails> {
 fun pageCarreras(nombreCarrera: String, ediciones: Int, curvas: Int, pais: String) {
     Box(
         contentAlignment = Alignment.Center
-    ){
+    ) {
         Column(
             modifier = Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.Center,        // centra verticalmente
@@ -101,7 +101,12 @@ fun pageCarreras(nombreCarrera: String, ediciones: Int, curvas: Int, pais: Strin
                     )
                 }
             }
-            SliderComponent(cardsInfo = pilotoCarrerasList())
+            SliderComponent(
+                cardsInfo = pilotoCarrerasList(),
+                onCardClick = {
+
+                }
+            )
         }
     }
 }
@@ -110,5 +115,5 @@ fun pageCarreras(nombreCarrera: String, ediciones: Int, curvas: Int, pais: Strin
 @Preview
 @Composable
 fun pagePreview1() {
-   pageCarreras("vegas",1,1,"MuricaLand")
+    pageCarreras("vegas", 1, 1, "MuricaLand")
 }
