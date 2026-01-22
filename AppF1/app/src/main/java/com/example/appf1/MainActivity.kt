@@ -48,9 +48,6 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize()
                 ) { innerPadding ->
                     MainMenu(
-                        races = testList,
-                        drivers = testList,
-                        teams = testList,
                         titlePage = "Pagina principal",
                         modifier = Modifier.padding(innerPadding)
                     )
@@ -78,9 +75,6 @@ fun MainListPreview() {
             )
         }
         MainMenu(
-            races = testList,
-            drivers = testList,
-            teams = testList,
             titlePage = "Pagina principal",
             modifier = Modifier)
     }

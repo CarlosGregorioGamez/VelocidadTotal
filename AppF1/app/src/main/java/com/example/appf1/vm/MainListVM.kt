@@ -1,10 +1,9 @@
-package com.example.appf1.VM
+package com.example.appf1.vm
 
 import androidx.lifecycle.ViewModel
 import com.example.appf1.components.CardSliderDetails
 import com.example.appf1.repository.MainListRepositoryMemory
 import kotlinx.coroutines.flow.MutableStateFlow
-import com.example.appf1.repository.UserRepostoryMemory
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
@@ -13,13 +12,16 @@ class MainListVM: ViewModel() {
     private val _mainListRepo = MainListRepositoryMemory()
     private val _uiState = MutableStateFlow(MainList(
         races = _mainListRepo.getRaces(),
-        drivers = TODO(),
+        drivers = _mainListRepo.getPilots(),
         teams = _mainListRepo.getTeams()
     ))
 
 
     val uiState: StateFlow<MainList> = _uiState.asStateFlow()
 
+    fun onCardClicked(){
+        
+    }
     
 }
 

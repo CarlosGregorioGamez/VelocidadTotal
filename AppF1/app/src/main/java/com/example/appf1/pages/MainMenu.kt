@@ -14,11 +14,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.appf1.R
-import com.example.appf1.VM.MainListVM
-import com.example.appf1.components.CardSliderDetails
+import com.example.appf1.vm.MainListVM
 import com.example.appf1.components.SliderComponent
 import com.example.appf1.components.TitleComponent
 
@@ -29,7 +26,11 @@ import com.example.appf1.components.TitleComponent
  * @param viewModel
  */
 @Composable
-fun MainMenu(titlePage: String = "", viewModel: MainListVM = viewModel()) {
+fun MainMenu(
+    titlePage: String = "",
+    modifier: Modifier = Modifier,
+    viewModel: MainListVM = viewModel()
+) {
 
     val listas by viewModel.uiState.collectAsState()
 
@@ -45,12 +46,21 @@ fun MainMenu(titlePage: String = "", viewModel: MainListVM = viewModel()) {
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-           TitleComponent(titlePage)
+            TitleComponent(titlePage)
             LazyColumn {
-                item{
-                    SliderComponent(cardsInfo = listas.races)
-                    SliderComponent(cardsInfo = listas.drivers)
-                    SliderComponent(cardsInfo = listas.teams)
+                item {
+                    SliderComponent(cardsInfo = listas.races, onCardClick = {
+
+                    }
+                    )
+                    SliderComponent(cardsInfo = listas.drivers, onCardClick = {
+
+                    }
+                    )
+                    SliderComponent(cardsInfo = listas.teams, onCardClick = {
+
+                    }
+                    )
                 }
             }
         }

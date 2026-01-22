@@ -16,7 +16,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.appf1.R
-import com.example.appf1.VM.LoginVM
+import com.example.appf1.vm.LoginVM
 import com.example.appf1.components.CustomButton
 import com.example.appf1.components.LoginComponent
 import androidx.lifecycle.viewmodel.compose.viewModel

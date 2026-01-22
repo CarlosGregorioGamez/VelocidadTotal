@@ -9,23 +9,24 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.appf1.R
 
 @Composable
-fun SliderComponent(cardsInfo: List<CardSliderDetails>) {
+fun SliderComponent(cardsInfo: List<CardSliderDetails>, onCardClick: () -> Unit) {
 
-    LazyRow(modifier = Modifier
-        .fillMaxWidth(),
+    LazyRow(
+        modifier = Modifier
+            .fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
-cardsInfo.forEach {
-    item {
-        SliderCardComponent(it)
-    }
-}
+        cardsInfo.forEach {
+            item {
+                SliderCardComponent(it)
+            }
+        }
     }
 }
 
 @Preview
 @Composable
-fun SliderComponentPreview(){
+fun SliderComponentPreview() {
     val sliderList = listOf(
         CardSliderDetails(
             imgId = R.drawable.f1simple,
@@ -41,6 +42,10 @@ fun SliderComponentPreview(){
         )
     )
 
-    SliderComponent(cardsInfo = sliderList)
+    SliderComponent(
+        cardsInfo = sliderList,
+        onCardClick = {
 
+        }
+    )
 }

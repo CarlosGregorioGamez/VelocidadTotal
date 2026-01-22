@@ -60,7 +60,7 @@ fun pageEquipos(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,        // centra verticalmente
         horizontalAlignment = Alignment.CenterHorizontally // centra horizontalmente
-    ){
+    ) {
         Card(
             modifier = Modifier
                 .padding(24.dp)
@@ -85,19 +85,48 @@ fun pageEquipos(
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-                Text(text = stringResource(id = R.string.object_name) + ": $equipo", modifier = Modifier, onSurfaceLight)
-                Text(text = stringResource(id = R.string.drivers_name) + ": $nombrePiloto1 , $nombrePiloto2", modifier = Modifier, onSurfaceLight)
-                Text(text = stringResource(id = R.string.leader_name) + ": $liderEquipo", modifier = Modifier, onSurfaceLight)
+                Text(
+                    text = stringResource(id = R.string.object_name) + ": $equipo",
+                    modifier = Modifier,
+                    onSurfaceLight
+                )
+                Text(
+                    text = stringResource(id = R.string.drivers_name) + ": $nombrePiloto1 , $nombrePiloto2",
+                    modifier = Modifier,
+                    onSurfaceLight
+                )
+                Text(
+                    text = stringResource(id = R.string.leader_name) + ": $liderEquipo",
+                    modifier = Modifier,
+                    onSurfaceLight
+                )
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-                Text(text = stringResource(id = R.string.victories_name) + ": $victorias", modifier = Modifier, onSurfaceLight)
-                Text(text = stringResource(id = R.string.podium_name) + ": $podios", modifier = Modifier, onSurfaceLight)
-                Text(text = stringResource(id = R.string.polepos_name) + ": $poles", modifier = Modifier, onSurfaceLight)
+                Text(
+                    text = stringResource(id = R.string.victories_name) + ": $victorias",
+                    modifier = Modifier,
+                    onSurfaceLight
+                )
+                Text(
+                    text = stringResource(id = R.string.podium_name) + ": $podios",
+                    modifier = Modifier,
+                    onSurfaceLight
+                )
+                Text(
+                    text = stringResource(id = R.string.polepos_name) + ": $poles",
+                    modifier = Modifier,
+                    onSurfaceLight
+                )
             }
         }
 
-        SliderComponent(equiposPilotosList())
+        SliderComponent(
+            equiposPilotosList(),
+            onCardClick = {
+
+            }
+        )
     }
 }
 

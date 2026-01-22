@@ -144,7 +144,12 @@ fun pagePilotos(
                 )
             }
         }
-        SliderComponent(carrerasPilotoList())
+        SliderComponent(
+            carrerasPilotoList(),
+            onCardClick = {
+
+            }
+        )
     }
 }
 
