@@ -9,7 +9,6 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 
 class LoginVM : ViewModel() {
-
     private val _uiState = MutableStateFlow(Login())
     private val _userRepo = UserRepostoryMemory()
 
