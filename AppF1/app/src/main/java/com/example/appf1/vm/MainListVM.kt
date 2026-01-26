@@ -7,22 +7,28 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
-class MainListVM: ViewModel() {
+class MainListVM : ViewModel() {
 
     private val _mainListRepo = MainListRepositoryMemory()
-    private val _uiState = MutableStateFlow(MainList(
-        races = _mainListRepo.getRaces(),
-        drivers = _mainListRepo.getPilots(),
-        teams = _mainListRepo.getTeams()
-    ))
+    private val _uiState = MutableStateFlow(
+        UIMainList(
+            races = _mainListRepo.getRaces(),
+            drivers = _mainListRepo.getPilots(),
+            teams = _mainListRepo.getTeams()
+        )
+    )
 
 
-    val uiState: StateFlow<MainList> = _uiState.asStateFlow()
+    val uiState: StateFlow<UIMainList> = _uiState.asStateFlow()
 
-    fun onCardClicked(){
-        
+    fun onCardClicked() {
+
     }
-    
+
 }
 
-data class MainList(val races: List<CardSliderDetails>, val drivers: List<CardSliderDetails>, val teams: List<CardSliderDetails>)
+data class UIMainList(
+    val races: List<CardSliderDetails>,
+    val drivers: List<CardSliderDetails>,
+    val teams: List<CardSliderDetails>
+)

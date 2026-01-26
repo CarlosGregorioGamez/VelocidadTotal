@@ -20,7 +20,11 @@ class PaginaPilotosVM : ViewModel() {
     fun cargarPilotos() {
         _repo.getAll({ pilotos ->
             {
-                val listNuevosPilotos = pilotos.map { UIPiloto(it.nombre) }
+                val listNuevosPilotos = pilotos.map {
+                    UIPiloto(
+                        it.nombre
+                    )
+                }
                 _uiState.value = listNuevosPilotos;
             }
         });
