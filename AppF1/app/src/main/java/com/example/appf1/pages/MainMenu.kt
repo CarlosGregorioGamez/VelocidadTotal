@@ -12,10 +12,9 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.appf1.vm.MainListVM
+import com.example.appf1.viewmodel.vm.MainListVM
 import com.example.appf1.components.SliderComponent
 import com.example.appf1.components.TitleComponent
 
@@ -65,10 +64,4 @@ fun MainMenu(
             }
         }
     }
-}
-
-@Preview
-@Composable
-fun MainMenuPreview() {
-    MainMenu("Menú principal")
 }

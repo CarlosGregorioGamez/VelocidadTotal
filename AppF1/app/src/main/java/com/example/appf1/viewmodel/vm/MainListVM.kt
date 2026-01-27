@@ -1,4 +1,4 @@
-package com.example.appf1.vm
+package com.example.appf1.viewmodel.vm
 
 import androidx.lifecycle.ViewModel
 import com.example.appf1.components.CardSliderDetails

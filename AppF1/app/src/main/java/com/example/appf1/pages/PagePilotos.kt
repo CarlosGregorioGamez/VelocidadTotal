@@ -9,8 +9,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -24,12 +22,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.appf1.R
-import com.example.appf1.components.CardDetails
 import com.example.appf1.components.CardSliderDetails
 import com.example.appf1.components.Driver
 import com.example.appf1.components.SliderComponent
-import com.example.appf1.vm.PaginaPilotosVM
-import com.example.compose.onPrimaryLight
+import com.example.appf1.viewmodel.vm.PaginaPilotosVM
 import com.example.compose.onSurfaceLight
 import com.example.compose.surfaceContainerLight
 import androidx.compose.runtime.collectAsState
