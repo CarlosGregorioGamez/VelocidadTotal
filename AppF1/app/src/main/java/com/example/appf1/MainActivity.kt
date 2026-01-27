@@ -76,6 +76,7 @@ fun MainListPreview() {
         }
         MainMenu(
             titlePage = "Pagina principal",
-            modifier = Modifier)
+            modifier = Modifier
+        )
     }
 }

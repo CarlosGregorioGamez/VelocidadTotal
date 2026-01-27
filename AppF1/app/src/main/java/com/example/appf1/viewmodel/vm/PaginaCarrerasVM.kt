@@ -1,36 +1,28 @@
-package com.example.appf1.vm
+package com.example.appf1.viewmodel.vm
 
 import androidx.lifecycle.ViewModel
-import com.example.appf1.R
-import com.example.appf1.components.CardSliderDetails
-import com.example.appf1.components.Login
-import com.example.appf1.model.Piloto
 import com.example.appf1.repository.PilotoRepostoryMemory
+import com.example.appf1.viewmodel.uistate.PaginaCarrerasUIState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
-
-class PaginaPilotosVM : ViewModel() {
-    private val _uiState = MutableStateFlow<List<UIPiloto>>(emptyList())
+class PaginaCarrerasVM : ViewModel() {
+    private val _uiState = MutableStateFlow<List<PaginaCarrerasUIState>>(emptyList())
     private val _repo = PilotoRepostoryMemory()
 
-    val uiState: StateFlow<List<UIPiloto>> = _uiState.asStateFlow()
+    val uiState: StateFlow<List<PaginaCarrerasUIState>> = _uiState.asStateFlow()
 
-    fun cargarPilotos() {
-        _repo.getAll({ pilotos ->
+    fun cargarCarreras() {
+        _repo.getAll { carreras ->
             {
-                val listNuevosPilotos = pilotos.map {
-                    UIPiloto(
-                        it.nombre
-                    )
-                }
-                _uiState.value = listNuevosPilotos;
+                val listNuevasCarreras = carreras.map { PaginaCarrerasUIState(it.nombre) }
+                _uiState.value = listNuevasCarreras;
             }
-        });
+        }
     }
 
-    /*fun carrerasPilotoList(): List<Piloto> {
+    /*fun carrerasCarrerasList(): List<PaginaCarrerasUIState> {
         return listOf(
             CardSliderDetails(imgId = R.drawable.abu_dhabi, title = "GP de Abu Dhabi"),
             CardSliderDetails(imgId = R.drawable.arabia_saudi, title = "GP de Arabia Saudí"),
@@ -57,12 +49,6 @@ class PaginaPilotosVM : ViewModel() {
             CardSliderDetails(imgId = R.drawable.vegas, title = "GP de Las Vegas"),
         )
     }*/
-
-
-}
-
-
-data class UIPiloto(val name: String) {
 
 
 }
