@@ -119,7 +119,7 @@ fun pagePilotos(
             }
         }
         SliderComponent(
-            vm.uiState.collectAsState().value.map { pilotoUI -> CardSliderDetails(1, pilotoUI.name, pilotoUI.name) },
+            vm.uiState.collectAsState().value.map { pilotoUI -> CardSliderDetails(1, "Descripcion", pilotoUI.nombre) },
             onCardClick = {
 
             }
