@@ -19,7 +19,9 @@ class PaginaPilotosVM : ViewModel() {
             {
                 val listNuevosPilotos = pilotos.map {
                     PaginaPilotosUIState(
-                        it.nombre
+                        it.nombre,
+                        imageDesc = TODO(),
+                        title = TODO()
                     )
                 }
                 _uiState.value = listNuevosPilotos;
