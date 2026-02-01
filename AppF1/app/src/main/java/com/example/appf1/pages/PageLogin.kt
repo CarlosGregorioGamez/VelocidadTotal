@@ -42,7 +42,7 @@ fun pagePrincipal(loginVM: LoginVM = viewModel()) {
 
         LoginComponent(
             email = uiState.email,
-            password = uiState.contrasenha,
+            password = uiState.password,
             onEmailChange = { loginVM.onEmailChange(it) },
             onPasswordChange = { loginVM.onPasswordChange(it) }
         )
