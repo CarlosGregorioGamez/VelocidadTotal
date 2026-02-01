@@ -28,7 +28,22 @@ class PerfilVM(private val repository: UserRepostoryMemory) : ViewModel() {
                 Log.e("PerfilVM", "No hay usuario disponible: ${e.message}")
             }
         }
+
+    fun updateEmail(newEmail: String) {
+        _uiState.value = _uiState.value?.copy(email = newEmail)
     }
+
+    fun updatePassword(newPassword: String) {
+        _uiState.value = _uiState.value?.copy(password = newPassword)
+    }
+
+    fun saveChanges() {
+        Log.d("PerfilVM", "Datos guardados: ${_uiState.value}")
+    }
+
+    }
+
+
 
 
 class PerfilVMFactory(
