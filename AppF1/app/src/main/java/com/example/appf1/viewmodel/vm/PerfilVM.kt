@@ -6,6 +6,6 @@ import com.example.appf1.viewmodel.uistate.PaginaPilotosUIState
 import kotlinx.coroutines.flow.MutableStateFlow
 
 class PerfilVM : ViewModel() {
-    private val _uiState = MutableStateFlow<List<PaginaPilotosUIState>>(emptyList())
+    private val _uiState = MutableStateFlow<List<Perfil>>(emptyList())
     private val _repo = PilotoRepostoryMemory()
 }
