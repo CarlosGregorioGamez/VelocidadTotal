@@ -48,13 +48,14 @@ class UserRepostoryMemory : UserRepository {
         onError: (Throwable) -> Unit,
         onSuccess: (UserDTO) -> Unit
     ) {
-        val user = users.find { it.email == email && it.password == password }
+        val user = usuarios.find { it.email == email && it.password == password }
         if (user != null) {
             onSuccess(user)
         } else {
-            onError(Throwable("User not found"))
+            onError(Throwable("Error en los datos"))
         }
     }
+
 
 
 }

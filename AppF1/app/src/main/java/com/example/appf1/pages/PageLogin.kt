@@ -1,5 +1,6 @@
 package com.example.appf1.pages
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -54,8 +55,11 @@ fun pagePrincipal(loginVM: LoginVM = viewModel()) {
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
             CustomButton(stringResource(id = R.string.confirm_button)) {
-                println(uiState)
+                loginVM.login {
+                    Log.d("LOGIN CORRECTO","si si")
+                }
             }
+
 
             CustomButton(stringResource(id = R.string.exit_button)) {
                 // salir
