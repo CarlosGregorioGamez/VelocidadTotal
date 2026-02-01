@@ -15,10 +15,14 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.appf1.components.CardSliderDetails
 import com.example.appf1.components.TopBarComponent
 import com.example.appf1.pages.MainMenu
+import com.example.appf1.pages.pagePerfil
 import com.example.appf1.pages.pagePrincipal
+import com.example.appf1.repository.PerfilMemory
 import com.example.appf1.repository.UserRepostoryMemory
 import com.example.appf1.viewmodel.vm.LoginVM
 import com.example.appf1.viewmodel.vm.LoginVMFactory
+import com.example.appf1.viewmodel.vm.PerfilVM
+import com.example.appf1.viewmodel.vm.PerfilVMFactory
 import com.example.compose.AppF1Theme
 
 
@@ -27,8 +31,10 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         val repository = UserRepostoryMemory()
-        val factory = LoginVMFactory(repository)
-        val loginVM = ViewModelProvider(this, factory)[LoginVM::class.java]
+        //val factory = LoginVMFactory(repository)
+        val factory= PerfilVMFactory(repository)
+        //val loginVM = ViewModelProvider(this, factory)[LoginVM::class.java]
+        val perfilVM = ViewModelProvider(this, factory)[PerfilVM::class.java]
         setContent {
             /**
 
@@ -65,7 +71,8 @@ class MainActivity : ComponentActivity() {
             }
             **/
 
-            pagePrincipal(loginVM)
+            //pagePrincipal(loginVM)
+            pagePerfil(perfilVM)
         }
     }
 }

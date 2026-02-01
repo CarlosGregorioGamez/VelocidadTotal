@@ -60,7 +60,7 @@ fun pagePerfil(perfilVM: PerfilVM = viewModel(factory = PerfilVMFactory(UserRepo
             value = user?.email ?:
             "",
             onValueChange = {
-
+                 perfilVM.updateEmail(it)
             },
             modifier = Modifier.padding(9.dp)
         )
@@ -69,7 +69,7 @@ fun pagePerfil(perfilVM: PerfilVM = viewModel(factory = PerfilVMFactory(UserRepo
             value = user?.password ?:
             "",
             onValueChange = {
-
+                perfilVM.updatePassword(it)
             },
             modifier = Modifier.padding(9.dp),
             visualTransformation = PasswordVisualTransformation()
@@ -80,7 +80,7 @@ fun pagePerfil(perfilVM: PerfilVM = viewModel(factory = PerfilVMFactory(UserRepo
             verticalAlignment = Alignment.CenterVertically
         ) {
             CustomButton(stringResource(id = R.string.update_name)) {
-
+                perfilVM.saveChanges()
             }
             CustomButton(stringResource(id = R.string.return_name)) {
 
