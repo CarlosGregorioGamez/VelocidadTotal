@@ -26,7 +26,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
  * Página para el inicio de la aplicacion donde se registrará el usuario
  */
 @Composable
-fun pagePrincipal(loginVM: LoginVM = viewModel()) {
+fun pagePrincipal(loginVM: LoginVM = viewModel(), onLoginSuccess: () -> Unit) {
 
     val uiState by loginVM.uiState.collectAsState()
 
@@ -55,10 +55,15 @@ fun pagePrincipal(loginVM: LoginVM = viewModel()) {
         ) {
             CustomButton(stringResource(id = R.string.confirm_button)) {
                 println(uiState)
+                val bol = vm.tryLogin();
+                if(bol){
+                    onLoginSuccess()
+                }
             }
 
             CustomButton(stringResource(id = R.string.exit_button)) {
                 // salir
+                //
             }
         }
     }
