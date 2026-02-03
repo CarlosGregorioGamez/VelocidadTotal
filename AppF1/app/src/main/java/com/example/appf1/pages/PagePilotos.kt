@@ -23,12 +23,13 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.appf1.R
 import com.example.appf1.components.CardSliderDetails
-import com.example.appf1.model.PilotoDTO
+import com.example.appf1.data.model.PilotoDTO
 import com.example.appf1.components.SliderComponent
 import com.example.appf1.viewmodel.vm.PaginaPilotosVM
 import com.example.compose.onSurfaceLight
 import com.example.compose.surfaceContainerLight
 import androidx.compose.runtime.collectAsState
+import com.example.appf1.data.model.EquipoDTO
 
 /**
  * Página para ver los datos en detalle de un piloto en específico
@@ -125,5 +126,14 @@ fun pagePilotos(
 @Preview
 @Composable
 fun pagePreviewP() {
-    pagePilotos(driver = PilotoDTO("1", "Piloto 1", "ni idea", 6, 3, 7))
+    pagePilotos(driver = PilotoDTO("1", "Piloto 1", EquipoDTO(
+        id = "5",
+        name = "Equipo 2",
+        drivers = emptyList(),
+        championships = 1,
+        wins = 1,
+        podiums = 5,
+        imgId = R.drawable.mercedes
+    ), 6, 3, 7,
+        imgId = R.drawable.sainz))
 }
