@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.appf1.model.PilotoDTO
 
 /**
  * Componente que identifica los pilotos para listar
@@ -23,10 +24,9 @@ import androidx.compose.ui.unit.dp
  * @param podiums
  */
 
-data class Driver(val name: String, val surname: String, val team: String, val wins: Int = 0, val podiums: Int = 0, val poles: Int = 0)
 
 @Composable
-fun pilot(driver: Driver) {
+fun pilot(driver: PilotoDTO) {
 
     val backgroundColor = Color.White
     Box(
@@ -50,12 +50,12 @@ fun pilot(driver: Driver) {
 
 fun pilotoPreview() {
     pilot(
-        driver = Driver(
+        driver = PilotoDTO(
+            id = "1",
             name = "Paco",
             team = "Ninguno",
             wins = 2,
             podiums = 7,
-            surname = "Gonzalez",
         )
     )
 }
@@ -63,9 +63,9 @@ fun pilotoPreview() {
 @Preview
 @Composable
 fun pruebasPreview() {
-    pilot(driver = Driver(
+    pilot(driver = PilotoDTO(
+        id = "2",
         name = "No",
-        surname = "Tampoco",
         team = "Troll",
         podiums = 4
     ))
