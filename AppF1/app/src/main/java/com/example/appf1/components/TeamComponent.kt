@@ -13,8 +13,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.appf1.model.EquipoDTO
-import com.example.appf1.model.PilotoDTO
+import com.example.appf1.R
+import com.example.appf1.data.model.EquipoDTO
 
 /**
  * Componente que identifica los equipos para listar
@@ -63,7 +63,8 @@ fun teamPreview() {
             drivers = emptyList(),
             championships = 2,
             wins = 15,
-            podiums = 40
+            podiums = 40,
+            imgId = R.drawable.mercedes
         )
     )
 }
@@ -78,7 +79,8 @@ fun pruebateamPreview() {
             drivers = emptyList(),
             championships = 1,
             wins = 1,
-            podiums = 5
+            podiums = 5,
+            imgId = R.drawable.mercedes
         )
     )
 }
