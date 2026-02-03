@@ -14,12 +14,7 @@ class PaginaCarrerasVM : ViewModel() {
     val uiState: StateFlow<List<PaginaCarrerasUIState>> = _uiState.asStateFlow()
 
     fun cargarCarreras() {
-        _repo.getAll { carreras ->
-            {
-                val listNuevasCarreras = carreras.map { PaginaCarrerasUIState(it.nombre) }
-                _uiState.value = listNuevasCarreras;
-            }
-        }
+        _repo.getAllRaces()
     }
 
     /*fun carrerasCarrerasList(): List<PaginaCarrerasUIState> {

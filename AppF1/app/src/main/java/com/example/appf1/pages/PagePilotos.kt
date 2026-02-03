@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.appf1.R
 import com.example.appf1.components.CardSliderDetails
-import com.example.appf1.components.Driver
+import com.example.appf1.model.PilotoDTO
 import com.example.appf1.components.SliderComponent
 import com.example.appf1.viewmodel.vm.PaginaPilotosVM
 import com.example.compose.onSurfaceLight
@@ -45,7 +45,7 @@ import androidx.compose.runtime.collectAsState
 
 @Composable
 fun pagePilotos(
-   driver: Driver,
+   driver: PilotoDTO,
    vm: PaginaPilotosVM = viewModel()
 ) {
 
@@ -84,11 +84,6 @@ fun pagePilotos(
                     onSurfaceLight
                 )
                 Text(
-                    text = stringResource(id = R.string.second_name) + " : ${driver.surname}",
-                    modifier = Modifier,
-                    onSurfaceLight
-                )
-                Text(
                     text = stringResource(id = R.string.team_name) + " : ${driver.team}",
                     modifier = Modifier,
                     onSurfaceLight
@@ -119,7 +114,7 @@ fun pagePilotos(
             }
         }
         SliderComponent(
-            vm.uiState.collectAsState().value.map { pilotoUI -> CardSliderDetails(1, "Descripcion", pilotoUI.nombre) },
+            vm.uiState.collectAsState().value.map { pilotoUI -> CardSliderDetails(1, "Descripcion", pilotoUI.name) },
             onCardClick = {
 
             }
@@ -130,5 +125,5 @@ fun pagePilotos(
 @Preview
 @Composable
 fun pagePreviewP() {
-    pagePilotos(driver = Driver("Piloto 1", "Apellido 1", "ni idea", 6, 3, 7))
+    pagePilotos(driver = PilotoDTO("1", "Piloto 1", "ni idea", 6, 3, 7))
 }

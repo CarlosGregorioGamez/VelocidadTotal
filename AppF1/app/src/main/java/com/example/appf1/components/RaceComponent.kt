@@ -13,29 +13,19 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.appf1.model.CarreraDTO
+import com.example.appf1.model.PilotoDTO
 
 /**
  * Componente que identifica las carreras para listar
  *
- * @param name
- * @param editions veces que se ha realizado esta carrera en el mundial
- * @param country
- * @param winner
- * @param podium
- * @param lenght longitud en kms del circuito
+ * @param track Recibe la data class CarreraDTO
  */
 
-data class Track(
-    val name: String,
-    val editions: Int,
-    val country: String,
-    val winner: Driver,
-    val podium: List<Driver>,
-    val lenght: Double
-)
+
 
 @Composable
-fun race(track: Track) {
+fun race(track: CarreraDTO) {
 
     val backgroundColor = Color.White
     Box(
@@ -49,7 +39,7 @@ fun race(track: Track) {
         Column {
             Text(text = track.name, modifier = Modifier.fillMaxWidth())
             Text(text = track.editions.toString(), modifier = Modifier.fillMaxWidth())
-            Text(text = track.country.toString(), modifier = Modifier.fillMaxWidth())
+            Text(text = track.country, modifier = Modifier.fillMaxWidth())
             Text(text = track.winner.toString(), modifier = Modifier.fillMaxWidth())
             Text(text = track.podium.toString(), modifier = Modifier.fillMaxWidth())
             Text(text = track.lenght.toString() + "km", modifier = Modifier.fillMaxWidth())
@@ -63,13 +53,14 @@ fun race(track: Track) {
 
 fun carreraPreview() {
     race(
-        Track(
+        CarreraDTO(
+            id = "4",
             name = "Barcelona",
             editions = 46,
             country = "España",
-            winner = Driver("Fernando", "Alonso", "Aston Martin"),
+            winner = PilotoDTO("1", "Fernando Alonso", "Aston Martin"),
             podium = emptyList(),
-            lenght = 4.5
+            lenght = 4.5,
         )
     )
 }
