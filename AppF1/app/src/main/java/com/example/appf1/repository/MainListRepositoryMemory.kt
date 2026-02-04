@@ -72,4 +72,7 @@ class MainListRepositoryMemory {
             CardSliderDetails(imgId = R.drawable.sainz, title = "Sainz"),
         )
     }
+    fun getRaces(): List<CardSliderDetails> = carreras
+    fun getTeams(): List<CardSliderDetails> = equipos
+    fun getPilots(): List<CardSliderDetails> = pilotos
 }
