@@ -29,9 +29,9 @@ class MainListVM : ViewModel() {
 
     fun getSelectedList(): List<CardSliderDetails> =
         when (_uiState.value.selectedListType) {
-            ListType.Races -> _mainListRepo.getRaces()
-            ListType.Drivers -> _mainListRepo.getPilots()
-            ListType.Team -> _mainListRepo.getTeams()
+            ListType.RACES -> _mainListRepo.getRaces()
+            ListType.DRIVERS -> _mainListRepo.getPilots()
+            ListType.TEAM -> _mainListRepo.getTeams()
         }
 }
 

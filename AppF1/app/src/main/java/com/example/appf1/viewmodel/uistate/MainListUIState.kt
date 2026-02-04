@@ -8,5 +8,5 @@ data class MainListUIState(
     val races: List<CardSliderDetails>,
     val drivers: List<CardSliderDetails>,
     val teams: List<CardSliderDetails>,
-    val selectedListType: ListType = ListType.Races
+    val selectedListType: ListType = ListType.RACES
 )

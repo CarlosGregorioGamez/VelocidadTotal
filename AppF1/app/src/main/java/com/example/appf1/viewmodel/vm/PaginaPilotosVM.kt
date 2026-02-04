@@ -14,20 +14,23 @@ class PaginaPilotosVM : ViewModel() {
 
     val uiState: StateFlow<List<PaginaPilotosUIState>> = _uiState.asStateFlow()
 
-    fun cargarPilotos() {
-        _repo.getAll { pilotos ->
-            {
-                val listNuevosPilotos = pilotos.map {
-                    PaginaPilotosUIState(
-                        it.nombre,
-                        imageDesc = TODO(),
-                        title = TODO()
-                    )
-                }
-                _uiState.value = listNuevosPilotos;
-            }
-        };
-    }
+    /**
+     * fun cargarPilotos() {
+     *         _repo.getAll { pilotos ->
+     *             {
+     *                 val listNuevosPilotos = pilotos.map {
+     *                     PaginaPilotosUIState(
+     *                         it.nombre,
+     *                         imageDesc = TODO(),
+     *                         title = TODO()
+     *                     )
+     *                 }
+     *                 _uiState.value = listNuevosPilotos;
+     *             }
+     *         };
+     *     }
+     */
+
 
     /*fun carrerasPilotoList(): List<Piloto> {
         return listOf(

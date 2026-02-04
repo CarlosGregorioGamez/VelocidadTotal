@@ -17,6 +17,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.appf1.viewmodel.vm.MainListVM
 import com.example.appf1.components.SliderComponent
 import com.example.appf1.components.TitleComponent
+import com.example.appf1.viewmodel.vm.ListType
 
 /**
  * Página que muestra un listado de tarjetas con información, en una lazycolumn para poder scrollear libremente
@@ -49,15 +50,15 @@ fun MainMenu(
             LazyColumn {
                 item {
                     SliderComponent(cardsInfo = listas.races, onCardClick = {
-                        
+                        viewModel.onCardClicked(ListType.RACES)
                     }
                     )
                     SliderComponent(cardsInfo = listas.drivers, onCardClick = {
-
+                        viewModel.onCardClicked(ListType.DRIVERS)
                     }
                     )
                     SliderComponent(cardsInfo = listas.teams, onCardClick = {
-
+                        viewModel.onCardClicked(ListType.TEAM)
                     }
                     )
                 }
@@ -65,3 +66,5 @@ fun MainMenu(
         }
     }
 }
+
+
