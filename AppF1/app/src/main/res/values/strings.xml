@@ -2,7 +2,7 @@
     <string name="app_name">AppF1</string>
     <string name="confirm_button">Confirmar</string>
     <string name="exit_button">Salir</string>
-    <string name="user_name">Usuario</string>
+    <string name="user_name">Email</string>
     <string name="password_name">Contraseña</string>
     <string name="object_name">Nombre</string>
     <string name="drivers_name">Nombre de los pilotos</string>

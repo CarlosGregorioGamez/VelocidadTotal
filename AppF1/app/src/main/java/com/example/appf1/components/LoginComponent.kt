@@ -21,7 +21,7 @@ fun LoginComponent(
     onPasswordChange: (String) -> Unit
 ) {
     Column {
-        Text(text = "Usuario")
+        Text(text = "Email")
         TextField(
             value = email,
             onValueChange = onEmailChange,
