@@ -72,7 +72,7 @@ class MainActivity : ComponentActivity() {
             **/
 
             //pagePrincipal(loginVM)
-            pagePerfil(perfilVM)
+            //pagePerfil(perfilVM)
         }
     }
 }

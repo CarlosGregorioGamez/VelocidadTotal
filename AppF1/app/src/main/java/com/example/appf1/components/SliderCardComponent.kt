@@ -1,6 +1,7 @@
 package com.example.appf1.components
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.aspectRatio
@@ -30,24 +31,30 @@ class CardSliderDetails(var imgId: Int, var imgDesc: String = "", var title: Str
  * @param cardSliderInfo recibe datos de CardDetails para definir el contenido de cada tarjeta
  */
 @Composable
-fun SliderCardComponent(cardSliderInfo: CardSliderDetails) {
+fun SliderCardComponent(
+    cardSliderInfo: CardSliderDetails,
+    onClick: () -> Unit = {}
+) {
     Card(
         modifier = Modifier
-            .padding(6.dp),
+            .padding(6.dp)
+            .width(150.dp)
+            .clickable { onClick() },
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surfaceContainerHigh
         )
     ) {
-        Column (
+        Column(
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Image(
                 painter = painterResource(id = cardSliderInfo.imgId),
                 contentDescription = cardSliderInfo.imgDesc,
-                contentScale = ContentScale.Crop,
-                modifier = Modifier.width(100.dp)
-                .aspectRatio(1.5f / 1f)
+                contentScale = ContentScale.Fit,
+                modifier = Modifier
+                    .height(100.dp)
+                    .fillMaxWidth()
             )
             TitleComponent(
                 title = cardSliderInfo.title,
@@ -59,7 +66,9 @@ fun SliderCardComponent(cardSliderInfo: CardSliderDetails) {
 }
 
 
-@Preview
+
+
+@Preview(showBackground = true)
 @Composable
 fun CardSliderComponentPreview() {
     SliderCardComponent(
@@ -67,7 +76,9 @@ fun CardSliderComponentPreview() {
             imgId = R.drawable.f1simple,
             imgDesc = "Descripcion",
             title = "Titulo de ejemplo",
-        )
+        ),
+        onClick = {}
     )
 }
+
 
