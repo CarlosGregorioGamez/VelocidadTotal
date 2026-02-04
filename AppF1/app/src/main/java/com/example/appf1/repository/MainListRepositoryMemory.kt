@@ -30,7 +30,7 @@ class MainListRepositoryMemory {
             CardSliderDetails(imgId = R.drawable.paises_bajos, title = "GP de Países Bajos"),
             CardSliderDetails(imgId = R.drawable.qatar, title = "GP de Qatar"),
             CardSliderDetails(imgId = R.drawable.singapur, title = "GP de Singapur"),
-            CardSliderDetails(imgId = R.drawable.vegas, title = "GP de Las Vegas"),
+            CardSliderDetails(imgId = R.drawable.vegas, title = "GP de Las Vegas")
         )
 
         val equipos = listOf(
@@ -44,7 +44,7 @@ class MainListRepositoryMemory {
             CardSliderDetails(imgId = R.drawable.mercedes, title = "Mercedes AMG F1"),
             CardSliderDetails(imgId = R.drawable.racing_bulls, title = "Visa CashApp Racing Bulls F1"),
             CardSliderDetails(imgId = R.drawable.red_bull_racing, title = "Red Bull Racing F1"),
-            CardSliderDetails(imgId = R.drawable.williams, title = "Williams F1"),
+            CardSliderDetails(imgId = R.drawable.williams, title = "Williams F1")
         )
 
         val pilotos = listOf(
@@ -69,7 +69,7 @@ class MainListRepositoryMemory {
             CardSliderDetails(imgId = R.drawable.gasly, title = "Gasly"),
             CardSliderDetails(imgId = R.drawable.lawson, title = "Lawson"),
             CardSliderDetails(imgId = R.drawable.ocon, title = "Ocon"),
-            CardSliderDetails(imgId = R.drawable.sainz, title = "Sainz"),
+            CardSliderDetails(imgId = R.drawable.sainz, title = "Sainz")
         )
     }
     fun getRaces(): List<CardSliderDetails> = carreras
