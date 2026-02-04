@@ -1,11 +1,13 @@
 package com.example.appf1.viewmodel.vm
 
 import androidx.lifecycle.ViewModel
+import com.example.appf1.components.CardSliderDetails
 import com.example.appf1.repository.MainListRepositoryMemory
 import com.example.appf1.viewmodel.uistate.MainListUIState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+
 
 class MainListVM : ViewModel() {
 
@@ -21,9 +23,15 @@ class MainListVM : ViewModel() {
 
     val uiState: StateFlow<MainListUIState> = _uiState.asStateFlow()
 
-    fun onCardClicked() {
-
+    fun onCardClicked(type: ListType) {
+        _uiState.value = _uiState.value.copy(selectedListType = type)
     }
 
+    fun getSelectedList(): List<CardSliderDetails> =
+        when (_uiState.value.selectedListType) {
+            ListType.Races -> _mainListRepo.getRaces()
+            ListType.Drivers -> _mainListRepo.getPilots()
+            ListType.Team -> _mainListRepo.getTeams()
+        }
 }
 

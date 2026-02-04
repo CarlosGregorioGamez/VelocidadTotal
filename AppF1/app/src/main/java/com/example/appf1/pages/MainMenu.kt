@@ -49,7 +49,7 @@ fun MainMenu(
             LazyColumn {
                 item {
                     SliderComponent(cardsInfo = listas.races, onCardClick = {
-
+                        
                     }
                     )
                     SliderComponent(cardsInfo = listas.drivers, onCardClick = {
