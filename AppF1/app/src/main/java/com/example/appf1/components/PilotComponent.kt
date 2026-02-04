@@ -13,6 +13,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.appf1.R
+import com.example.appf1.data.model.EquipoDTO
+import com.example.appf1.data.model.PilotoDTO
 
 /**
  * Componente que identifica los pilotos para listar
@@ -23,10 +26,9 @@ import androidx.compose.ui.unit.dp
  * @param podiums
  */
 
-data class Driver(val name: String, val surname: String, val team: String, val wins: Int = 0, val podiums: Int = 0, val poles: Int = 0)
 
 @Composable
-fun pilot(driver: Driver) {
+fun pilot(driver: PilotoDTO) {
 
     val backgroundColor = Color.White
     Box(
@@ -37,9 +39,9 @@ fun pilot(driver: Driver) {
             .padding(all = 4.dp)
 
     ) {
-        Column {
+        Column() {
             Text(text = driver.name, modifier = Modifier.fillMaxWidth())
-            Text(text = driver.team, modifier = Modifier.fillMaxWidth())
+            Text(text = driver.team.name, modifier = Modifier.fillMaxWidth())
         }
 
     }
@@ -50,12 +52,21 @@ fun pilot(driver: Driver) {
 
 fun pilotoPreview() {
     pilot(
-        driver = Driver(
+        driver = PilotoDTO(
+            id = "1",
             name = "Paco",
-            team = "Ninguno",
+            team = EquipoDTO(
+                "1",
+                "ge",
+                emptyList(),
+                1,
+                4,
+                24,
+                R.drawable.mercedes
+            ),
             wins = 2,
             podiums = 7,
-            surname = "Gonzalez",
+            imgId = R.drawable.albon
         )
     )
 }
@@ -63,12 +74,24 @@ fun pilotoPreview() {
 @Preview
 @Composable
 fun pruebasPreview() {
-    pilot(driver = Driver(
-        name = "No",
-        surname = "Tampoco",
-        team = "Troll",
-        podiums = 4
-    ))
+    pilot(
+        driver = PilotoDTO(
+            id = "1",
+            name = "Paco",
+            team = EquipoDTO(
+                "1",
+                "ge",
+                emptyList(),
+                1,
+                4,
+                24,
+                R.drawable.mercedes
+            ),
+            wins = 2,
+            podiums = 7,
+            imgId = R.drawable.albon
+        )
+    )
 }
 
 

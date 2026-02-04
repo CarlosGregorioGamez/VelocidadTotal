@@ -1,6 +1,7 @@
 package com.example.appf1.components
 
 
+import androidx.compose.foundation.Image
 import androidx.compose.ui.graphics.Color
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -10,32 +11,26 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.appf1.R
+import com.example.appf1.data.model.CarreraDTO
+import com.example.appf1.data.model.EquipoDTO
+import com.example.appf1.data.model.PilotoDTO
 
 /**
  * Componente que identifica las carreras para listar
  *
- * @param name
- * @param editions veces que se ha realizado esta carrera en el mundial
- * @param country
- * @param winner
- * @param podium
- * @param lenght longitud en kms del circuito
+ * @param carrera Recibe la data class CarreraDTO
  */
 
-data class Track(
-    val name: String,
-    val editions: Int,
-    val country: String,
-    val winner: Driver,
-    val podium: List<Driver>,
-    val lenght: Double
-)
+
 
 @Composable
-fun race(track: Track) {
+fun race(carrera: CarreraDTO) {
 
     val backgroundColor = Color.White
     Box(
@@ -47,12 +42,20 @@ fun race(track: Track) {
 
     ) {
         Column {
-            Text(text = track.name, modifier = Modifier.fillMaxWidth())
-            Text(text = track.editions.toString(), modifier = Modifier.fillMaxWidth())
-            Text(text = track.country.toString(), modifier = Modifier.fillMaxWidth())
-            Text(text = track.winner.toString(), modifier = Modifier.fillMaxWidth())
-            Text(text = track.podium.toString(), modifier = Modifier.fillMaxWidth())
-            Text(text = track.lenght.toString() + "km", modifier = Modifier.fillMaxWidth())
+            Box(modifier = Modifier.padding(5.dp),
+                contentAlignment = Alignment.TopCenter){
+            Image(
+                painter = painterResource(carrera.imgId),
+                contentDescription = carrera.name
+            )}
+
+            Text(text = carrera.name, modifier = Modifier.fillMaxWidth())
+            Text(text = carrera.editions.toString(), modifier = Modifier.fillMaxWidth())
+            Text(text = carrera.country, modifier = Modifier.fillMaxWidth())
+            Text(text = carrera.winner.toString(), modifier = Modifier.fillMaxWidth())
+            Text(text = carrera.podium.toString(), modifier = Modifier.fillMaxWidth())
+            Text(text = carrera.lenght.toString() + "km", modifier = Modifier.fillMaxWidth())
+
         }
 
     }
@@ -63,13 +66,26 @@ fun race(track: Track) {
 
 fun carreraPreview() {
     race(
-        Track(
+        CarreraDTO(
+            id = "4",
             name = "Barcelona",
             editions = 46,
             country = "España",
-            winner = Driver("Fernando", "Alonso", "Aston Martin"),
+            winner = PilotoDTO(
+                "1", "Fernando Alonso", EquipoDTO(
+                    id = "2",
+                    name = "Equipo 7",
+                    drivers = emptyList(),
+                    championships = 1,
+                    wins = 13,
+                    podiums = 27,
+                    imgId = R.drawable.williams
+                ),
+                imgId = R.drawable.alonso
+            ),
             podium = emptyList(),
-            lenght = 4.5
+            lenght = 4.5,
+            imgId = R.drawable.italia,
         )
     )
 }

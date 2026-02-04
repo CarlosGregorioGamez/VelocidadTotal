@@ -6,6 +6,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.appf1.R
+import com.example.appf1.data.model.EquipoDTO
+import com.example.appf1.data.model.PilotoDTO
 
 
 class Detalle(var name: String, var team: String)
@@ -16,7 +19,7 @@ class Detalle(var name: String, var team: String)
  * @param detalles define una lista de elementos
  */
 @Composable
-fun CustomList(driver: List<Driver>) {
+fun CustomList(driver: List<PilotoDTO>) {
     Column(modifier = Modifier.fillMaxWidth()) {
         driver.forEach { detalle ->
             pilot(driver = detalle)
@@ -28,10 +31,32 @@ fun CustomList(driver: List<Driver>) {
 @Composable
 fun listaPreview() {
     val drivers = listOf(
-        Driver("ooo", "aaa", "aa"),
-        Driver("1", "2", "ab"),
-        Driver("3", "4", "ba")
+        PilotoDTO(
+            "ooo", "aaa",
+            EquipoDTO(
+                id = "",
+                name = "",
+                drivers = emptyList(),
+                championships = 1,
+                wins = 2,
+                podiums = 3,
+                imgId = R.drawable.racing_bulls
+            ),
+            imgId = R.drawable.hadjar,
+        ),
+        PilotoDTO(
+            "1", "2",
+            EquipoDTO(
+                id = "",
+                name = "",
+                drivers = emptyList(),
+                championships = 1,
+                wins = 2,
+                podiums = 3,
+                imgId = R.drawable.racing_bulls
+            ),
+            imgId = R.drawable.hadjar,
+        )
     )
-
     CustomList(drivers)
 }

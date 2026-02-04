@@ -1,19 +1,13 @@
 package com.example.appf1.repository
 
-import com.example.appf1.model.Piloto
+import com.example.appf1.R
+import com.example.appf1.components.CardSliderDetails
+import kotlin.collections.List
 
 class PilotoRepostoryMemory {
 
-    val pilotos: ArrayList<Piloto> = ArrayList();
-
-    init {
-        pilotos.add(Piloto("alonso"))
-        pilotos.add(Piloto("Sumaker"))
-
-    }
-
-    fun getAll(success: (pilotos: List<Piloto>) -> Unit) {
-        success.invoke(pilotos);
+    fun getRace(id: String?){
+        
     }
 
 }

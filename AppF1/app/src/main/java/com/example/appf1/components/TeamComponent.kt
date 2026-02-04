@@ -13,6 +13,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.appf1.R
+import com.example.appf1.data.model.EquipoDTO
 
 /**
  * Componente que identifica los equipos para listar
@@ -24,16 +26,10 @@ import androidx.compose.ui.unit.dp
  * @param podiums
  */
 
-data class Constructor(
-    val name: String,
-    val drivers: List<Driver>,
-    val championships: Int,
-    val wins: Int,
-    val podiums: Int
-)
+
 
 @Composable
-fun team(constructor: Constructor) {
+fun team(constructor: EquipoDTO) {
 
     val backgroundColor = Color.White
     Box(
@@ -61,12 +57,14 @@ fun team(constructor: Constructor) {
 
 fun teamPreview() {
     team(
-        Constructor(
-            name = TODO(),
-            drivers = TODO(),
-            championships = TODO(),
-            wins = TODO(),
-            podiums = TODO()
+        EquipoDTO(
+            id = "10",
+            name = "Equipo 1",
+            drivers = emptyList(),
+            championships = 2,
+            wins = 15,
+            podiums = 40,
+            imgId = R.drawable.mercedes
         )
     )
 }
@@ -75,12 +73,14 @@ fun teamPreview() {
 @Composable
 fun pruebateamPreview() {
     team(
-        Constructor(
-            name = TODO(),
-            drivers = TODO(),
-            championships = TODO(),
-            wins = TODO(),
-            podiums = TODO()
+        EquipoDTO(
+            id = "5",
+            name = "Equipo 2",
+            drivers = emptyList(),
+            championships = 1,
+            wins = 1,
+            podiums = 5,
+            imgId = R.drawable.mercedes
         )
     )
 }
