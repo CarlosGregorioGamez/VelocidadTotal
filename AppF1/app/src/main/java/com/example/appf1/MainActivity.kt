@@ -4,99 +4,158 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.lifecycle.ViewModel
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModelProvider
 import com.example.appf1.components.CardSliderDetails
-import com.example.appf1.components.TopBarComponent
-import com.example.appf1.pages.MainMenu
-import com.example.appf1.pages.pagePerfil
-import com.example.appf1.pages.pagePrincipal
-import com.example.appf1.repository.PerfilMemory
-import com.example.appf1.repository.UserRepostoryMemory
-import com.example.appf1.viewmodel.vm.LoginVM
-import com.example.appf1.viewmodel.vm.LoginVMFactory
-import com.example.appf1.viewmodel.vm.PerfilVM
-import com.example.appf1.viewmodel.vm.PerfilVMFactory
-import com.example.compose.AppF1Theme
-
+import com.example.appf1.viewmodel.vm.MainListVM
+import com.example.appf1.viewmodel.vm.ListType
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        val repository = UserRepostoryMemory()
-        //val factory = LoginVMFactory(repository)
-        val factory= PerfilVMFactory(repository)
-        //val loginVM = ViewModelProvider(this, factory)[LoginVM::class.java]
-        val perfilVM = ViewModelProvider(this, factory)[PerfilVM::class.java]
+
+        val mainListVM = ViewModelProvider(this)[MainListVM::class.java]
+
         setContent {
-            /**
-
-            val testList = mutableListOf<CardSliderDetails>()
-
-            (1..10).forEach {
-                testList.add(
-                    CardSliderDetails(
-                        imgId = R.drawable.calendario_carreras,
-                        imgDesc = "Descripción #$it",
-                        title = "Elemento $it"
-                    )
-                )
-            }
-            AppF1Theme {
-                Scaffold(
-                    topBar = {
-                        TopBarComponent(
-                            topBarTitle = "Menú principal",
-                            navIcon = {
-
-                            },
-                            burguerIcon = {
-                            }
-                        )
-                    },
-                    modifier = Modifier.fillMaxSize()
-                ) { innerPadding ->
-                    MainMenu(
-                        titlePage = "Pagina principal",
+            AppF1ThemeMinimal {
+                Scaffold { innerPadding ->
+                    MainMenuCarrerasEquipos(
+                        viewModel = mainListVM,
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
             }
-            **/
-
-            //pagePrincipal(loginVM)
-            pagePerfil(perfilVM)
         }
     }
 }
 
-
-
-@Preview(showBackground = true)
+// Tema mínimo para Material3
 @Composable
-fun MainListPreview() {
-    AppF1Theme {
-        val testList = mutableListOf<CardSliderDetails>()
+fun AppF1ThemeMinimal(content: @Composable () -> Unit) {
+    MaterialTheme(
+        colorScheme = lightColorScheme(),
+        typography = Typography(),
+        content = content
+    )
+}
 
-        (1..10).forEach {
-            testList.add(
-                CardSliderDetails(
-                    imgId = R.drawable.calendario_carreras,
-                    imgDesc = "Descripción #$it",
-                    title = "Elemento $it"
-                )
-            )
-        }
-        MainMenu(
-            titlePage = "Pagina principal",
-            modifier = Modifier
+/**
+ * MainMenu mostrando solo Carreras y Equipos
+ */
+@Composable
+fun MainMenuCarrerasEquipos(viewModel: MainListVM, modifier: Modifier = Modifier) {
+    val listas by viewModel.uiState.collectAsState()
+
+    Column(
+        modifier = modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        verticalArrangement = Arrangement.Top,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            text = "Carreras F1",
+            style = MaterialTheme.typography.titleLarge
         )
+        Spacer(modifier = Modifier.height(16.dp))
+        SliderCarreras(listas.races, viewModel)
+        Spacer(modifier = Modifier.height(32.dp))
+        Text(
+            text = "Equipos F1",
+            style = MaterialTheme.typography.titleLarge
+        )
+        Spacer(modifier = Modifier.height(16.dp))
+        SliderEquipos(listas.teams, viewModel)
     }
 }
+
+/**
+ * Slider horizontal mostrando solo carreras
+ */
+@Composable
+fun SliderCarreras(cardsInfo: List<CardSliderDetails>, viewModel: MainListVM) {
+    LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+        items(cardsInfo) { card ->
+            Card(
+                modifier = Modifier
+                    .width(150.dp)
+                    .clickable { viewModel.onCardClicked(ListType.RACES) }
+                    .padding(4.dp),
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
+            ) {
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center,
+                    modifier = Modifier.padding(4.dp)
+                ) {
+                    Image(
+                        painter = painterResource(id = card.imgId),
+                        contentDescription = card.imgDesc,
+                        contentScale = ContentScale.Fit,
+                        modifier = Modifier
+                            .height(100.dp)
+                            .fillMaxWidth()
+                    )
+                    Text(
+                        text = card.title,
+                        style = MaterialTheme.typography.labelMedium,
+                        modifier = Modifier.padding(top = 4.dp)
+                    )
+                }
+            }
+        }
+    }
+}
+
+/**
+ * Slider horizontal mostrando solo equipos
+ */
+@Composable
+fun SliderEquipos(cardsInfo: List<CardSliderDetails>, viewModel: MainListVM) {
+    LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+        items(cardsInfo) { card ->
+            Card(
+                modifier = Modifier
+                    .width(150.dp)
+                    .clickable { viewModel.onCardClicked(ListType.TEAM) }
+                    .padding(4.dp),
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
+            ) {
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center,
+                    modifier = Modifier.padding(4.dp)
+                ) {
+                    Image(
+                        painter = painterResource(id = card.imgId),
+                        contentDescription = card.imgDesc,
+                        contentScale = ContentScale.Fit,
+                        modifier = Modifier
+                            .height(100.dp)
+                            .fillMaxWidth()
+                    )
+                    Text(
+                        text = card.title,
+                        style = MaterialTheme.typography.labelMedium,
+                        modifier = Modifier.padding(top = 4.dp)
+                    )
+                }
+            }
+        }
+    }
+}
+
