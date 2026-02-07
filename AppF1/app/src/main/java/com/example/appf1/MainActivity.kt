@@ -80,6 +80,12 @@ fun MainMenuCarrerasEquipos(viewModel: MainListVM, modifier: Modifier = Modifier
         )
         Spacer(modifier = Modifier.height(16.dp))
         SliderEquipos(listas.teams, viewModel)
+        Text(
+            text = "Pilotos F1",
+            style = MaterialTheme.typography.titleLarge
+        )
+        Spacer(modifier = Modifier.height(16.dp))
+        SliderEquipos(listas.drivers, viewModel)
     }
 }
 
@@ -132,6 +138,41 @@ fun SliderEquipos(cardsInfo: List<CardSliderDetails>, viewModel: MainListVM) {
                 modifier = Modifier
                     .width(150.dp)
                     .clickable { viewModel.onCardClicked(ListType.TEAM) }
+                    .padding(4.dp),
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
+            ) {
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center,
+                    modifier = Modifier.padding(4.dp)
+                ) {
+                    Image(
+                        painter = painterResource(id = card.imgId),
+                        contentDescription = card.imgDesc,
+                        contentScale = ContentScale.Fit,
+                        modifier = Modifier
+                            .height(100.dp)
+                            .fillMaxWidth()
+                    )
+                    Text(
+                        text = card.title,
+                        style = MaterialTheme.typography.labelMedium,
+                        modifier = Modifier.padding(top = 4.dp)
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun SliderPiltos(cardsInfo: List<CardSliderDetails>, viewModel: MainListVM) {
+    LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+        items(cardsInfo) { card ->
+            Card(
+                modifier = Modifier
+                    .width(150.dp)
+                    .clickable { viewModel.onCardClicked(ListType.DRIVERS) }
                     .padding(4.dp),
                 colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
             ) {
