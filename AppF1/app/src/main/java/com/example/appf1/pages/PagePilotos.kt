@@ -1,5 +1,6 @@
 package com.example.appf1.pages
 
+import PaginaPilotosVM
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -25,7 +26,6 @@ import com.example.appf1.R
 import com.example.appf1.components.CardSliderDetails
 import com.example.appf1.data.model.PilotoDTO
 import com.example.appf1.components.SliderComponent
-import com.example.appf1.viewmodel.vm.PaginaPilotosVM
 import com.example.compose.onSurfaceLight
 import com.example.compose.surfaceContainerLight
 import androidx.compose.runtime.collectAsState
@@ -46,14 +46,24 @@ import com.example.appf1.data.model.EquipoDTO
 
 @Composable
 fun pagePilotos(
-   driver: PilotoDTO,
-   vm: PaginaPilotosVM = viewModel()
+    driver: PilotoDTO,
+    vm: PaginaPilotosVM = viewModel()
 ) {
+    // Mapear la UIState del ViewModel a CardSliderDetails
+    val sliderItems = vm.uiState.collectAsState().value.map { pilotoUI ->
+        val piloto = vm.getPilotoById(pilotoUI.id)
+        CardSliderDetails(
+            id = pilotoUI.id,
+            imgId = piloto?.imgId ?: R.drawable.piloto, // fallback
+            imgDesc = pilotoUI.name,
+            title = pilotoUI.name
+        )
+    }
 
     Column(
         modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Center,        // centra verticalmente
-        horizontalAlignment = Alignment.CenterHorizontally // centra horizontalmente
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Card(
             modifier = Modifier
@@ -72,7 +82,7 @@ fun pagePilotos(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Image(
-                    painter = painterResource(R.drawable.piloto),
+                    painter = painterResource(driver.imgId),
                     contentDescription = "Foto de ${driver.name}",
                     modifier = Modifier.size(180.dp)
                 )
@@ -80,60 +90,64 @@ fun pagePilotos(
                 Spacer(modifier = Modifier.height(16.dp))
 
                 Text(
-                    text = stringResource(id = R.string.object_name) + " : ${driver.name}",
-                    modifier = Modifier,
-                    onSurfaceLight
+                    text = stringResource(R.string.object_name) + " : ${driver.name}",
+                    color = onSurfaceLight
                 )
                 Text(
-                    text = stringResource(id = R.string.team_name) + " : ${driver.team}",
-                    modifier = Modifier,
-                    onSurfaceLight
+                    text = stringResource(R.string.team_name) + " : ${driver.team.name}",
+                    color = onSurfaceLight
                 )
                 Text(
-                    text = stringResource(id = R.string.race_name) + " : ${driver.wins}",
-                    modifier = Modifier,
-                    onSurfaceLight
-                )
-
-                Spacer(modifier = Modifier.height(16.dp))
-
-                Text(
-                    text = stringResource(id = R.string.victories_name) + " : ${driver.wins}",
-                    modifier = Modifier,
-                    onSurfaceLight
+                    text = stringResource(R.string.victories_name) + " : ${driver.wins}",
+                    color = onSurfaceLight
                 )
                 Text(
-                    text = stringResource(id = R.string.podium_name) + " : ${driver.podiums}",
-                    modifier = Modifier,
-                    onSurfaceLight
+                    text = stringResource(R.string.podium_name) + " : ${driver.podiums}",
+                    color = onSurfaceLight
                 )
                 Text(
-                    text = stringResource(id = R.string.polepos_name) + " : ${driver.poles}",
-                    modifier = Modifier,
-                    onSurfaceLight
+                    text = stringResource(R.string.polepos_name) + " : ${driver.poles}",
+                    color = onSurfaceLight
                 )
             }
         }
-        SliderComponent(
-            vm.uiState.collectAsState().value.map { pilotoUI -> CardSliderDetails(1, "Descripcion", pilotoUI.name) },
-            onCardClick = {
 
+        Spacer(modifier = Modifier.height(16.dp))
+
+        // SliderComponent
+        SliderComponent(
+            cardsInfo = sliderItems,
+            onCardClick = { card ->
+                // Aquí podrías navegar a otro piloto usando card.id
+                // Por ejemplo:
+                val selectedPiloto = vm.getPilotoById(card.id)
+                // navegación a la página de ese piloto
             }
         )
     }
 }
 
-@Preview
+
+@Preview(showBackground = true)
 @Composable
 fun pagePreviewP() {
-    pagePilotos(driver = PilotoDTO("1", "Piloto 1", EquipoDTO(
-        id = "5",
-        name = "Equipo 2",
-        drivers = emptyList(),
-        championships = 1,
-        wins = 1,
-        podiums = 5,
-        imgId = R.drawable.mercedes
-    ), 6, 3, 7,
-        imgId = R.drawable.sainz))
+    val driver = PilotoDTO(
+        id = "1",
+        name = "Piloto 1",
+        team = EquipoDTO(
+            id = "5",
+            name = "Equipo 2",
+            drivers = emptyList(),
+            championships = 1,
+            wins = 1,
+            podiums = 5,
+            imgId = R.drawable.mercedes
+        ),
+        wins = 6,
+        podiums = 3,
+        poles = 7,
+        imgId = R.drawable.sainz
+    )
+
+    pagePilotos(driver = driver)
 }

@@ -85,7 +85,7 @@ fun MainMenuCarrerasEquipos(viewModel: MainListVM, modifier: Modifier = Modifier
             style = MaterialTheme.typography.titleLarge
         )
         Spacer(modifier = Modifier.height(16.dp))
-        SliderEquipos(listas.drivers, viewModel)
+        SliderPiltos(listas.drivers, viewModel)
     }
 }
 
