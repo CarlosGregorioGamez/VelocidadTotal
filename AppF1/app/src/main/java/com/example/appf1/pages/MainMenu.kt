@@ -31,9 +31,7 @@ fun MainMenu(
     modifier: Modifier = Modifier,
     viewModel: MainListVM = viewModel()
 ) {
-
     val listas by viewModel.uiState.collectAsState()
-
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.TopCenter

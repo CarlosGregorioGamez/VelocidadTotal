@@ -7,18 +7,6 @@ class PerfilMemory : PerfilRepository{
 
     private val users: ArrayList<UserDTO> = ArrayList()
 
-    constructor() {
-        for (i in 1..10) {
-            users.add(
-                UserDTO(
-                    id = i,
-                    email = "user$i@example.com",
-                    password = "password$i",
-                )
-            )
-        }
-    }
-
     override fun getUser(
         id: Int,
         onError: (Throwable) -> Unit,

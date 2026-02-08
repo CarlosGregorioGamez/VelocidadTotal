@@ -1,5 +1,6 @@
 package com.example.appf1.pages
 
+import android.app.Activity
 import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -12,6 +13,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -36,9 +38,10 @@ fun pagePrincipal( loginVM: LoginVM = viewModel(
 ),
     onLoginSuccess: () -> Unit
 ) {
-
     val uiState by loginVM.uiState.collectAsState()
-
+    // Obtener el contexto de la actividad para poder finalizarla(Confirmar dsi respeta el modelViewviewModel)
+    val context = LocalContext.current
+    val activity = context as? Activity
     Column(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
@@ -69,7 +72,7 @@ fun pagePrincipal( loginVM: LoginVM = viewModel(
                 }
             }
             CustomButton(stringResource(id = R.string.exit_button)) {
-                // salir
+                activity?.finish()
             }
         }
     }

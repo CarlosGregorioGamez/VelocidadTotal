@@ -32,7 +32,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-
+        //Credenciales para test mail: 1@mail.com,pasw: abc123.),
         setContent {
             AppNavGraph()
         }
