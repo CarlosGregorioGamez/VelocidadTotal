@@ -30,6 +30,8 @@ import com.example.compose.onSurfaceLight
 import com.example.compose.surfaceContainerLight
 import androidx.compose.runtime.collectAsState
 import com.example.appf1.data.model.EquipoDTO
+import com.example.appf1.repository.PilotosRepository
+import com.example.appf1.repository.PilotosRepositoryMemory
 
 /**
  * Página para ver los datos en detalle de un piloto en específico
@@ -47,8 +49,12 @@ import com.example.appf1.data.model.EquipoDTO
 @Composable
 fun pagePilotos(
     driver: PilotoDTO,
-    vm: PaginaPilotosVM = viewModel()
+    repository: PilotosRepository = PilotosRepositoryMemory()
+
 ) {
+    val vm: PaginaPilotosVM = viewModel(
+        factory = PaginaPilotosVM.PaginaPilotosVMFactory(repository)
+    )
     // Mapear la UIState del ViewModel a CardSliderDetails
     val sliderItems = vm.uiState.collectAsState().value.map { pilotoUI ->
         val piloto = vm.getPilotoById(pilotoUI.id)

@@ -21,13 +21,20 @@ import com.example.appf1.viewmodel.vm.LoginVM
 import com.example.appf1.components.CustomButton
 import com.example.appf1.components.LoginComponent
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.appf1.repository.UserRepostoryMemory
+import com.example.appf1.viewmodel.vm.LoginVMFactory
 
 
 /**
  * Página para el inicio de la aplicacion donde se registrará el usuario
  */
 @Composable
-fun pagePrincipal(loginVM: LoginVM = viewModel()) {
+fun pagePrincipal( loginVM: LoginVM = viewModel(
+    factory = LoginVMFactory(
+        repository = UserRepostoryMemory()
+    )
+)
+) {
 
     val uiState by loginVM.uiState.collectAsState()
 

@@ -20,28 +20,49 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModelProvider
 import com.example.appf1.components.CardSliderDetails
+import com.example.appf1.data.model.EquipoDTO
+import com.example.appf1.data.model.PilotoDTO
+import com.example.appf1.pages.pagePilotos
 import com.example.appf1.viewmodel.vm.MainListVM
 import com.example.appf1.viewmodel.vm.ListType
 
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        val mainListVM = ViewModelProvider(this)[MainListVM::class.java]
-
         setContent {
             AppF1ThemeMinimal {
-                Scaffold { innerPadding ->
-                    MainMenuCarrerasEquipos(
-                        viewModel = mainListVM,
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+
+                // Piloto de ejemplo (normalmente vendría de navegación)
+                val driver = PilotoDTO(
+                    id = "1",
+                    name = "Carlos Sainz",
+                    team = EquipoDTO(
+                        id = "2",
+                        name = "Ferrari",
+                        drivers = emptyList(),
+                        championships = 16,
+                        wins = 250,
+                        podiums = 800,
+                        imgId = R.drawable.ferrari
+                    ),
+                    wins = 18,
+                    podiums = 90,
+                    poles = 6,
+                    imgId = R.drawable.sainz
+                )
+
+                pagePilotos(
+                    driver = driver
+                    // repository se inyecta por defecto (PilotosRepositoryMemory)
+                )
             }
         }
     }
 }
+
 
 // Tema mínimo para Material3
 @Composable
