@@ -33,7 +33,8 @@ fun pagePrincipal( loginVM: LoginVM = viewModel(
     factory = LoginVMFactory(
         repository = UserRepostoryMemory()
     )
-)
+),
+    onLoginSuccess: () -> Unit
 ) {
 
     val uiState by loginVM.uiState.collectAsState()
@@ -64,10 +65,9 @@ fun pagePrincipal( loginVM: LoginVM = viewModel(
             CustomButton(stringResource(id = R.string.confirm_button)) {
                 loginVM.login {
                     Log.d("LOGIN CORRECTO","si si")
+                    onLoginSuccess()
                 }
             }
-
-
             CustomButton(stringResource(id = R.string.exit_button)) {
                 // salir
             }
@@ -76,10 +76,3 @@ fun pagePrincipal( loginVM: LoginVM = viewModel(
 }
 
 
-@Preview
-@Composable
-fun pagePreview() {
-    pagePrincipal(
-
-    )
-}
