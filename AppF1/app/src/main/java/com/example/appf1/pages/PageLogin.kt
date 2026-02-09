@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -37,9 +38,12 @@ fun pagePrincipal( loginVM: LoginVM = viewModel(
     )
 ),
     onLoginSuccess: () -> Unit
+
 ) {
     val uiState by loginVM.uiState.collectAsState()
-    // Obtener el contexto de la actividad para poder finalizarla(Confirmar dsi respeta el modelViewviewModel)
+    LaunchedEffect(Unit) {
+        loginVM.resetFields()
+    }
     val context = LocalContext.current
     val activity = context as? Activity
     Column(

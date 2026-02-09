@@ -20,13 +20,16 @@ fun AppNavGraph() {
             pagePrincipal(
                 onLoginSuccess = {
                     navController.navigate(Routes.MAIN_MENU) {
-                        popUpTo(Routes.LOGIN) { inclusive = true }
+                        popUpTo(Routes.LOGIN)
                     }
                 }
             )
         }
         composable(Routes.MAIN_MENU) {
-            MainMenu(titlePage = "Menú principal")
+            MainMenu(
+                titlePage = "Menú principal",
+                navController = navController
+            )
         }
     }
 }

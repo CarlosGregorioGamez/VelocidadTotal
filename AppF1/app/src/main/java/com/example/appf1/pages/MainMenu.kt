@@ -16,6 +16,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import com.example.appf1.viewmodel.vm.MainListVM
 import com.example.appf1.components.SliderComponent
 import com.example.appf1.components.TitleComponent
@@ -31,15 +32,22 @@ import com.example.appf1.viewmodel.vm.ListType
 @Composable
 fun MainMenu(
     titlePage: String = "",
-    viewModel: MainListVM = viewModel()
+    viewModel: MainListVM = viewModel(),
+    navController: NavController
 ) {
     val listas by viewModel.uiState.collectAsState()
-
     Scaffold(
         topBar = {
-            TopBarComponent(topBarTitle = titlePage)
+            TopBarComponent(
+                topBarTitle = titlePage,
+                navIcon = {
+                    if (navController.previousBackStackEntry != null) {
+                        navController.popBackStack()
+                    }
+                }
+            )
         }
-    ) { paddingValues ->
+    )  { paddingValues ->
         Box(
             modifier = Modifier
                 .fillMaxSize()

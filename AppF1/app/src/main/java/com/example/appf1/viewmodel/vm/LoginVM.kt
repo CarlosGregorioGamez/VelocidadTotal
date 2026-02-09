@@ -45,6 +45,10 @@ class LoginVM (private val userRepostoryMemory: UserRepostoryMemory): ViewModel(
         )
     }
 
+    fun resetFields(){
+        _uiState.update { it.copy( email = "", password = "", error = null, isLoading = false) }
+    }
+
     fun onEmailChange(newEmail: String) {
         _uiState.update { it.copy(email = newEmail) }
     }
