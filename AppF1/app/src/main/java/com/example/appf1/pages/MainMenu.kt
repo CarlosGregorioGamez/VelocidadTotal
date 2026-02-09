@@ -39,11 +39,15 @@ fun MainMenu(
     Scaffold(
         topBar = {
             TopBarComponent(
-            topBarTitle = titlePage,
-            navIcon = { navController.popBackStack() }
+                topBarTitle = titlePage,
+                navIcon = {
+                    if (navController.previousBackStackEntry != null) {
+                        navController.popBackStack()
+                    }
+                }
             )
         }
-    ) { paddingValues ->
+    )  { paddingValues ->
         Box(
             modifier = Modifier
                 .fillMaxSize()
