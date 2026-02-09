@@ -20,10 +20,14 @@ fun SliderComponent(
         horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         items(cardsInfo) { card ->
-            onCardClick(card)
+            SliderCardComponent(
+                cardSliderInfo = card,
+                onClick = { onCardClick(card) }
+            )
         }
     }
 }
+
 
 
 
@@ -32,16 +36,22 @@ fun SliderComponent(
 fun SliderComponentPreview() {
     val sliderList = listOf(
         CardSliderDetails(
-            imgId = R.drawable.f1simple,
-            title = "Ejemplo 1"
+            id = TODO(),
+            imgId = TODO(),
+            imgDesc = TODO(),
+            title = TODO()
         ),
         CardSliderDetails(
-            imgId = R.drawable.calendario_carreras,
-            title = "Ejemplo 2"
+            id = TODO(),
+            imgId = TODO(),
+            imgDesc = TODO(),
+            title = TODO()
         ),
         CardSliderDetails(
-            imgId = R.drawable.perfil,
-            title = "Ejemplo 3"
+            id = TODO(),
+            imgId = TODO(),
+            imgDesc = TODO(),
+            title = TODO()
         )
     )
 

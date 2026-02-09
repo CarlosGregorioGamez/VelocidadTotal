@@ -20,28 +20,26 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModelProvider
 import com.example.appf1.components.CardSliderDetails
+import com.example.appf1.data.model.EquipoDTO
+import com.example.appf1.data.model.PilotoDTO
+import com.example.appf1.navigation.AppNavGraph
+import com.example.appf1.pages.pagePilotos
 import com.example.appf1.viewmodel.vm.MainListVM
 import com.example.appf1.viewmodel.vm.ListType
 
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-
-        val mainListVM = ViewModelProvider(this)[MainListVM::class.java]
-
+        //Credenciales para test mail: 1@mail.com,pasw: abc123.),
         setContent {
-            AppF1ThemeMinimal {
-                Scaffold { innerPadding ->
-                    MainMenuCarrerasEquipos(
-                        viewModel = mainListVM,
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
-            }
+            AppNavGraph()
         }
     }
-}
+    }
+
+
 
 // Tema mínimo para Material3
 @Composable
@@ -85,7 +83,7 @@ fun MainMenuCarrerasEquipos(viewModel: MainListVM, modifier: Modifier = Modifier
             style = MaterialTheme.typography.titleLarge
         )
         Spacer(modifier = Modifier.height(16.dp))
-        SliderEquipos(listas.drivers, viewModel)
+        SliderPiltos(listas.drivers, viewModel)
     }
 }
 

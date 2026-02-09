@@ -58,6 +58,7 @@ fun CardComponent(cardInfo: CardSliderDetails) {
 fun CardComponentPreview() {
     CardComponent(
         cardInfo = CardSliderDetails(
+            id = "P01",
             imgId = R.drawable.ic_launcher_foreground,
             imgDesc = "Descripcion",
             title = "Titulo de ejemplo"

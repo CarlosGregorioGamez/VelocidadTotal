@@ -54,7 +54,7 @@ fun race(carrera: CarreraDTO) {
             Text(text = carrera.country, modifier = Modifier.fillMaxWidth())
             Text(text = carrera.winner.toString(), modifier = Modifier.fillMaxWidth())
             Text(text = carrera.podium.toString(), modifier = Modifier.fillMaxWidth())
-            Text(text = carrera.lenght.toString() + "km", modifier = Modifier.fillMaxWidth())
+            Text(text = carrera.length.toString() + "km", modifier = Modifier.fillMaxWidth())
 
         }
 
@@ -84,7 +84,7 @@ fun carreraPreview() {
                 imgId = R.drawable.alonso
             ),
             podium = emptyList(),
-            lenght = 4.5,
+            length = 4.5,
             imgId = R.drawable.italia,
         )
     )

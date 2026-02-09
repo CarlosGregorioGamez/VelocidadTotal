@@ -36,16 +36,16 @@ import com.example.compose.surfaceContainerLight
 
 fun pilotoCarrerasList(): List<CardSliderDetails> {
     return listOf(
-        CardSliderDetails(imgId = R.drawable.perfil, title = "GP de Abu Dhabi"),
-        CardSliderDetails(imgId = R.drawable.perfil, title = "GP de Arabia Saudí"),
-        CardSliderDetails(imgId = R.drawable.perfil, title = "GP de las Américas"),
-        CardSliderDetails(imgId = R.drawable.perfil, title = "Gp de Australia"),
-        CardSliderDetails(imgId = R.drawable.perfil, title = "GP de Austria"),
-        CardSliderDetails(imgId = R.drawable.perfil, title = "GP de Azerbaijan"),
-        CardSliderDetails(imgId = R.drawable.perfil, title = "GP de Bahrain"),
-        CardSliderDetails(imgId = R.drawable.perfil, title = "GP de Bélgica"),
-        CardSliderDetails(imgId = R.drawable.perfil, title = "GP de Brasil"),
-        CardSliderDetails(imgId = R.drawable.perfil, title = "GP de Canadá")
+        CardSliderDetails(id = "", imgId = R.drawable.perfil, title = "GP de Abu Dhabi"),
+        CardSliderDetails(id = "",imgId = R.drawable.perfil, title = "GP de Arabia Saudí"),
+        CardSliderDetails(id = "",imgId = R.drawable.perfil, title = "GP de las Américas"),
+        CardSliderDetails(id = "",imgId = R.drawable.perfil, title = "Gp de Australia"),
+        CardSliderDetails(id = "",imgId = R.drawable.perfil, title = "GP de Austria"),
+        CardSliderDetails(id = "",imgId = R.drawable.perfil, title = "GP de Azerbaijan"),
+        CardSliderDetails(id = "",imgId = R.drawable.perfil, title = "GP de Bahrain"),
+        CardSliderDetails(id = "",imgId = R.drawable.perfil, title = "GP de Bélgica"),
+        CardSliderDetails(id = "",imgId = R.drawable.perfil, title = "GP de Brasil"),
+        CardSliderDetails(id = "",imgId = R.drawable.perfil, title = "GP de Canadá")
     )
 }
 

@@ -75,7 +75,7 @@ fun CardSliderCarrerasPreview() {
                 imgId = R.drawable.alonso
             ),
             podium = emptyList(),
-            lenght = 5.6,
+            length = 5.6,
             imgId = R.drawable.italia,
         )
     )
