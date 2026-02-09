@@ -20,10 +20,14 @@ fun SliderComponent(
         horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         items(cardsInfo) { card ->
-            onCardClick(card)
+            SliderCardComponent(
+                cardSliderInfo = card,
+                onClick = { onCardClick(card) }
+            )
         }
     }
 }
+
 
 
 
