@@ -13,15 +13,9 @@ class CarrerasRepositoryMemory: CarreraRepository {
             CarreraDTO(
                 id = card.id,
                 name = card.title,
-                editions = card.editions,
-                country = card.country,
-                winner = card.winner,
-                podium = card.podium,
-                length = card.length,
                 imgId = card.imgId
             )
         }
-        return emptyList()
     }
 
     override fun getCarreraById(id: String): CarreraDTO? {
