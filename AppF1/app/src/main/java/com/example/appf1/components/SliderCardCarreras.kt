@@ -21,6 +21,7 @@ import com.example.appf1.data.model.CarreraDTO
 import com.example.appf1.data.model.EquipoDTO
 import com.example.appf1.data.model.PilotoDTO
 
+
 @Composable
 fun SliderCardCarreras(carrera: CarreraDTO) {
     Card(
