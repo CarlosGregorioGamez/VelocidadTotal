@@ -1,19 +1,49 @@
 package com.example.appf1.viewmodel.vm
 
 import androidx.lifecycle.ViewModel
+import com.example.appf1.data.model.CarreraDTO
+import com.example.appf1.repository.CarreraRepository
+import com.example.appf1.repository.CarrerasRepositoryMemory
 import com.example.appf1.viewmodel.uistate.PaginaCarrerasUIState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
-class PaginaCarrerasVM : ViewModel() {
+class PaginaCarrerasVM(private val repo: CarreraRepository = CarrerasRepositoryMemory()
+) : ViewModel() {
     private val _uiState = MutableStateFlow<List<PaginaCarrerasUIState>>(emptyList())
- //   private val _repo = PilotoRepostoryMemory()
 
     val uiState: StateFlow<List<PaginaCarrerasUIState>> = _uiState.asStateFlow()
 
-    fun verCarrera(){
+    init {
+        cargarCarreras()
+    }
 
+    fun cargarCarreras() {
+        _uiState.value = repo.getAllCarreras().map { carrera ->
+            PaginaCarrerasUIState(
+                id = carrera.id,
+                name = carrera.name,
+                editions = carrera.editions,
+                country = carrera.country,
+                winner = carrera.winner,
+                podium = carrera.podium,
+                length = carrera.length,
+                imgId = carrera.imgId
+            )
+        }
+    }
+
+    fun getCarreraById(id: String): CarreraDTO? {
+        return repo.getCarreraById(id)
+    }
+
+    fun getWinnerCarrera(id: String): CarreraDTO? {
+        return repo.getWinnerCarrera(id)
+    }
+
+    fun getPodiumCarrera(id: String): CarreraDTO? {
+        return repo.getPodiumCarrera(id)
     }
 
 }
