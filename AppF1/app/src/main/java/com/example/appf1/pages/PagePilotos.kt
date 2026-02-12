@@ -106,43 +106,44 @@ fun pagePilotos(
 
                     Spacer(modifier = Modifier.height(16.dp))
 
-                Text(
-                    text = stringResource(R.string.object_name) + " : ${driver.name}",
-                    color = onSurfaceLight
-                )
-                Text(
-                    text = stringResource(R.string.team_name) + " : ${driver.team}",
-                    color = onSurfaceLight
-                )
-                Text(
-                    text = stringResource(R.string.victories_name) + " : ${driver.wins}",
-                    color = onSurfaceLight
-                )
-                Text(
-                    text = stringResource(R.string.podium_name) + " : ${driver.podiums}",
-                    color = onSurfaceLight
-                )
-                Text(
-                    text = stringResource(R.string.polepos_name) + " : ${driver.poles}",
-                    color = onSurfaceLight
+                    Text(
+                        text = stringResource(R.string.object_name) + " : ${driver.name}",
+                        color = onSurfaceLight
+                    )
+                    Text(
+                        text = stringResource(R.string.team_name) + " : ${driver.team}",
+                        color = onSurfaceLight
+                    )
+                    Text(
+                        text = stringResource(R.string.victories_name) + " : ${driver.wins}",
+                        color = onSurfaceLight
+                    )
+                    Text(
+                        text = stringResource(R.string.podium_name) + " : ${driver.podiums}",
+                        color = onSurfaceLight
+                    )
+                    Text(
+                        text = stringResource(R.string.polepos_name) + " : ${driver.poles}",
+                        color = onSurfaceLight
+                    )
+                }
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                // SliderComponent esto luego se cambia por las carreras que gano.
+                SliderComponent(
+                    cardsInfo = sliderItems,
+                    onCardClick = { card ->
+                        val selectedPiloto = vm.getPilotoById(card.id)
+                    }
                 )
             }
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            // SliderComponent esto luego se cambia por las carreras que gano.
-            SliderComponent(
-                cardsInfo = sliderItems,
-                onCardClick = { card ->
-                    val selectedPiloto = vm.getPilotoById(card.id)
-                }
-            )
         }
     }
 }
 
 
-@Preview(showBackground = true)
+@Preview
 @Composable
 fun pagePreviewP() {
     val driver = PilotoDTO(
@@ -154,5 +155,4 @@ fun pagePreviewP() {
         poles = 7,
         imgId = R.drawable.sainz
     )
-
 }
