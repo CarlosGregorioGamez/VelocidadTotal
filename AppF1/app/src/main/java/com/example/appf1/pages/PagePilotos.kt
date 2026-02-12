@@ -15,6 +15,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -29,6 +30,7 @@ import com.example.appf1.components.SliderComponent
 import com.example.compose.onSurfaceLight
 import com.example.compose.surfaceContainerLight
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import com.example.appf1.data.model.EquipoDTO
 import com.example.appf1.repository.PilotosRepository
 import com.example.appf1.repository.PilotosRepositoryMemory
@@ -48,14 +50,17 @@ import com.example.appf1.repository.PilotosRepositoryMemory
 
 @Composable
 fun pagePilotos(
-    driver: PilotoDTO,
-    repository: PilotosRepository = PilotosRepositoryMemory()
-
+    pilotId: String
 ) {
-    val vm: PaginaPilotosVM = viewModel(
-        factory = PaginaPilotosVM.PaginaPilotosVMFactory(repository)
-    )
-    // Mapear la UIState del ViewModel a CardSliderDetails
+    val vm: PaginaPilotosVM = viewModel()
+    LaunchedEffect(pilotId) {
+        vm.loadPilot(pilotId)
+    }
+    val driver = vm.selectedPilot.collectAsState().value
+    if (driver == null) {
+        Text("Piloto no encontrado")
+        return
+    }
     val sliderItems = vm.uiState.collectAsState().value.map { pilotoUI ->
         val piloto = vm.getPilotoById(pilotoUI.id)
         CardSliderDetails(
@@ -155,5 +160,4 @@ fun pagePreviewP() {
         imgId = R.drawable.sainz
     )
 
-    pagePilotos(driver = driver)
 }

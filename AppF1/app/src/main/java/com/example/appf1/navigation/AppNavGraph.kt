@@ -5,6 +5,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.appf1.pages.MainMenu
+import com.example.appf1.pages.pagePilotos
 import com.example.appf1.pages.pagePrincipal
 
 @Composable
@@ -29,6 +30,16 @@ fun AppNavGraph() {
             MainMenu(
                 titlePage = "Menú principal",
                 navController = navController
+            )
+        }
+        composable(
+            route = "${Routes.PILOT_DETAIL}/{pilotId}"
+        ) { backStackEntry ->
+
+            val pilotId = backStackEntry.arguments?.getString("pilotId") ?: ""
+
+            pagePilotos(
+                pilotId = pilotId
             )
         }
     }

@@ -21,6 +21,7 @@ import com.example.appf1.viewmodel.vm.MainListVM
 import com.example.appf1.components.SliderComponent
 import com.example.appf1.components.TitleComponent
 import com.example.appf1.components.TopBarComponent
+import com.example.appf1.navigation.Routes
 import com.example.appf1.viewmodel.vm.ListType
 
 /**
@@ -69,8 +70,8 @@ fun MainMenu(
                             viewModel.onCardClicked(ListType.RACES)
                         }
                         TitleComponent("Pilotos")
-                        SliderComponent(cardsInfo = listas.drivers) {
-                            viewModel.onCardClicked(ListType.DRIVERS)
+                        SliderComponent(cardsInfo = listas.drivers) { id ->
+                            navController.navigate("${Routes.PILOT_DETAIL}/$id")
                         }
                         TitleComponent("Equipos")
                         SliderComponent(cardsInfo = listas.teams) {
