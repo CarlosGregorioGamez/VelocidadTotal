@@ -1,64 +1,58 @@
-package com.example.appf1.viewmodel.vm
-
 import androidx.lifecycle.ViewModel
-import com.example.appf1.repository.PilotoRepostoryMemory
+import androidx.lifecycle.ViewModelProvider
+import com.example.appf1.data.model.PilotoDTO
+import com.example.appf1.repository.PilotosRepository
+import com.example.appf1.repository.PilotosRepositoryMemory
 import com.example.appf1.viewmodel.uistate.PaginaPilotosUIState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
 
+class PaginaPilotosVM(
+    private val repository: PilotosRepository = PilotosRepositoryMemory()
+) : ViewModel() {
 
-class PaginaPilotosVM : ViewModel() {
-    private val _uiState = MutableStateFlow<List<PaginaPilotosUIState>>(emptyList())
-    private val _repo = PilotoRepostoryMemory()
+    private val _uiState =
+        MutableStateFlow<List<PaginaPilotosUIState>>(emptyList())
+    val uiState: StateFlow<List<PaginaPilotosUIState>> = _uiState
+    private val _selectedPilot = MutableStateFlow<PilotoDTO?>(null)
+    val selectedPilot: StateFlow<PilotoDTO?> = _selectedPilot
 
-    val uiState: StateFlow<List<PaginaPilotosUIState>> = _uiState.asStateFlow()
+    init {
+        cargarPilotos()
+    }
 
-    /**
-     * fun cargarPilotos() {
-     *         _repo.getAll { pilotos ->
-     *             {
-     *                 val listNuevosPilotos = pilotos.map {
-     *                     PaginaPilotosUIState(
-     *                         it.nombre,
-     *                         imageDesc = TODO(),
-     *                         title = TODO()
-     *                     )
-     *                 }
-     *                 _uiState.value = listNuevosPilotos;
-     *             }
-     *         };
-     *     }
-     */
+    private fun cargarPilotos() {
+        _uiState.value = repository.getAllPilotos().map { piloto ->
+            PaginaPilotosUIState(
+                id = piloto.id,
+                name = piloto.name,
+                team = piloto.team,
+                wins = piloto.wins,
+                podiums = piloto.podiums,
+                poles = piloto.poles
+            )
+        }
+    }
 
+    fun loadPilot(id: String) {
+        _selectedPilot.value = repository.getPilotoById(id)
+    }
 
-    /*fun carrerasPilotoList(): List<Piloto> {
-        return listOf(
-            CardSliderDetails(imgId = R.drawable.abu_dhabi, title = "GP de Abu Dhabi"),
-            CardSliderDetails(imgId = R.drawable.arabia_saudi, title = "GP de Arabia Saudí"),
-            CardSliderDetails(imgId = R.drawable.austin_usa, title = "GP de las Américas"),
-            CardSliderDetails(imgId = R.drawable.australia, title = "Gp de Australia"),
-            CardSliderDetails(imgId = R.drawable.austria, title = "GP de Austria"),
-            CardSliderDetails(imgId = R.drawable.azerbaijan, title = "GP de Azerbaijan"),
-            CardSliderDetails(imgId = R.drawable.bahrein, title = "GP de Bahrain"),
-            CardSliderDetails(imgId = R.drawable.belgica, title = "GP de Bélgica"),
-            CardSliderDetails(imgId = R.drawable.brasil, title = "GP de Brasil"),
-            CardSliderDetails(imgId = R.drawable.canada, title = "GP de Canadá"),
-            CardSliderDetails(imgId = R.drawable.china, title = "GP de China"),
-            CardSliderDetails(imgId = R.drawable.espana, title = "GP de España"),
-            CardSliderDetails(imgId = R.drawable.gran_bretana, title = "GP de Gran Bretaña"),
-            CardSliderDetails(imgId = R.drawable.hungria, title = "GP de Hungría"),
-            CardSliderDetails(imgId = R.drawable.italia, title = "GP de Italia"),
-            CardSliderDetails(imgId = R.drawable.japon, title = "GP de Japón"),
-            CardSliderDetails(imgId = R.drawable.mexico, title = "GP de México"),
-            CardSliderDetails(imgId = R.drawable.miami, title = "GP de Miami"),
-            CardSliderDetails(imgId = R.drawable.monaco, title = "GP de Mónaco"),
-            CardSliderDetails(imgId = R.drawable.paises_bajos, title = "GP de Países Bajos"),
-            CardSliderDetails(imgId = R.drawable.qatar, title = "GP de Qatar"),
-            CardSliderDetails(imgId = R.drawable.singapur, title = "GP de Singapur"),
-            CardSliderDetails(imgId = R.drawable.vegas, title = "GP de Las Vegas"),
-        )
-    }*/
+    fun getPilotoById(id: String): PilotoDTO? {
+        return repository.getPilotoById(id)
+    }
 
+    class PaginaPilotosVMFactory(
+        private val repository: PilotosRepository = PilotosRepositoryMemory()
+    ) : ViewModelProvider.Factory {
 
+        override fun <T : ViewModel> create(modelClass: Class<T>): T {
+            if (modelClass.isAssignableFrom(PaginaPilotosVM::class.java)) {
+                @Suppress("UNCHECKED_CAST")
+                return PaginaPilotosVM(repository) as T
+            }
+            throw IllegalArgumentException("Unknown ViewModel class")
+        }
+    }
 }
+

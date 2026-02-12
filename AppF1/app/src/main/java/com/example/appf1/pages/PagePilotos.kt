@@ -1,5 +1,7 @@
 package com.example.appf1.pages
 
+import PaginaPilotosVM
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -14,6 +16,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -25,115 +28,110 @@ import com.example.appf1.R
 import com.example.appf1.components.CardSliderDetails
 import com.example.appf1.data.model.PilotoDTO
 import com.example.appf1.components.SliderComponent
-import com.example.appf1.viewmodel.vm.PaginaPilotosVM
 import com.example.compose.onSurfaceLight
 import com.example.compose.surfaceContainerLight
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import com.example.appf1.data.model.EquipoDTO
+import com.example.appf1.repository.PilotosRepository
+import com.example.appf1.repository.PilotosRepositoryMemory
 
 /**
  * Página para ver los datos en detalle de un piloto en específico
  *
- * @param nombrePiloto
- * @param apellidos
- * @param equipo
- * @param carrerasCorridas nº de carrera en las que participo
- * @param victorias
- * @param podios
- * @param poles
+ * @param pilotId Recoge el id del piloto para identificarlo
  */
 
 
 @Composable
 fun pagePilotos(
-   driver: PilotoDTO,
-   vm: PaginaPilotosVM = viewModel()
+    pilotId: String
 ) {
-
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Center,        // centra verticalmente
-        horizontalAlignment = Alignment.CenterHorizontally // centra horizontalmente
-    ) {
-        Card(
-            modifier = Modifier
-                .padding(24.dp)
-                .height(400.dp)
-                .fillMaxWidth(),
-            shape = RoundedCornerShape(16.dp),
-            colors = CardDefaults.cardColors(
-                containerColor = surfaceContainerLight
-            ),
-            elevation = CardDefaults.cardElevation(defaultElevation = 6.dp)
+    val vm: PaginaPilotosVM = viewModel()
+    LaunchedEffect(pilotId) {
+        vm.loadPilot(pilotId)
+    }
+    val driver = vm.selectedPilot.collectAsState().value
+    if (driver == null) {
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Column(
-                modifier = Modifier.fillMaxSize(),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
+            Text("Cargando...")
+        }
+    } else {
+        val sliderItems = vm.uiState.collectAsState().value.map { pilotoUI ->
+            val piloto = vm.getPilotoById(pilotoUI.id)
+            CardSliderDetails(
+                id = pilotoUI.id,
+                imgId = piloto?.imgId ?: R.drawable.piloto,
+                imgDesc = pilotoUI.name,
+                title = pilotoUI.name
+            )
+        }
+
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Card(
+                modifier = Modifier
+                    .padding(24.dp)
+                    .height(400.dp)
+                    .fillMaxWidth(),
+                shape = RoundedCornerShape(16.dp),
+                colors = CardDefaults.cardColors(
+                    containerColor = surfaceContainerLight
+                ),
+                elevation = CardDefaults.cardElevation(defaultElevation = 6.dp)
             ) {
-                Image(
-                    painter = painterResource(R.drawable.piloto),
-                    contentDescription = "Foto de ${driver.name}",
-                    modifier = Modifier.size(180.dp)
-                )
+                Column(
+                    modifier = Modifier.fillMaxSize(),
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Image(
+                        painter = painterResource(driver.imgId),
+                        contentDescription = "Foto de ${driver.name}",
+                        modifier = Modifier.size(180.dp)
+                    )
+
+                    Spacer(modifier = Modifier.height(16.dp))
+
+                    Text(
+                        text = stringResource(R.string.object_name) + " : ${driver.name}",
+                        color = onSurfaceLight
+                    )
+                    Text(
+                        text = stringResource(R.string.team_name) + " : ${driver.team}",
+                        color = onSurfaceLight
+                    )
+                    Text(
+                        text = stringResource(R.string.victories_name) + " : ${driver.wins}",
+                        color = onSurfaceLight
+                    )
+                    Text(
+                        text = stringResource(R.string.podium_name) + " : ${driver.podiums}",
+                        color = onSurfaceLight
+                    )
+                    Text(
+                        text = stringResource(R.string.polepos_name) + " : ${driver.poles}",
+                        color = onSurfaceLight
+                    )
+                }
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-                Text(
-                    text = stringResource(id = R.string.object_name) + " : ${driver.name}",
-                    modifier = Modifier,
-                    onSurfaceLight
-                )
-                Text(
-                    text = stringResource(id = R.string.team_name) + " : ${driver.team}",
-                    modifier = Modifier,
-                    onSurfaceLight
-                )
-                Text(
-                    text = stringResource(id = R.string.race_name) + " : ${driver.wins}",
-                    modifier = Modifier,
-                    onSurfaceLight
-                )
-
-                Spacer(modifier = Modifier.height(16.dp))
-
-                Text(
-                    text = stringResource(id = R.string.victories_name) + " : ${driver.wins}",
-                    modifier = Modifier,
-                    onSurfaceLight
-                )
-                Text(
-                    text = stringResource(id = R.string.podium_name) + " : ${driver.podiums}",
-                    modifier = Modifier,
-                    onSurfaceLight
-                )
-                Text(
-                    text = stringResource(id = R.string.polepos_name) + " : ${driver.poles}",
-                    modifier = Modifier,
-                    onSurfaceLight
+                // SliderComponent esto luego se cambia por las carreras que gano.
+                SliderComponent(
+                    cardsInfo = sliderItems,
+                    onCardClick = { card ->
+                        vm.getPilotoById(card.id)
+                    }
                 )
             }
         }
-        SliderComponent(
-            vm.uiState.collectAsState().value.map { pilotoUI -> CardSliderDetails(1, "Descripcion", pilotoUI.name) },
-            onCardClick = {
-
-            }
-        )
     }
-}
-
-@Preview
-@Composable
-fun pagePreviewP() {
-    pagePilotos(driver = PilotoDTO("1", "Piloto 1", EquipoDTO(
-        id = "5",
-        name = "Equipo 2",
-        drivers = emptyList(),
-        championships = 1,
-        wins = 1,
-        podiums = 5,
-        imgId = R.drawable.mercedes
-    ), 6, 3, 7,
-        imgId = R.drawable.sainz))
 }

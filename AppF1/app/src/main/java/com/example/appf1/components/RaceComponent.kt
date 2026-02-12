@@ -28,7 +28,6 @@ import com.example.appf1.data.model.PilotoDTO
  */
 
 
-
 @Composable
 fun race(carrera: CarreraDTO) {
 
@@ -42,19 +41,22 @@ fun race(carrera: CarreraDTO) {
 
     ) {
         Column {
-            Box(modifier = Modifier.padding(5.dp),
-                contentAlignment = Alignment.TopCenter){
-            Image(
-                painter = painterResource(carrera.imgId),
-                contentDescription = carrera.name
-            )}
+            Box(
+                modifier = Modifier.padding(5.dp),
+                contentAlignment = Alignment.TopCenter
+            ) {
+                Image(
+                    painter = painterResource(carrera.imgId),
+                    contentDescription = carrera.name
+                )
+            }
 
             Text(text = carrera.name, modifier = Modifier.fillMaxWidth())
             Text(text = carrera.editions.toString(), modifier = Modifier.fillMaxWidth())
             Text(text = carrera.country, modifier = Modifier.fillMaxWidth())
             Text(text = carrera.winner.toString(), modifier = Modifier.fillMaxWidth())
             Text(text = carrera.podium.toString(), modifier = Modifier.fillMaxWidth())
-            Text(text = carrera.lenght.toString() + "km", modifier = Modifier.fillMaxWidth())
+            Text(text = carrera.length.toString() + "km", modifier = Modifier.fillMaxWidth())
 
         }
 
@@ -71,20 +73,9 @@ fun carreraPreview() {
             name = "Barcelona",
             editions = 46,
             country = "España",
-            winner = PilotoDTO(
-                "1", "Fernando Alonso", EquipoDTO(
-                    id = "2",
-                    name = "Equipo 7",
-                    drivers = emptyList(),
-                    championships = 1,
-                    wins = 13,
-                    podiums = 27,
-                    imgId = R.drawable.williams
-                ),
-                imgId = R.drawable.alonso
-            ),
+            winner = "",
             podium = emptyList(),
-            lenght = 4.5,
+            length = 4.5,
             imgId = R.drawable.italia,
         )
     )

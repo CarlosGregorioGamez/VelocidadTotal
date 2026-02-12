@@ -21,7 +21,7 @@ import androidx.compose.ui.unit.dp
  * @param action define la funcionalidad del botón
  */
 @Composable
-fun CustomButton(buttonText: String, action: () -> Unit) {
+fun CustomButton(buttonText: String, action:  () -> Unit) {
 
     Box(
         modifier = Modifier
@@ -30,7 +30,7 @@ fun CustomButton(buttonText: String, action: () -> Unit) {
     ) {
 
         Button(
-            onClick = action,
+            onClick = action ,
             modifier = Modifier.fillMaxSize(),
             colors = ButtonColors(
                 containerColor = Color.White,

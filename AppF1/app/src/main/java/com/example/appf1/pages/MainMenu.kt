@@ -5,8 +5,10 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -14,9 +16,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import com.example.appf1.viewmodel.vm.MainListVM
 import com.example.appf1.components.SliderComponent
 import com.example.appf1.components.TitleComponent
+import com.example.appf1.components.TopBarComponent
+import com.example.appf1.navigation.Routes
 import com.example.appf1.viewmodel.vm.ListType
 
 /**
@@ -28,43 +33,59 @@ import com.example.appf1.viewmodel.vm.ListType
 @Composable
 fun MainMenu(
     titlePage: String = "",
-    modifier: Modifier = Modifier,
-    viewModel: MainListVM = viewModel()
+    viewModel: MainListVM = viewModel(),
+    navController: NavController
 ) {
-
     val listas by viewModel.uiState.collectAsState()
-
-    Box(
-        modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.TopCenter
-    )
-    {
-        Column(
+    Scaffold(
+        topBar = {
+            TopBarComponent(
+                topBarTitle = titlePage,
+                navIcon = {
+                    if (navController.previousBackStackEntry != null) {
+                        navController.popBackStack()
+                    }
+                },
+                onPerfilClick = {
+                    navController.navigate(Routes.PERFIL)
+                }
+            )
+        }
+    )  { paddingValues ->
+        Box(
             modifier = Modifier
-                .height(height = 500.dp)
-                .width(width = 275.dp),
-            verticalArrangement = Arrangement.Top,
-            horizontalAlignment = Alignment.CenterHorizontally
+                .fillMaxSize()
+                .padding(paddingValues),
+            contentAlignment = Alignment.TopCenter
         ) {
-            TitleComponent(titlePage)
-            LazyColumn {
-                item {
-                    SliderComponent(cardsInfo = listas.races, onCardClick = {
-                        viewModel.onCardClicked(ListType.RACES)
+            Column(
+                modifier = Modifier
+                    .height(500.dp)
+                    .width(275.dp),
+                verticalArrangement = Arrangement.Top,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                TitleComponent(titlePage)
+                LazyColumn {
+                    item {
+                        TitleComponent("Carreras")
+                        SliderComponent(cardsInfo = listas.races) {
+                            viewModel.onCardClicked(ListType.RACES)
+                        }
+                        TitleComponent("Pilotos")
+                        SliderComponent(cardsInfo = listas.drivers) { card ->
+                            navController.navigate("${Routes.PILOT_DETAIL}/${card.id}")
+                        }
+                        TitleComponent("Equipos")
+                        SliderComponent(cardsInfo = listas.teams) {
+                            viewModel.onCardClicked(ListType.TEAM)
+                        }
                     }
-                    )
-                    SliderComponent(cardsInfo = listas.drivers, onCardClick = {
-                        viewModel.onCardClicked(ListType.DRIVERS)
-                    }
-                    )
-                    SliderComponent(cardsInfo = listas.teams, onCardClick = {
-                        viewModel.onCardClicked(ListType.TEAM)
-                    }
-                    )
                 }
             }
         }
     }
 }
+
 
 

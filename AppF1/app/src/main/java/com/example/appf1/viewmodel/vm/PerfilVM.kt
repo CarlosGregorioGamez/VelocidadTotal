@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.appf1.data.model.UserDTO
-import com.example.appf1.repository.PilotoRepostoryMemory
 import com.example.appf1.repository.UserRepostoryMemory
 import com.example.appf1.viewmodel.uistate.PaginaPilotosUIState
 import kotlinx.coroutines.flow.MutableStateFlow
