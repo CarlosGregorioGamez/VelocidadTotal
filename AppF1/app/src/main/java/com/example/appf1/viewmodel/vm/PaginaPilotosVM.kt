@@ -14,6 +14,8 @@ class PaginaPilotosVM(
     private val _uiState =
         MutableStateFlow<List<PaginaPilotosUIState>>(emptyList())
     val uiState: StateFlow<List<PaginaPilotosUIState>> = _uiState
+    private val _selectedPilot = MutableStateFlow<PilotoDTO?>(null)
+    val selectedPilot: StateFlow<PilotoDTO?> = _selectedPilot
 
     init {
         cargarPilotos()
@@ -30,6 +32,10 @@ class PaginaPilotosVM(
                 poles = piloto.poles
             )
         }
+    }
+
+    fun loadPilot(id: String) {
+        _selectedPilot.value = repository.getPilotoById(id)
     }
 
     fun getPilotoById(id: String): PilotoDTO? {

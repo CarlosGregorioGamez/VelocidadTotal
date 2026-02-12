@@ -22,6 +22,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import com.example.appf1.R
 import com.example.appf1.components.CustomButton
 import com.example.appf1.components.TitleComponent
@@ -34,7 +35,10 @@ import com.example.compose.backgroundLight
  * Página para poder ver el perfil del usuario activo
  */
 @Composable
-fun pagePerfil(perfilVM: PerfilVM = viewModel(factory = PerfilVMFactory(UserRepostoryMemory()))){
+fun pagePerfil(
+    navController: NavController,
+    perfilVM: PerfilVM = viewModel(factory = PerfilVMFactory(UserRepostoryMemory()))
+) {
 
     val user by perfilVM.uiState.collectAsState()
 
@@ -57,17 +61,19 @@ fun pagePerfil(perfilVM: PerfilVM = viewModel(factory = PerfilVMFactory(UserRepo
         }
         Text(text = stringResource(id = R.string.user_name), modifier = Modifier, backgroundLight)
         TextField(
-            value = user?.email ?:
-            "",
+            value = user?.email ?: "",
             onValueChange = {
-                 perfilVM.updateEmail(it)
+                perfilVM.updateEmail(it)
             },
             modifier = Modifier.padding(9.dp)
         )
-        Text(text = stringResource(id = R.string.password_name), modifier = Modifier, backgroundLight)
+        Text(
+            text = stringResource(id = R.string.password_name),
+            modifier = Modifier,
+            backgroundLight
+        )
         TextField(
-            value = user?.password ?:
-            "",
+            value = user?.password ?: "",
             onValueChange = {
                 perfilVM.updatePassword(it)
             },
@@ -83,17 +89,9 @@ fun pagePerfil(perfilVM: PerfilVM = viewModel(factory = PerfilVMFactory(UserRepo
                 perfilVM.saveChanges()
             }
             CustomButton(stringResource(id = R.string.return_name)) {
-
+                navController.popBackStack()
             }
         }
     }
-}
-
-@Preview
-@Composable
-fun PerfilPreview() {
-    pagePerfil(
-
-    )
 }
 

@@ -21,6 +21,7 @@ import com.example.appf1.viewmodel.vm.MainListVM
 import com.example.appf1.components.SliderComponent
 import com.example.appf1.components.TitleComponent
 import com.example.appf1.components.TopBarComponent
+import com.example.appf1.navigation.Routes
 import com.example.appf1.viewmodel.vm.ListType
 
 /**
@@ -44,6 +45,9 @@ fun MainMenu(
                     if (navController.previousBackStackEntry != null) {
                         navController.popBackStack()
                     }
+                },
+                onPerfilClick = {
+                    navController.navigate(Routes.PERFIL)
                 }
             )
         }
@@ -69,8 +73,8 @@ fun MainMenu(
                             viewModel.onCardClicked(ListType.RACES)
                         }
                         TitleComponent("Pilotos")
-                        SliderComponent(cardsInfo = listas.drivers) {
-                            viewModel.onCardClicked(ListType.DRIVERS)
+                        SliderComponent(cardsInfo = listas.drivers) { card ->
+                            navController.navigate("${Routes.PILOT_DETAIL}/${card.id}")
                         }
                         TitleComponent("Equipos")
                         SliderComponent(cardsInfo = listas.teams) {
