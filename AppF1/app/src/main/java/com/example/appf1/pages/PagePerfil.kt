@@ -36,8 +36,8 @@ import com.example.compose.backgroundLight
  */
 @Composable
 fun pagePerfil(
-    navController: NavController,
-    perfilVM: PerfilVM = viewModel(factory = PerfilVMFactory(UserRepostoryMemory()))
+    perfilVM: PerfilVM = viewModel(factory = PerfilVMFactory(UserRepostoryMemory())),
+    onBackAction: () -> Unit
 ) {
 
     val user by perfilVM.uiState.collectAsState()
@@ -89,7 +89,7 @@ fun pagePerfil(
                 perfilVM.saveChanges()
             }
             CustomButton(stringResource(id = R.string.return_name)) {
-                navController.popBackStack()
+                onBackAction()
             }
         }
     }
