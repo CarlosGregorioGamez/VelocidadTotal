@@ -16,6 +16,11 @@
     <string name="update_name">Cambiar</string>
     <string name="return_name">Volver</string>
     <string name="second_name">Volver</string>
-    <string name="team_name">Volver</string>
-    <string name="race_name">Volver</string>
+    <string name="team_name">Equipo</string>
+    <string name="race_name">Carrera</string>
+    <string name="lenght_name">Longitud</string>
+    <string name="team_drivers">Pilotos del Equipo</string>
+    <string name="team_championship">Campeonatos de constructores</string>
+    <string name="team_wins">Victorias de equipo</string>
+    <string name="team_podiums">Podios de equipo</string>
 </resources>

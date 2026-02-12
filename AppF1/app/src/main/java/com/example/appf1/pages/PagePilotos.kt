@@ -39,13 +39,7 @@ import com.example.appf1.repository.PilotosRepositoryMemory
 /**
  * Página para ver los datos en detalle de un piloto en específico
  *
- * @param nombrePiloto
- * @param apellidos
- * @param equipo
- * @param carrerasCorridas nº de carrera en las que participo
- * @param victorias
- * @param podios
- * @param poles
+ * @param pilotId Recoge el id del piloto para identificarlo
  */
 
 
@@ -134,25 +128,10 @@ fun pagePilotos(
                 SliderComponent(
                     cardsInfo = sliderItems,
                     onCardClick = { card ->
-                        val selectedPiloto = vm.getPilotoById(card.id)
+                        vm.getPilotoById(card.id)
                     }
                 )
             }
         }
     }
-}
-
-
-@Preview
-@Composable
-fun pagePreviewP() {
-    val driver = PilotoDTO(
-        id = "1",
-        name = "Piloto 1",
-        team = "",
-        wins = emptyList(),
-        podiums = emptyList(),
-        poles = 7,
-        imgId = R.drawable.sainz
-    )
 }
