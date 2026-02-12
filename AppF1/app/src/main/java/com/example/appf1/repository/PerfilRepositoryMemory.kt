@@ -3,7 +3,7 @@ package com.example.appf1.repository
 import com.example.appf1.data.model.UserDTO
 
 
-class PerfilMemory : PerfilRepository{
+class PerfilRepositoryMemory : PerfilRepository{
 
     private val users: ArrayList<UserDTO> = ArrayList()
 
