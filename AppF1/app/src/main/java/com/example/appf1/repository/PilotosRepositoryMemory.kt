@@ -13,7 +13,7 @@ class PilotosRepositoryMemory : PilotosRepository {
             PilotoDTO(
                 id = card.id,
                 name = card.title,
-                team = equipoPorPiloto(card.id),
+                team = equipoPorPiloto(card.id).name,
                 imgId = card.imgId
             )
         }

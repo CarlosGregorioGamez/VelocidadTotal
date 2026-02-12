@@ -32,23 +32,22 @@ import com.example.appf1.viewmodel.vm.LoginVMFactory
  * Página para el inicio de la aplicacion donde se registrará el usuario
  */
 @Composable
-fun pagePrincipal( loginVM: LoginVM = viewModel(
-    factory = LoginVMFactory(
-        repository = UserRepostoryMemory()
-    )
-),
-    onLoginSuccess: () -> Unit
+fun pagePrincipal(
+    loginVM: LoginVM = viewModel(
+        factory = LoginVMFactory(
+            repository = UserRepostoryMemory()
+        )
+    ), onLoginSuccess: () -> Unit,
+    onexit : () -> Unit
 
 ) {
     val uiState by loginVM.uiState.collectAsState()
     LaunchedEffect(Unit) {
         loginVM.resetFields()
     }
-    val context = LocalContext.current
-    val activity = context as? Activity
+
     Column(
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+        verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
         Image(
@@ -60,8 +59,7 @@ fun pagePrincipal( loginVM: LoginVM = viewModel(
             email = uiState.email,
             password = uiState.password,
             onEmailChange = { loginVM.onEmailChange(it) },
-            onPasswordChange = { loginVM.onPasswordChange(it) }
-        )
+            onPasswordChange = { loginVM.onPasswordChange(it) })
 
         Row(
             modifier = Modifier
@@ -71,12 +69,12 @@ fun pagePrincipal( loginVM: LoginVM = viewModel(
         ) {
             CustomButton(stringResource(id = R.string.confirm_button)) {
                 loginVM.login {
-                    Log.d("LOGIN CORRECTO","si si")
+                    Log.d("LOGIN CORRECTO", "si si")
                     onLoginSuccess()
                 }
             }
             CustomButton(stringResource(id = R.string.exit_button)) {
-                activity?.finish()
+               onexit()
             }
         }
     }

@@ -26,7 +26,7 @@ class PaginaPilotosVM(
             PaginaPilotosUIState(
                 id = piloto.id,
                 name = piloto.name,
-                team = piloto.team.name,
+                team = piloto.team,
                 wins = piloto.wins,
                 podiums = piloto.podiums,
                 poles = piloto.poles

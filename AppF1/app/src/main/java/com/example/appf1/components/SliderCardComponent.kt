@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.dp
 import com.example.appf1.R
 
 
-class CardSliderDetails(  val id: String, var imgId: Int, var imgDesc: String = "", var title: String)
+class CardSliderDetails(val id: String, var imgId: Int, var imgDesc: String = "", var title: String)
 
 /**
  * Componente por defecto para las tarjetas

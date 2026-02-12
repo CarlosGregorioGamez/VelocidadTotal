@@ -106,27 +106,26 @@ fun pagePilotos(
 
                     Spacer(modifier = Modifier.height(16.dp))
 
-                    Text(
-                        text = stringResource(R.string.object_name) + " : ${driver.name}",
-                        color = onSurfaceLight
-                    )
-                    Text(
-                        text = stringResource(R.string.team_name) + " : ${driver.team.name}",
-                        color = onSurfaceLight
-                    )
-                    Text(
-                        text = stringResource(R.string.victories_name) + " : ${driver.wins}",
-                        color = onSurfaceLight
-                    )
-                    Text(
-                        text = stringResource(R.string.podium_name) + " : ${driver.podiums}",
-                        color = onSurfaceLight
-                    )
-                    Text(
-                        text = stringResource(R.string.polepos_name) + " : ${driver.poles}",
-                        color = onSurfaceLight
-                    )
-                }
+                Text(
+                    text = stringResource(R.string.object_name) + " : ${driver.name}",
+                    color = onSurfaceLight
+                )
+                Text(
+                    text = stringResource(R.string.team_name) + " : ${driver.team}",
+                    color = onSurfaceLight
+                )
+                Text(
+                    text = stringResource(R.string.victories_name) + " : ${driver.wins}",
+                    color = onSurfaceLight
+                )
+                Text(
+                    text = stringResource(R.string.podium_name) + " : ${driver.podiums}",
+                    color = onSurfaceLight
+                )
+                Text(
+                    text = stringResource(R.string.polepos_name) + " : ${driver.poles}",
+                    color = onSurfaceLight
+                )
             }
 
             Spacer(modifier = Modifier.height(16.dp))
@@ -149,17 +148,9 @@ fun pagePreviewP() {
     val driver = PilotoDTO(
         id = "1",
         name = "Piloto 1",
-        team = EquipoDTO(
-            id = "5",
-            name = "Equipo 2",
-            drivers = emptyList(),
-            championships = 1,
-            wins = 1,
-            podiums = 5,
-            imgId = R.drawable.mercedes
-        ),
-        wins = 6,
-        podiums = 3,
+        team = "",
+        wins = emptyList(),
+        podiums = emptyList(),
         poles = 7,
         imgId = R.drawable.sainz
     )

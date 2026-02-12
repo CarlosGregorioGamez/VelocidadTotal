@@ -20,10 +20,7 @@ import com.example.appf1.data.model.PilotoDTO
 /**
  * Componente que identifica los pilotos para listar
  *
- * @param name
- * @param team
- * @param wins
- * @param podiums
+ * @param driver Recibe un pilotoDTO
  */
 
 
@@ -41,7 +38,7 @@ fun pilot(driver: PilotoDTO) {
     ) {
         Column() {
             Text(text = driver.name, modifier = Modifier.fillMaxWidth())
-            Text(text = driver.team.name, modifier = Modifier.fillMaxWidth())
+            Text(text = driver.team, modifier = Modifier.fillMaxWidth())
         }
 
     }
@@ -55,17 +52,9 @@ fun pilotoPreview() {
         driver = PilotoDTO(
             id = "1",
             name = "Paco",
-            team = EquipoDTO(
-                "1",
-                "ge",
-                emptyList(),
-                1,
-                4,
-                24,
-                R.drawable.mercedes
-            ),
-            wins = 2,
-            podiums = 7,
+            team = "",
+            wins = emptyList(),
+            podiums = emptyList(),
             imgId = R.drawable.albon
         )
     )
@@ -78,17 +67,9 @@ fun pruebasPreview() {
         driver = PilotoDTO(
             id = "1",
             name = "Paco",
-            team = EquipoDTO(
-                "1",
-                "ge",
-                emptyList(),
-                1,
-                4,
-                24,
-                R.drawable.mercedes
-            ),
-            wins = 2,
-            podiums = 7,
+            team ="",
+            wins = emptyList(),
+            podiums = emptyList(),
             imgId = R.drawable.albon
         )
     )

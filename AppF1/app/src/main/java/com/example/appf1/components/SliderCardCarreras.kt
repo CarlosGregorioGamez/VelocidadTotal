@@ -21,6 +21,7 @@ import com.example.appf1.data.model.CarreraDTO
 import com.example.appf1.data.model.EquipoDTO
 import com.example.appf1.data.model.PilotoDTO
 
+
 @Composable
 fun SliderCardCarreras(carrera: CarreraDTO) {
     Card(
@@ -60,20 +61,7 @@ fun CardSliderCarrerasPreview() {
             name = "GP de Italia",
             editions = 3,
             country = "Italia",
-            winner = PilotoDTO(
-                "ooo",
-                "aaa",
-                EquipoDTO(
-                    id = "4",
-                    name = "Equipo5",
-                    drivers = emptyList(),
-                    championships = 0,
-                    wins = 5,
-                    podiums = 9,
-                    imgId = R.drawable.aston_martin,
-                ),
-                imgId = R.drawable.alonso
-            ),
+            winner = "El Nano",
             podium = emptyList(),
             length = 5.6,
             imgId = R.drawable.italia,
