@@ -1,6 +1,7 @@
 package com.example.appf1.navigation
 
 import android.app.Activity
+import android.widget.Toast
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.compose.NavHost
@@ -48,9 +49,16 @@ fun AppNavGraph() {
             pagePilotos(
                 pilotId = pilotId
             )
+
         }
+
         composable(Routes.PERFIL) {
-            pagePerfil(navController = navController)
+            pagePerfil(onBackAction = {
+
+                if(!navController.popBackStack()){
+                    Toast.makeText(context, "No se puede volver atras", Toast.LENGTH_LONG).show();
+                }
+            })
         }
     }
 }
