@@ -39,7 +39,7 @@ import com.example.compose.surfaceContainerLight
 fun pageCarreras(carreraId: String) {
     val vm: PaginaCarrerasVM = viewModel()
     LaunchedEffect(carreraId) {
-        vm.getCarreraById(carreraId)
+        vm.loadCarrera(carreraId)
     }
     val race = vm.selectedRace.collectAsState().value
     if (race == null) {

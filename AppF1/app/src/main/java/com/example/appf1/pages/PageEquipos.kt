@@ -42,7 +42,7 @@ fun pageEquipos(
 ) {
     val vm: PaginaEquiposVM = viewModel()
     LaunchedEffect(equipoId) {
-        vm.getEquipoById(equipoId)
+        vm.loadEquipos(equipoId)
     }
     val team = vm.selectedTeam.collectAsState().value
     if (team == null) {
