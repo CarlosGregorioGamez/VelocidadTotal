@@ -33,28 +33,12 @@ fun listaPreview() {
     val drivers = listOf(
         PilotoDTO(
             "ooo", "aaa",
-            EquipoDTO(
-                id = "",
-                name = "",
-                drivers = emptyList(),
-                championships = 1,
-                wins = 2,
-                podiums = 3,
-                imgId = R.drawable.racing_bulls
-            ),
+            "",
             imgId = R.drawable.hadjar,
         ),
         PilotoDTO(
             "1", "2",
-            EquipoDTO(
-                id = "",
-                name = "",
-                drivers = emptyList(),
-                championships = 1,
-                wins = 2,
-                podiums = 3,
-                imgId = R.drawable.racing_bulls
-            ),
+            "",
             imgId = R.drawable.hadjar,
         )
     )

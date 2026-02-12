@@ -2,6 +2,7 @@ package com.example.appf1.viewmodel.vm
 
 import androidx.lifecycle.ViewModel
 import com.example.appf1.data.model.CarreraDTO
+import com.example.appf1.data.model.PilotoDTO
 import com.example.appf1.repository.CarreraRepository
 import com.example.appf1.repository.CarrerasRepositoryMemory
 import com.example.appf1.viewmodel.uistate.PaginaCarrerasUIState
@@ -38,12 +39,12 @@ class PaginaCarrerasVM(private val repo: CarreraRepository = CarrerasRepositoryM
         return repo.getCarreraById(id)
     }
 
-    fun getWinnerCarrera(id: String): CarreraDTO? {
-        return repo.getWinnerCarrera(id)
+    fun getWinnerCarrera(carrera: CarreraDTO): String {
+        return repo.getWinnerCarrera(carrera)
     }
 
-    fun getPodiumCarrera(id: String): CarreraDTO? {
-        return repo.getPodiumCarrera(id)
+    fun getPodiumCarrera(carrera: CarreraDTO): List<String> {
+        return repo.getPodiumCarrera(carrera)
     }
 
 }

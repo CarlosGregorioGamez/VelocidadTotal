@@ -1,7 +1,6 @@
 package com.example.appf1.repository
 
 import com.example.appf1.data.model.CarreraDTO
-import com.example.appf1.data.model.EquipoDTO
 import com.example.appf1.data.model.PilotoDTO
 
 class CarrerasRepositoryMemory: CarreraRepository {
@@ -22,11 +21,13 @@ class CarrerasRepositoryMemory: CarreraRepository {
         return getAllCarreras().find { it.id == id }
     }
 
-    override fun getWinnerCarrera(piloto: PilotoDTO) {
-        TODO("Not yet implemented")
+    override fun getWinnerCarrera(carrera: CarreraDTO): String {
+        return carrera.winner
     }
 
-    override fun getPodiumCarrera(podio: List<PilotoDTO>) {
-        TODO("Not yet implemented")
+    override fun getPodiumCarrera(carrera: CarreraDTO): List<String> {
+        return carrera.podium
     }
+
+
 }

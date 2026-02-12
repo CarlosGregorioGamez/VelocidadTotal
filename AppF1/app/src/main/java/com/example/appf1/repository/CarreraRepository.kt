@@ -9,7 +9,7 @@ interface CarreraRepository {
 
     fun getCarreraById(id: String): CarreraDTO?
 
-    fun getWinnerCarrera(piloto: PilotoDTO)
+    fun getWinnerCarrera(carrera: CarreraDTO): String
 
-    fun getPodiumCarrera(podio: List<PilotoDTO>)
+    fun getPodiumCarrera(carrera: CarreraDTO): List<String>
 }

@@ -100,7 +100,7 @@ fun pagePilotos(
                     color = onSurfaceLight
                 )
                 Text(
-                    text = stringResource(R.string.team_name) + " : ${driver.team.name}",
+                    text = stringResource(R.string.team_name) + " : ${driver.team}",
                     color = onSurfaceLight
                 )
                 Text(
@@ -140,17 +140,9 @@ fun pagePreviewP() {
     val driver = PilotoDTO(
         id = "1",
         name = "Piloto 1",
-        team = EquipoDTO(
-            id = "5",
-            name = "Equipo 2",
-            drivers = emptyList(),
-            championships = 1,
-            wins = 1,
-            podiums = 5,
-            imgId = R.drawable.mercedes
-        ),
-        wins = 6,
-        podiums = 3,
+        team = "",
+        wins = emptyList(),
+        podiums = emptyList(),
         poles = 7,
         imgId = R.drawable.sainz
     )
