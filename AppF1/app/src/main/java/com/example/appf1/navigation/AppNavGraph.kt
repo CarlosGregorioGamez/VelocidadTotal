@@ -44,7 +44,7 @@ fun AppNavGraph() {
             )
         }
         composable(Routes.PERFIL) {
-            pagePerfil()
+            pagePerfil(navController = navController)
         }
     }
 }
