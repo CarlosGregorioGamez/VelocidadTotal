@@ -1,6 +1,7 @@
 package com.example.appf1.pages
 
 import PaginaPilotosVM
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -58,83 +59,86 @@ fun pagePilotos(
     }
     val driver = vm.selectedPilot.collectAsState().value
     if (driver == null) {
-        Text("Piloto no encontrado")
-        return
-    }
-    val sliderItems = vm.uiState.collectAsState().value.map { pilotoUI ->
-        val piloto = vm.getPilotoById(pilotoUI.id)
-        CardSliderDetails(
-            id = pilotoUI.id,
-            imgId = piloto?.imgId ?: R.drawable.piloto, // fallback
-            imgDesc = pilotoUI.name,
-            title = pilotoUI.name
-        )
-    }
-
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Card(
-            modifier = Modifier
-                .padding(24.dp)
-                .height(400.dp)
-                .fillMaxWidth(),
-            shape = RoundedCornerShape(16.dp),
-            colors = CardDefaults.cardColors(
-                containerColor = surfaceContainerLight
-            ),
-            elevation = CardDefaults.cardElevation(defaultElevation = 6.dp)
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Column(
-                modifier = Modifier.fillMaxSize(),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Image(
-                    painter = painterResource(driver.imgId),
-                    contentDescription = "Foto de ${driver.name}",
-                    modifier = Modifier.size(180.dp)
-                )
-
-                Spacer(modifier = Modifier.height(16.dp))
-
-                Text(
-                    text = stringResource(R.string.object_name) + " : ${driver.name}",
-                    color = onSurfaceLight
-                )
-                Text(
-                    text = stringResource(R.string.team_name) + " : ${driver.team.name}",
-                    color = onSurfaceLight
-                )
-                Text(
-                    text = stringResource(R.string.victories_name) + " : ${driver.wins}",
-                    color = onSurfaceLight
-                )
-                Text(
-                    text = stringResource(R.string.podium_name) + " : ${driver.podiums}",
-                    color = onSurfaceLight
-                )
-                Text(
-                    text = stringResource(R.string.polepos_name) + " : ${driver.poles}",
-                    color = onSurfaceLight
-                )
-            }
+            Text("Cargando...")
+        }
+    } else {
+        val sliderItems = vm.uiState.collectAsState().value.map { pilotoUI ->
+            val piloto = vm.getPilotoById(pilotoUI.id)
+            CardSliderDetails(
+                id = pilotoUI.id,
+                imgId = piloto?.imgId ?: R.drawable.piloto,
+                imgDesc = pilotoUI.name,
+                title = pilotoUI.name
+            )
         }
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Card(
+                modifier = Modifier
+                    .padding(24.dp)
+                    .height(400.dp)
+                    .fillMaxWidth(),
+                shape = RoundedCornerShape(16.dp),
+                colors = CardDefaults.cardColors(
+                    containerColor = surfaceContainerLight
+                ),
+                elevation = CardDefaults.cardElevation(defaultElevation = 6.dp)
+            ) {
+                Column(
+                    modifier = Modifier.fillMaxSize(),
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Image(
+                        painter = painterResource(driver.imgId),
+                        contentDescription = "Foto de ${driver.name}",
+                        modifier = Modifier.size(180.dp)
+                    )
 
-        // SliderComponent
-        SliderComponent(
-            cardsInfo = sliderItems,
-            onCardClick = { card ->
-                // Aquí podrías navegar a otro piloto usando card.id
-                // Por ejemplo:
-                val selectedPiloto = vm.getPilotoById(card.id)
-                // navegación a la página de ese piloto
+                    Spacer(modifier = Modifier.height(16.dp))
+
+                    Text(
+                        text = stringResource(R.string.object_name) + " : ${driver.name}",
+                        color = onSurfaceLight
+                    )
+                    Text(
+                        text = stringResource(R.string.team_name) + " : ${driver.team.name}",
+                        color = onSurfaceLight
+                    )
+                    Text(
+                        text = stringResource(R.string.victories_name) + " : ${driver.wins}",
+                        color = onSurfaceLight
+                    )
+                    Text(
+                        text = stringResource(R.string.podium_name) + " : ${driver.podiums}",
+                        color = onSurfaceLight
+                    )
+                    Text(
+                        text = stringResource(R.string.polepos_name) + " : ${driver.poles}",
+                        color = onSurfaceLight
+                    )
+                }
             }
-        )
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            // SliderComponent esto luego se cambia por las carreras que gano.
+            SliderComponent(
+                cardsInfo = sliderItems,
+                onCardClick = { card ->
+                    val selectedPiloto = vm.getPilotoById(card.id)
+                }
+            )
+        }
     }
 }
 

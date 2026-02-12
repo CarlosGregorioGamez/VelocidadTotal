@@ -5,6 +5,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.appf1.pages.MainMenu
+import com.example.appf1.pages.pagePerfil
 import com.example.appf1.pages.pagePilotos
 import com.example.appf1.pages.pagePrincipal
 
@@ -41,6 +42,9 @@ fun AppNavGraph() {
             pagePilotos(
                 pilotId = pilotId
             )
+        }
+        composable(Routes.PERFIL) {
+            pagePerfil()
         }
     }
 }

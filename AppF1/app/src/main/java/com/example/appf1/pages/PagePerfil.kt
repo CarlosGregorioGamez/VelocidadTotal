@@ -89,11 +89,3 @@ fun pagePerfil(perfilVM: PerfilVM = viewModel(factory = PerfilVMFactory(UserRepo
     }
 }
 
-@Preview
-@Composable
-fun PerfilPreview() {
-    pagePerfil(
-
-    )
-}
-

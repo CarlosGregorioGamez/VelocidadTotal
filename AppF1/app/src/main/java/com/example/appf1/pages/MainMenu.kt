@@ -45,6 +45,9 @@ fun MainMenu(
                     if (navController.previousBackStackEntry != null) {
                         navController.popBackStack()
                     }
+                },
+                onPerfilClick = {
+                    navController.navigate(Routes.PERFIL)
                 }
             )
         }
@@ -70,8 +73,8 @@ fun MainMenu(
                             viewModel.onCardClicked(ListType.RACES)
                         }
                         TitleComponent("Pilotos")
-                        SliderComponent(cardsInfo = listas.drivers) { id ->
-                            navController.navigate("${Routes.PILOT_DETAIL}/$id")
+                        SliderComponent(cardsInfo = listas.drivers) { card ->
+                            navController.navigate("${Routes.PILOT_DETAIL}/${card.id}")
                         }
                         TitleComponent("Equipos")
                         SliderComponent(cardsInfo = listas.teams) {
