@@ -1,12 +1,13 @@
 package com.example.appf1.data.model
 
 
-data class PilotoDTO(val id: String,
-                     val name: String,
-                     val team: String,
-                     val wins: List<String> = emptyList(),
-                     val podiums: List<String> = emptyList(),
-                     val poles: Int = 0,
-                     val imgId: Int,
-                     val carreras: List<String> = emptyList()
+data class PilotoDTO(
+    val id: String,
+    val name: String,
+    val team: String,
+    val wins: List<String> = emptyList(),
+    val podiums: List<String> = emptyList(),
+    val poles: Int = 0,
+    val imgId: Int,
+    val carreras: List<String> = emptyList()
 )
