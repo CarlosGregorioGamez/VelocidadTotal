@@ -117,12 +117,12 @@ fun pageEquipos(
                     )
                 }
             }
+            SliderComponent(
+                cardsInfo = sliderEquipoItem,
+                onCardClick = {card ->
+                    vm.loadEquipos(card.id)
+                }
+            )
         }
-        SliderComponent(
-            cardsInfo = sliderEquipoItem,
-            onCardClick = {card ->
-                vm.loadEquipos(card.id)
-            }
-        )
     }
 }
