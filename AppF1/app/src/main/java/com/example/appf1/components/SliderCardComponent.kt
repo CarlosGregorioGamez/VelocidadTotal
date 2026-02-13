@@ -39,6 +39,7 @@ fun SliderCardComponent(
         modifier = Modifier
             .padding(6.dp)
             .width(150.dp)
+            .height(150.dp)
             .clickable { onClick() },
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surfaceContainerHigh
