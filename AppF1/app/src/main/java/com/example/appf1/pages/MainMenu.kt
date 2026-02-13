@@ -32,28 +32,14 @@ import com.example.appf1.viewmodel.vm.ListType
  */
 @Composable
 fun MainMenu(
-    titlePage: String = "",
     viewModel: MainListVM = viewModel(),
     onRaceNav: (String) -> Unit,
     onPilotNav: (String) ->Unit,
-    onTeamNav: (String) -> Unit
+    onTeamNav: (String) -> Unit,
 
 ) {
     val listas by viewModel.uiState.collectAsState()
     Scaffold(
-        topBar = {
-            TopBarComponent(
-                topBarTitle = titlePage,
-                navIcon = {
-                    if (navController.previousBackStackEntry != null) {
-                        navController.popBackStack()
-                    }
-                },
-                onPerfilClick = {
-                    navController.navigate(Routes.PERFIL)
-                }
-            )
-        }
     )  { paddingValues ->
         Box(
             modifier = Modifier
@@ -63,25 +49,24 @@ fun MainMenu(
         ) {
             Column(
                 modifier = Modifier
-                    .height(500.dp)
-                    .width(275.dp),
+                    .height(600.dp)
+                    .width(300.dp),
                 verticalArrangement = Arrangement.Top,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                TitleComponent(titlePage)
                 LazyColumn {
                     item {
                         TitleComponent("Carreras")
-                        SliderComponent(cardsInfo = listas.races) {
-                            viewModel.onCardClicked(ListType.RACES)
+                        SliderComponent(cardsInfo = listas.races) {card ->
+                            onRaceNav(card.id)
                         }
                         TitleComponent("Pilotos")
                         SliderComponent(cardsInfo = listas.drivers) { card ->
                             onPilotNav(card.id)
                         }
                         TitleComponent("Equipos")
-                        SliderComponent(cardsInfo = listas.teams) {
-                            viewModel.onCardClicked(ListType.TEAM)
+                        SliderComponent(cardsInfo = listas.teams) { card ->
+                            onTeamNav(card.id)
                         }
                     }
                 }

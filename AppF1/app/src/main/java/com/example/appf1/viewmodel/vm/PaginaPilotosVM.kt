@@ -11,8 +11,7 @@ class PaginaPilotosVM(
     private val repository: PilotosRepository = PilotosRepositoryMemory()
 ) : ViewModel() {
 
-    private val _uiState =
-        MutableStateFlow<List<PaginaPilotosUIState>>(emptyList())
+    private val _uiState = MutableStateFlow<List<PaginaPilotosUIState>>(emptyList())
     val uiState: StateFlow<List<PaginaPilotosUIState>> = _uiState
     private val _selectedPilot = MutableStateFlow<PilotoDTO?>(null)
     val selectedPilot: StateFlow<PilotoDTO?> = _selectedPilot

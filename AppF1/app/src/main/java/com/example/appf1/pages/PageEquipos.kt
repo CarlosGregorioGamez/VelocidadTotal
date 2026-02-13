@@ -120,8 +120,8 @@ fun pageEquipos(
         }
         SliderComponent(
             cardsInfo = sliderEquipoItem,
-            onCardClick = {
-                vm.getEquipoById(equipoId)
+            onCardClick = {card ->
+                vm.loadEquipos(card.id)
             }
         )
     }
