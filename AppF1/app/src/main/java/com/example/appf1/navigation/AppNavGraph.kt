@@ -8,6 +8,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.appf1.pages.MainMenu
+import com.example.appf1.pages.pageCarreras
 import com.example.appf1.pages.pagePerfil
 import com.example.appf1.pages.pagePilotos
 import com.example.appf1.pages.pagePrincipal
@@ -34,10 +35,20 @@ fun AppNavGraph() {
                 }
             )
         }
+
+        //Este es el bueno
         composable(Routes.MAIN_MENU) {
             MainMenu(
                 titlePage = "Menú principal",
-                navController = navController
+                onRaceNav = {
+                    navController.navigate(Routes.RACE_DETAIL)
+                },
+                onPilotNav = {
+                    navController.navigate(Routes.PILOT_DETAIL)
+                },
+                onTeamNav = {
+                    navController.navigate(Routes.TEAM_DEATIL)
+                }
             )
         }
         composable(
@@ -47,11 +58,21 @@ fun AppNavGraph() {
             val pilotId = backStackEntry.arguments?.getString("pilotId") ?: ""
 
             pagePilotos(
-                pilotId = pilotId
+                pilotId
             )
 
         }
+        composable(
+            route = "${Routes.RACE_DETAIL}/{raceId}"
+        ) { backStackEntry ->
 
+            val raceId = backStackEntry.arguments?.getString("raceId") ?: ""
+
+            pageCarreras(
+                raceId
+            )
+
+        }
         composable(Routes.PERFIL) {
             pagePerfil(onBackAction = {
 

@@ -34,7 +34,10 @@ import com.example.appf1.viewmodel.vm.ListType
 fun MainMenu(
     titlePage: String = "",
     viewModel: MainListVM = viewModel(),
-    navController: NavController
+    onRaceNav: (String) -> Unit,
+    onPilotNav: (String) ->Unit,
+    onTeamNav: (String) -> Unit
+
 ) {
     val listas by viewModel.uiState.collectAsState()
     Scaffold(
@@ -74,7 +77,7 @@ fun MainMenu(
                         }
                         TitleComponent("Pilotos")
                         SliderComponent(cardsInfo = listas.drivers) { card ->
-                            navController.navigate("${Routes.PILOT_DETAIL}/${card.id}")
+                            onPilotNav(card.id)
                         }
                         TitleComponent("Equipos")
                         SliderComponent(cardsInfo = listas.teams) {

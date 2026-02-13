@@ -1,6 +1,5 @@
 package com.example.appf1.viewmodel.vm
 
-import com.example.appf1.data.model.CarreraDTO
 import com.example.appf1.data.model.EquipoDTO
 import com.example.appf1.data.model.PilotoDTO
 import com.example.appf1.repository.EquipoRepository
@@ -39,7 +38,7 @@ class PaginaEquiposVM(
         }
     }
 
-    fun loadCarrera(id: String) {
+    fun loadEquipos(id: String) {
         _selectedTeam.value = repo.getEquipoById(id)
     }
 

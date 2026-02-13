@@ -14,7 +14,7 @@ class PaginaCarrerasVM(private val repo: CarreraRepository = CarrerasRepositoryM
 ) : ViewModel() {
     private val _uiState = MutableStateFlow<List<PaginaCarrerasUIState>>(emptyList())
 
-    val uiState: StateFlow<List<PaginaCarrerasUIState>> = _uiState.asStateFlow()
+    val uiState: StateFlow<List<PaginaCarrerasUIState>> = _uiState
 
     private val _selectedRace = MutableStateFlow<CarreraDTO?>(null)
     val selectedRace: StateFlow<CarreraDTO?> = _selectedRace
@@ -38,12 +38,13 @@ class PaginaCarrerasVM(private val repo: CarreraRepository = CarrerasRepositoryM
         }
     }
 
-    fun getCarreraById(id: String): CarreraDTO? {
-        return repo.getCarreraById(id)
-    }
 
     fun loadCarrera(id: String) {
         _selectedRace.value = repo.getCarreraById(id)
+    }
+
+    fun getCarreraById(id: String): CarreraDTO? {
+        return repo.getCarreraById(id)
     }
 
     fun getWinnerCarrera(carrera: CarreraDTO): String {
