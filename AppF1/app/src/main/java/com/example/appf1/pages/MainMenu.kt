@@ -36,7 +36,8 @@ fun MainMenu(
     viewModel: MainListVM = viewModel(),
     onRaceNav: (String) -> Unit,
     onPilotNav: (String) ->Unit,
-    onTeamNav: (String) -> Unit
+    onTeamNav: (String) -> Unit,
+    onPerfilNav: () -> Unit
 
 ) {
     val listas by viewModel.uiState.collectAsState()
@@ -45,12 +46,10 @@ fun MainMenu(
             TopBarComponent(
                 topBarTitle = titlePage,
                 navIcon = {
-                    if (navController.previousBackStackEntry != null) {
-                        navController.popBackStack()
-                    }
+
                 },
                 onPerfilClick = {
-                    navController.navigate(Routes.PERFIL)
+                    onPerfilNav()
                 }
             )
         }
@@ -72,16 +71,16 @@ fun MainMenu(
                 LazyColumn {
                     item {
                         TitleComponent("Carreras")
-                        SliderComponent(cardsInfo = listas.races) {
-                            viewModel.onCardClicked(ListType.RACES)
+                        SliderComponent(cardsInfo = listas.races) {card ->
+                            onRaceNav(card.id)
                         }
                         TitleComponent("Pilotos")
                         SliderComponent(cardsInfo = listas.drivers) { card ->
                             onPilotNav(card.id)
                         }
                         TitleComponent("Equipos")
-                        SliderComponent(cardsInfo = listas.teams) {
-                            viewModel.onCardClicked(ListType.TEAM)
+                        SliderComponent(cardsInfo = listas.teams) { card ->
+                            onTeamNav(card.id)
                         }
                     }
                 }

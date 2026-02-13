@@ -1,5 +1,6 @@
 package com.example.appf1.viewmodel.vm
 
+import androidx.lifecycle.ViewModel
 import com.example.appf1.data.model.EquipoDTO
 import com.example.appf1.data.model.PilotoDTO
 import com.example.appf1.repository.EquipoRepository
@@ -11,7 +12,7 @@ import kotlinx.coroutines.flow.asStateFlow
 
 class PaginaEquiposVM(
     private val repo: EquipoRepository = EquipoRepositoryMemory()
-) {
+) : ViewModel() {
 
     private val _uiState = MutableStateFlow<List<PaginaEquiposUIState>>(emptyList())
 

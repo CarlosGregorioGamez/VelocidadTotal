@@ -38,7 +38,6 @@ import com.example.appf1.repository.PilotosRepositoryMemory
 
 /**
  * Página para ver los datos en detalle de un piloto en específico
- *
  * @param pilotId Recoge el id del piloto para identificarlo
  */
 
@@ -61,15 +60,17 @@ fun pagePilotos(
             Text("Cargando...")
         }
     } else {
-        val sliderItems = vm.uiState.collectAsState().value.map { pilotoUI ->
-            val piloto = vm.getPilotoById(pilotoUI.id)
+        val pilotos = vm.uiState.collectAsState().value
+
+        val sliderItems = pilotos.map { pilotoUI ->
             CardSliderDetails(
                 id = pilotoUI.id,
-                imgId = piloto?.imgId ?: R.drawable.piloto,
+                imgId = R.drawable.piloto,
                 imgDesc = pilotoUI.name,
                 title = pilotoUI.name
             )
         }
+
 
         Column(
             modifier = Modifier.fillMaxSize(),
@@ -128,7 +129,7 @@ fun pagePilotos(
                 SliderComponent(
                     cardsInfo = sliderItems,
                     onCardClick = { card ->
-                        vm.getPilotoById(card.id)
+                        vm.loadPilot(card.id)
                     }
                 )
             }
