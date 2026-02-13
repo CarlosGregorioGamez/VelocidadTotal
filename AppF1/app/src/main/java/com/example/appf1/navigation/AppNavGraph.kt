@@ -77,7 +77,10 @@ fun AppNavGraph(
         ) { backStackEntry ->
             val teamId = backStackEntry.arguments?.getString("teamId") ?: ""
             pageEquipos(
-                teamId
+                teamId,
+                onPilotClick = { pilotId ->
+                    navController.navigate("${Routes.PILOT_DETAIL}/$pilotId")
+                }
             )
         }
 
