@@ -19,10 +19,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
 import com.example.appf1.components.CardSliderDetails
+import com.example.appf1.components.TopBarComponent
 import com.example.appf1.data.model.EquipoDTO
 import com.example.appf1.data.model.PilotoDTO
 import com.example.appf1.navigation.AppNavGraph
+import com.example.appf1.navigation.Routes
 import com.example.appf1.pages.pagePilotos
 import com.example.appf1.viewmodel.vm.MainListVM
 import com.example.appf1.viewmodel.vm.ListType
@@ -34,8 +38,45 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         //Credenciales para test mail: 1@mail.com,pasw: abc123.),
         setContent {
-            AppNavGraph()
+            val navController = rememberNavController()
+            val backStackEntry by navController.currentBackStackEntryAsState()
+            val route = backStackEntry?.destination?.route
+
+            // decidir si mostrar TopBar
+            val showTopBar = when {
+                route == Routes.LOGIN -> false
+                route == Routes.PERFIL -> false
+                else -> true
+            }
+
+            // título dinámico
+            val title = when {
+                route == Routes.MAIN_MENU -> "Menú principal"
+                route?.startsWith(Routes.PILOT_DETAIL) == true -> "Piloto"
+                route?.startsWith(Routes.TEAM_DEATIL) == true -> "Equipo"
+                route?.startsWith(Routes.RACE_DETAIL) == true -> "Carrera"
+                else -> ""
+            }
+
+            Scaffold(
+                topBar = {
+                    if (showTopBar) {
+                        TopBarComponent(
+                            topBarTitle = title,
+                            navIcon = { navController.popBackStack() },
+                            onPerfilClick = { navController.navigate(Routes.PERFIL) }
+                        )
+                    }
+                }
+            ) { padding ->
+                AppNavGraph(
+                    navController = navController,
+                    modifier = Modifier.padding(padding)
+                )
+            }
         }
+
+
     }
     }
 

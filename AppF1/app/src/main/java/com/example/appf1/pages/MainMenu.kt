@@ -32,27 +32,14 @@ import com.example.appf1.viewmodel.vm.ListType
  */
 @Composable
 fun MainMenu(
-    titlePage: String = "",
     viewModel: MainListVM = viewModel(),
     onRaceNav: (String) -> Unit,
     onPilotNav: (String) ->Unit,
     onTeamNav: (String) -> Unit,
-    onPerfilNav: () -> Unit
 
 ) {
     val listas by viewModel.uiState.collectAsState()
     Scaffold(
-        topBar = {
-            TopBarComponent(
-                topBarTitle = titlePage,
-                navIcon = {
-
-                },
-                onPerfilClick = {
-                    onPerfilNav()
-                }
-            )
-        }
     )  { paddingValues ->
         Box(
             modifier = Modifier
@@ -62,12 +49,11 @@ fun MainMenu(
         ) {
             Column(
                 modifier = Modifier
-                    .height(500.dp)
-                    .width(275.dp),
+                    .height(600.dp)
+                    .width(300.dp),
                 verticalArrangement = Arrangement.Top,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                TitleComponent(titlePage)
                 LazyColumn {
                     item {
                         TitleComponent("Carreras")

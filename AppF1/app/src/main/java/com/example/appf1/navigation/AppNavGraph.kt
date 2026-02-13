@@ -3,7 +3,9 @@ package com.example.appf1.navigation
 import android.app.Activity
 import android.widget.Toast
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -15,14 +17,16 @@ import com.example.appf1.pages.pagePilotos
 import com.example.appf1.pages.pagePrincipal
 
 @Composable
-fun AppNavGraph() {
-
-    val navController = rememberNavController()
+fun AppNavGraph(
+    navController: NavHostController,
+    modifier: Modifier = Modifier
+){
     val context = LocalContext.current
 
     NavHost(
         navController = navController,
-        startDestination = Routes.LOGIN
+    startDestination = Routes.LOGIN,
+        modifier = modifier
     ) {
         composable(Routes.LOGIN) {
             pagePrincipal(
@@ -40,7 +44,6 @@ fun AppNavGraph() {
         //Este es el bueno
         composable(Routes.MAIN_MENU) {
             MainMenu(
-                titlePage = "Menú principal",
                 onRaceNav = {id ->
                     navController.navigate("${Routes.RACE_DETAIL}/$id")
                 },
@@ -49,9 +52,6 @@ fun AppNavGraph() {
                 },
                 onTeamNav = {id ->
                     navController.navigate("${Routes.TEAM_DEATIL}/$id")
-                },
-                onPerfilNav = {
-                    navController.navigate(Routes.PERFIL)
                 }
             )
         }
