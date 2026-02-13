@@ -65,8 +65,8 @@ fun pageEquipos(
         }
         Column(
             modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.Center,        // centra verticalmente
-            horizontalAlignment = Alignment.CenterHorizontally // centra horizontalmente
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Card(
                 modifier = Modifier
@@ -85,8 +85,8 @@ fun pageEquipos(
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Image(
-                        painter = painterResource(R.drawable.ferrari),
-                        contentDescription = "Foto del equipo",
+                        painter = painterResource(id = team.imgId),
+                        contentDescription = "Logo ${team.name}",
                         modifier = Modifier.size(180.dp)
                     )
 
@@ -117,12 +117,12 @@ fun pageEquipos(
                     )
                 }
             }
+            SliderComponent(
+                cardsInfo = sliderEquipoItem,
+                onCardClick = {card ->
+                    vm.loadEquipos(card.id)
+                }
+            )
         }
-        SliderComponent(
-            cardsInfo = sliderEquipoItem,
-            onCardClick = {card ->
-                vm.loadEquipos(card.id)
-            }
-        )
     }
 }
