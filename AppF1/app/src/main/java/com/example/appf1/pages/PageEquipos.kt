@@ -1,23 +1,30 @@
 package com.example.appf1.pages
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.AssistChip
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -38,9 +45,11 @@ import com.example.compose.surfaceContainerLight
 
 @Composable
 fun pageEquipos(
-    equipoId: String
+    equipoId: String,
+    onPilotClick: (String) -> Unit
 ) {
     val vm: PaginaEquiposVM = viewModel()
+
     LaunchedEffect(equipoId) {
         vm.loadEquipos(equipoId)
     }
@@ -54,13 +63,14 @@ fun pageEquipos(
             Text("Cargando...")
         }
     } else {
-        val sliderEquipoItem = vm.uiState.collectAsState().value.map { carreraUI ->
-            val carrera = vm.getEquipoById(carreraUI.id)
+        val pilotosEquipo = vm.getPilotosByTeam(team.id)
+        val nombresPilotos = pilotosEquipo.joinToString(", ") { it.name }
+        val sliderPilotos = pilotosEquipo.map { piloto ->
             CardSliderDetails(
-                id = carreraUI.id,
-                imgId = carrera?.imgId ?: R.drawable.williams,
-                imgDesc = carreraUI.name,
-                title = carreraUI.name
+                id = piloto.id,
+                imgId = piloto.imgId,
+                imgDesc = piloto.name,
+                title = piloto.name
             )
         }
         Column(
@@ -97,9 +107,10 @@ fun pageEquipos(
                         color = onSurfaceLight
                     )
                     Text(
-                        text = stringResource(R.string.team_drivers) + " : ${team.drivers}",
+                        text = stringResource(R.string.team_drivers) + " : $nombresPilotos",
                         color = onSurfaceLight
                     )
+
                     Text(
                         text = stringResource(R.string.team_championship) + " : ${team.championships}",
                         color = onSurfaceLight
@@ -117,12 +128,31 @@ fun pageEquipos(
                     )
                 }
             }
-            SliderComponent(
-                cardsInfo = sliderEquipoItem,
-                onCardClick = {card ->
-                    vm.loadEquipos(card.id)
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceEvenly
+            ) {
+                pilotosEquipo.forEach { piloto ->
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        modifier = Modifier.clickable {
+                            onPilotClick(piloto.id)
+                        }
+                    ) {
+                        Image(
+                            painter = painterResource(piloto.imgId),
+                            contentDescription = piloto.name,
+                            modifier = Modifier.size(80.dp),
+                            contentScale = ContentScale.Fit
+                        )
+
+                        Text(
+                            text = piloto.name
+                        )
+                    }
                 }
-            )
+            }
+
         }
     }
 }

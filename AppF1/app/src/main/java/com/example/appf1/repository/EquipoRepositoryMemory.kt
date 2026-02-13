@@ -13,8 +13,10 @@ class EquipoRepositoryMemory : EquipoRepository {
 
     override fun getPilotosByTeam(id: String): List<PilotoDTO> {
         val equipo = MainListRepositoryMemory.equiposBase[id] ?: return emptyList()
-        return equipo.drivers.mapNotNull { pilotId ->
-            MainListRepositoryMemory().pilotosBase[pilotId]
+
+        return equipo.drivers.mapNotNull { pilotoId ->
+            MainListRepositoryMemory().pilotosBase[pilotoId]
         }
     }
 }
+
