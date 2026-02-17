@@ -36,7 +36,10 @@ import com.example.compose.surfaceContainerLight
  **/
 
 @Composable
-fun pageCarreras(carreraId: String) {
+fun pageCarreras(
+    carreraId: String,
+    onRaceClick: (String) -> Unit
+) {
     val vm: PaginaCarrerasVM = viewModel()
     LaunchedEffect(carreraId) {
         vm.loadCarrera(carreraId)
@@ -116,10 +119,11 @@ fun pageCarreras(carreraId: String) {
                 }
                 SliderComponent(
                     cardsInfo = sliderCarrerasItem,
-                    onCardClick = {
-                        vm.getCarreraById(carreraId)
+                    onCardClick = { card ->
+                        onRaceClick(card.id)
                     }
                 )
+
             }
         }
     }

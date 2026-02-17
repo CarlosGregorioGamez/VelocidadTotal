@@ -72,8 +72,12 @@ fun AppNavGraph(
         ) { backStackEntry ->
             val raceId = backStackEntry.arguments?.getString("raceId") ?: ""
             pageCarreras(
-                raceId
+                carreraId = raceId,
+                onRaceClick = { newRaceId ->
+                    navController.navigate("${Routes.RACE_DETAIL}/$newRaceId")
+                }
             )
+
         }
 
         composable(
