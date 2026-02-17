@@ -7,8 +7,7 @@ import com.example.appf1.repository.MainListRepositoryMemory.Companion.equiposBa
 
 class PilotosRepositoryMemory : PilotosRepository {
 
-    private val mainRepo = MainListRepositoryMemory()
-    private val pilotosBase = mainRepo.pilotosBase
+    private val pilotosBase = MainListRepositoryMemory.pilotosBase
 
     override fun getAllPilotos(): List<PilotoDTO> {
         return pilotosBase.values.toList()
@@ -18,7 +17,6 @@ class PilotosRepositoryMemory : PilotosRepository {
         return pilotosBase[id]
     }
 
-
     override fun getCarrerasByPilot(pilotId: String): List<CarreraDTO> {
         val piloto = pilotosBase[pilotId] ?: return emptyList()
 
@@ -27,3 +25,4 @@ class PilotosRepositoryMemory : PilotosRepository {
         return carrerasIds.mapNotNull { MainListRepositoryMemory.carrerasBase[it] }
     }
 }
+
