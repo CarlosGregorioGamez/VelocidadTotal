@@ -6,13 +6,14 @@ import com.example.appf1.repository.PilotosRepositoryMemory
 import com.example.appf1.viewmodel.uistate.PaginaPilotosUIState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 
 class PaginaPilotosVM(
     private val repository: PilotosRepository = PilotosRepositoryMemory()
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow<List<PaginaPilotosUIState>>(emptyList())
-    val uiState: StateFlow<List<PaginaPilotosUIState>> = _uiState
+    val uiState: StateFlow<List<PaginaPilotosUIState>> = _uiState.asStateFlow()
     private val _selectedPilot = MutableStateFlow<PilotoDTO?>(null)
     val selectedPilot: StateFlow<PilotoDTO?> = _selectedPilot
 

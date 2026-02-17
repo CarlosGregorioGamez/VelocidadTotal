@@ -60,18 +60,15 @@ fun pagePilotos(
             Text("Cargando...")
         }
     } else {
-        val pilotos = vm.uiState.collectAsState().value
-
-        val sliderItems = pilotos.map { pilotoUI ->
+        val sliderPilotoItem = vm.uiState.collectAsState().value.map { pilotoUI ->
+            val carrera = vm.getPilotoById(pilotoUI.id)
             CardSliderDetails(
                 id = pilotoUI.id,
-                imgId = R.drawable.piloto,
+                imgId = carrera?.imgId ?: R.drawable.williams,
                 imgDesc = pilotoUI.name,
                 title = pilotoUI.name
             )
         }
-
-
         Column(
             modifier = Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.Center,
@@ -127,7 +124,7 @@ fun pagePilotos(
 
                 // SliderComponent esto luego se cambia por las carreras que gano.
                 SliderComponent(
-                    cardsInfo = sliderItems,
+                    cardsInfo = sliderPilotoItem,
                     onCardClick = { card ->
                         vm.loadPilot(card.id)
                     }

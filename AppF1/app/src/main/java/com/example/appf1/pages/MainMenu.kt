@@ -27,8 +27,10 @@ import com.example.appf1.viewmodel.vm.ListType
 /**
  * Página que muestra un listado de tarjetas con información, en una lazycolumn para poder scrollear libremente
  *
- * @param titlePage
  * @param viewModel
+ * @param onRaceNav
+ * @param onPilotNav
+ * @param onTeamNav
  */
 @Composable
 fun MainMenu(
