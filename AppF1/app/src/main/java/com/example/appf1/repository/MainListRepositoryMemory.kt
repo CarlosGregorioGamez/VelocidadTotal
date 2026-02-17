@@ -92,54 +92,89 @@ class MainListRepositoryMemory : MainListRepository {
         )
 
         val carrerasBase = mapOf(
-            "C01" to CarreraDTO("C01", "GP de Abu Dhabi", 1, "Abu Dhabi", "P16", listOf("P01", "P04"), 5.3, R.drawable.abu_dhabi),
-            "C02" to CarreraDTO("C02", "GP de Arabia Saudi", 1, "Arabia Saudí", "P16", listOf("P01", "P04"), 5.3, R.drawable.arabia_saudi),
-            "C03" to CarreraDTO("C03", "GP de Las Américas", 1, "Estados Unidos", "P16", listOf("P01", "P04"), 5.3, R.drawable.austin_usa),
-            "C04" to CarreraDTO("C04", "GP de Australia", 1, "Australia", "P16", listOf("P01", "P04"), 5.3, R.drawable.australia),
-            "C05" to CarreraDTO("C05", "GP de Austria", 1, "Austria", "P16", listOf("P01", "P04"), 5.3, R.drawable.austria),
-            "C06" to CarreraDTO("C06", "GP de Azerbaijan", 1, "Azerbaijan", "P16", listOf("P01", "P04"), 5.3, R.drawable.azerbaijan),
-            "C07" to CarreraDTO("C07", "GP de Bahrain", 1, "Bahrain", "P16", listOf("P01", "P04"), 5.3, R.drawable.bahrein),
-            "C08" to CarreraDTO("C08", "GP de Bélgica", 1, "Bélgica", "P16", listOf("P01", "P04"), 5.3, R.drawable.belgica),
-            "C09" to CarreraDTO("C09", "GP de Brasil", 1, "Brasil", "P16", listOf("P01", "P04"), 5.3, R.drawable.brasil),
-            "C10" to CarreraDTO("C10", "GP de Canada", 1, "Canadá", "P16", listOf("P01", "P04"), 5.3, R.drawable.canada),
-            "C11" to CarreraDTO("C11", "GP de China", 1, "China", "P16", listOf("P01", "P04"), 5.3, R.drawable.china),
-            "C12" to CarreraDTO("C12", "GP de España", 1, "España", "P16", listOf("P01", "P04"), 5.3, R.drawable.espana),
-            "C13" to CarreraDTO("C13", "GP de Gran Bretaña", 1, "Reino Unido", "P16", listOf("P01", "P04"), 5.3, R.drawable.gran_bretana),
-            "C14" to CarreraDTO("C14", "GP de Hungría", 1, "Hungría", "P16", listOf("P01", "P04"), 5.3, R.drawable.hungria),
-            "C15" to CarreraDTO("C15", "GP de Italia", 1, "Italia", "P16", listOf("P01", "P04"), 5.3, R.drawable.italia),
-            "C16" to CarreraDTO("C16", "GP de Japón", 1, "Japón", "P16", listOf("P01", "P04"), 5.3, R.drawable.japon),
-            "C17" to CarreraDTO("C17", "GP de Mexico", 1, "México", "P16", listOf("P01", "P04"), 5.3, R.drawable.mexico),
-            "C18" to CarreraDTO("C18", "GP de Miami", 1, "Estados Unidos", "P16", listOf("P01", "P04"), 5.3, R.drawable.miami),
-            "C19" to CarreraDTO("C19", "GP de Mónaco", 1, "Mónaco", "P16", listOf("P01", "P04"), 5.3, R.drawable.monaco),
-            "C20" to CarreraDTO("C20", "GP de Países Bajos", 1, "Países Bajos", "P16", listOf("P01", "P04"), 5.3, R.drawable.paises_bajos),
-            "C21" to CarreraDTO("C21", "GP de Qatar", 1, "Qatar", "P16", listOf("P01", "P04"), 5.3, R.drawable.qatar),
-            "C22" to CarreraDTO("C22", "GP de Singapur", 1, "Singapur", "P16", listOf("P01", "P04"), 5.3, R.drawable.singapur),
-            "C23" to CarreraDTO("C23", "GP de Las Vegas", 1, "Estados Unidos", "P16", listOf("P01", "P04"), 5.3, R.drawable.vegas)
+            "C01" to CarreraDTO("C01","GP de Abu Dhabi",1,"Abu Dhabi","P16", listOf("P01","P04"),5.3,R.drawable.abu_dhabi),
+            "C02" to CarreraDTO("C02","GP de Arabia Saudi",1,"Arabia Saudí","P12", listOf("P09","P04"),6.1,R.drawable.arabia_saudi),
+            "C03" to CarreraDTO("C03","GP de Las Américas",1,"Estados Unidos","P09", listOf("P16","P11"),5.5,R.drawable.austin_usa),
+            "C04" to CarreraDTO("C04","GP de Australia",1,"Australia","P11", listOf("P16","P12"),5.3,R.drawable.australia),
+            "C05" to CarreraDTO("C05","GP de Austria",1,"Austria","P12", listOf("P11","P09"),4.3,R.drawable.austria),
+            "C06" to CarreraDTO("C06","GP de Azerbaijan",1,"Azerbaijan","P09", listOf("P16","P17"),6.0,R.drawable.azerbaijan),
+            "C07" to CarreraDTO("C07","GP de Bahrain",1,"Bahrain","P11", listOf("P12","P16"),5.4,R.drawable.bahrein),
+            "C08" to CarreraDTO("C08","GP de Bélgica",1,"Bélgica","P12", listOf("P16","P09"),7.0,R.drawable.belgica),
+            "C09" to CarreraDTO("C09","GP de Brasil",1,"Brasil","P17", listOf("P11","P16"),4.3,R.drawable.brasil),
+            "C10" to CarreraDTO("C10","GP de Canada",1,"Canadá","P16", listOf("P09","P12"),4.4,R.drawable.canada),
+            "C11" to CarreraDTO("C11","GP de China",1,"China","P09", listOf("P11","P17"),5.4,R.drawable.china),
+            "C12" to CarreraDTO("C12","GP de España",1,"España","P11", listOf("P16","P09"),4.6,R.drawable.espana),
+            "C13" to CarreraDTO("C13","GP de Gran Bretaña",1,"Reino Unido","P12", listOf("P09","P16"),5.9,R.drawable.gran_bretana),
+            "C14" to CarreraDTO("C14","GP de Hungría",1,"Hungría","P11", listOf("P16","P12"),4.4,R.drawable.hungria),
+            "C15" to CarreraDTO("C15","GP de Italia",1,"Italia","P16", listOf("P11","P09"),5.8,R.drawable.italia),
+            "C16" to CarreraDTO("C16","GP de Japón",1,"Japón","P12", listOf("P16","P11"),5.8,R.drawable.japon),
+            "C17" to CarreraDTO("C17","GP de Mexico",1,"México","P09", listOf("P16","P17"),4.3,R.drawable.mexico),
+            "C18" to CarreraDTO("C18","GP de Miami",1,"Estados Unidos","P11", listOf("P12","P16"),5.4,R.drawable.miami),
+            "C19" to CarreraDTO("C19","GP de Mónaco",1,"Mónaco","P16", listOf("P09","P11"),3.3,R.drawable.monaco),
+            "C20" to CarreraDTO("C20","GP de Países Bajos",1,"Países Bajos","P12", listOf("P11","P16"),4.2,R.drawable.paises_bajos),
+            "C21" to CarreraDTO("C21","GP de Qatar",1,"Qatar","P11", listOf("P16","P09"),5.4,R.drawable.qatar),
+            "C22" to CarreraDTO("C22","GP de Singapur",1,"Singapur","P09", listOf("P11","P16"),5.0,R.drawable.singapur),
+            "C23" to CarreraDTO("C23","GP de Las Vegas",1,"Estados Unidos","P16", listOf("P12","P11"),6.2,R.drawable.vegas)
         )
 
+
         val pilotosBase = mapOf(
-            "P01" to PilotoDTO("P01","Albon","E11", listOf("C09"), listOf("C03","C12"),3,R.drawable.albon, emptyList()),
-            "P02" to PilotoDTO("P02","Bortoleto","E03", listOf("C06"), listOf("C02","C18"),3,R.drawable.bortoleto, emptyList()),
-            "P03" to PilotoDTO("P03","Hadjar","E10", listOf("C21"), listOf("C07","C10"),3,R.drawable.hadjar, emptyList()),
-            "P04" to PilotoDTO("P04","Leclerc","E05", listOf("C12","C19"), listOf("C03"),3,R.drawable.charles, emptyList()),
-            "P05" to PilotoDTO("P05","Perez","E09", listOf("C17"), listOf("C01","C05"),3,R.drawable.perez, emptyList()),
-            "P06" to PilotoDTO("P06","Stroll","E02", listOf("C18"), listOf("C02","C04"),3,R.drawable.stroll, emptyList()),
-            "P07" to PilotoDTO("P07","Alonso","E02", listOf("C12"), listOf("C03","C19"),3,R.drawable.alonso, emptyList()),
-            "P08" to PilotoDTO("P08","Bottas","E09", listOf("C10"), listOf("C07","C16"),3,R.drawable.bottas, emptyList()),
-            "P09" to PilotoDTO("P09","Hamilton","E05", listOf("C13","C08"), listOf("C12"),3,R.drawable.hamilton, emptyList()),
-            "P10" to PilotoDTO("P10","Lindblad","E06", listOf("C06"), listOf("C05","C14"),3,R.drawable.lindblad, emptyList()),
-            "P11" to PilotoDTO("P11","Piastri","E07", listOf("C01"), listOf("C03","C12"),3,R.drawable.piastri, emptyList()),
-            "P12" to PilotoDTO("P12","Verstappen","E10", listOf("C04","C05","C16"), listOf("C01","C19"),3,R.drawable.verstappen, emptyList()),
-            "P13" to PilotoDTO("P13","Antonelli","E08", listOf("C14"), listOf("C08","C11"),3,R.drawable.antonelli, emptyList()),
-            "P14" to PilotoDTO("P14","Colapinto","E01", listOf("C09"), listOf("C17","C20"),3,R.drawable.colapinto, emptyList()),
-            "P15" to PilotoDTO("P15","Hulkenberg","E03", listOf("C07"), listOf("C06","C15"),3,R.drawable.hulkenberg, emptyList()),
-            "P16" to PilotoDTO("P16","Norris","E07", listOf("C01","C12"), listOf("C03","C19"),3,R.drawable.norris, emptyList()),
-            "P17" to PilotoDTO("P17","Russell","E08", listOf("C15"), listOf("C13","C08"),3,R.drawable.russell, emptyList()),
-            "P18" to PilotoDTO("P18","Bearman","E04", listOf("C05"), listOf("C04","C09"),3,R.drawable.bearman, emptyList()),
-            "P19" to PilotoDTO("P19","Gasly","E01", listOf("C14"), listOf("C07","C12"),3,R.drawable.gasly, emptyList()),
-            "P20" to PilotoDTO("P20","Lawson","E06", listOf("C21"), listOf("C10","C17"),3,R.drawable.lawson, emptyList()),
-            "P21" to PilotoDTO("P21","Ocon","E04", listOf("C11"), listOf("C06","C18"),3,R.drawable.ocon, emptyList()),
-            "P22" to PilotoDTO("P22","Sainz","E11", listOf("C12","C15"), listOf("C19"),3,R.drawable.sainz, emptyList())
+            "P01" to PilotoDTO("P01","Albon","E11", emptyList(), emptyList(),0,R.drawable.albon),
+            "P02" to PilotoDTO("P02","Bortoleto","E03", emptyList(), emptyList(),0,R.drawable.bortoleto),
+            "P03" to PilotoDTO("P03","Hadjar","E10", emptyList(), emptyList(),0,R.drawable.hadjar),
+            "P04" to PilotoDTO("P04","Leclerc","E05", emptyList(), emptyList(),0,R.drawable.charles),
+            "P05" to PilotoDTO("P05","Perez","E09", emptyList(), emptyList(),0,R.drawable.perez),
+            "P06" to PilotoDTO("P06","Stroll","E02", emptyList(), emptyList(),0,R.drawable.stroll),
+            "P07" to PilotoDTO("P07","Alonso","E02", emptyList(), emptyList(),0,R.drawable.alonso),
+            "P08" to PilotoDTO("P08","Bottas","E09", emptyList(), emptyList(),0,R.drawable.bottas),
+
+            "P09" to PilotoDTO(
+                "P09","Hamilton","E05",
+                listOf("C03","C06","C11","C17","C22"),
+                listOf("C02","C05","C08","C10","C12","C13","C15","C19","C21"),
+                2,R.drawable.hamilton
+            ),
+
+            "P10" to PilotoDTO("P10","Lindblad","E06", emptyList(), emptyList(),0,R.drawable.lindblad),
+
+            "P11" to PilotoDTO(
+                "P11","Piastri","E07",
+                listOf("C04","C07","C12","C14","C18","C21"),
+                listOf("C03","C05","C09","C11","C15","C19","C20","C22","C23"),
+                6,R.drawable.piastri
+            ),
+
+            "P12" to PilotoDTO(
+                "P12","Verstappen","E10",
+                listOf("C02","C05","C08","C13","C16","C20"),
+                listOf("C04","C07","C10","C14","C18","C23"),
+                8,R.drawable.verstappen
+            ),
+
+            "P13" to PilotoDTO("P13","Antonelli","E08", emptyList(), emptyList(),0,R.drawable.antonelli),
+            "P14" to PilotoDTO("P14","Colapinto","E01", emptyList(), emptyList(),0,R.drawable.colapinto),
+            "P15" to PilotoDTO("P15","Hulkenberg","E03", emptyList(), emptyList(),0,R.drawable.hulkenberg),
+
+            "P16" to PilotoDTO(
+                "P16","Norris","E07",
+                listOf("C01","C10","C15","C19","C23"),
+                listOf("C03","C04","C06","C07","C08","C09","C12","C13","C14","C16","C17","C18","C20","C21","C22"),
+                7,R.drawable.norris
+            ),
+
+            "P17" to PilotoDTO(
+                "P17","Russell","E08",
+                listOf("C09"),
+                listOf("C06","C11","C17"),
+                0,R.drawable.russell
+            ),
+
+            "P18" to PilotoDTO("P18","Bearman","E04", emptyList(), emptyList(),0,R.drawable.bearman),
+            "P19" to PilotoDTO("P19","Gasly","E01", emptyList(), emptyList(),0,R.drawable.gasly),
+            "P20" to PilotoDTO("P20","Lawson","E06", emptyList(), emptyList(),0,R.drawable.lawson),
+            "P21" to PilotoDTO("P21","Ocon","E04", emptyList(), emptyList(),0,R.drawable.ocon),
+            "P22" to PilotoDTO("P22","Sainz","E11", emptyList(), emptyList(),0,R.drawable.sainz)
         )
+
     }
 }
