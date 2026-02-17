@@ -119,29 +119,30 @@ class MainListRepositoryMemory : MainListRepository {
     }
 
     val pilotosBase = mapOf(
-        "P01" to PilotoDTO("P01", "Albon", "", emptyList(), emptyList(), 3, R.drawable.albon, emptyList()),
-        "P02" to PilotoDTO("P02", "Bortoleto", "", emptyList(), emptyList(), 3, R.drawable.bortoleto, emptyList()),
-        "P03" to PilotoDTO("P03", "Hadjar", "", emptyList(), emptyList(), 3, R.drawable.hadjar, emptyList()),
-        "P04" to PilotoDTO("P04", "Leclerc", "", emptyList(), emptyList(), 3, R.drawable.charles, emptyList()),
-        "P05" to PilotoDTO("P05", "Perez", "", emptyList(), emptyList(), 3, R.drawable.perez, emptyList()),
-        "P06" to PilotoDTO("P06", "Stroll", "", emptyList(), emptyList(), 3, R.drawable.stroll, emptyList()),
-        "P07" to PilotoDTO("P07", "Alonso", "", emptyList(), emptyList(), 3, R.drawable.alonso, emptyList()),
-        "P08" to PilotoDTO("P08", "Bottas", "", emptyList(), emptyList(), 3, R.drawable.bottas, emptyList()),
-        "P09" to PilotoDTO("P09", "Hamilton", "", emptyList(), emptyList(), 3, R.drawable.hamilton, emptyList()),
-        "P10" to PilotoDTO("P10", "Lindblad", "", emptyList(), emptyList(), 3, R.drawable.lindblad, emptyList()),
-        "P11" to PilotoDTO("P11", "Piastri", "", emptyList(), emptyList(), 3, R.drawable.piastri, emptyList()),
-        "P12" to PilotoDTO("P12", "Verstappen", "", emptyList(), emptyList(), 3, R.drawable.verstappen, emptyList()),
-        "P13" to PilotoDTO("P13", "Antonelli", "", emptyList(), emptyList(), 3, R.drawable.antonelli, emptyList()),
-        "P14" to PilotoDTO("P14", "Colapinto", "", emptyList(), emptyList(), 3, R.drawable.colapinto, emptyList()),
-        "P15" to PilotoDTO("P15", "Hulkenberg", "", emptyList(), emptyList(), 3, R.drawable.hulkenberg, emptyList()),
-        "P16" to PilotoDTO("P16", "Norris", "", emptyList(), emptyList(), 3, R.drawable.norris, emptyList()),
-        "P17" to PilotoDTO("P17", "Russell", "", emptyList(), emptyList(), 3, R.drawable.russell, emptyList()),
-        "P18" to PilotoDTO("P18", "Bearman", "", emptyList(), emptyList(), 3, R.drawable.bearman, emptyList()),
-        "P19" to PilotoDTO("P19", "Gasly", "", emptyList(), emptyList(), 3, R.drawable.gasly, emptyList()),
-        "P20" to PilotoDTO("P20", "Lawson", "", emptyList(), emptyList(), 3, R.drawable.lawson, emptyList()),
-        "P21" to PilotoDTO("P21", "Ocon", "", emptyList(), emptyList(), 3, R.drawable.ocon, emptyList()),
-        "P22" to PilotoDTO("P22", "Sainz", "", emptyList(), emptyList(), 3, R.drawable.sainz, emptyList())
+        "P01" to PilotoDTO("P01","Albon","E11", listOf("C09"), listOf("C03","C12"),3,R.drawable.albon, emptyList()),
+        "P02" to PilotoDTO("P02","Bortoleto","E03", listOf("C06"), listOf("C02","C18"),3,R.drawable.bortoleto, emptyList()),
+        "P03" to PilotoDTO("P03","Hadjar","E10", listOf("C21"), listOf("C07","C10"),3,R.drawable.hadjar, emptyList()),
+        "P04" to PilotoDTO("P04","Leclerc","E05", listOf("C12","C19"), listOf("C03"),3,R.drawable.charles, emptyList()),
+        "P05" to PilotoDTO("P05","Perez","E09", listOf("C17"), listOf("C01","C05"),3,R.drawable.perez, emptyList()),
+        "P06" to PilotoDTO("P06","Stroll","E02", listOf("C18"), listOf("C02","C04"),3,R.drawable.stroll, emptyList()),
+        "P07" to PilotoDTO("P07","Alonso","E02", listOf("C12"), listOf("C03","C19"),3,R.drawable.alonso, emptyList()),
+        "P08" to PilotoDTO("P08","Bottas","E09", listOf("C10"), listOf("C07","C16"),3,R.drawable.bottas, emptyList()),
+        "P09" to PilotoDTO("P09","Hamilton","E05", listOf("C13","C08"), listOf("C12"),3,R.drawable.hamilton, emptyList()),
+        "P10" to PilotoDTO("P10","Lindblad","E06", listOf("C06"), listOf("C05","C14"),3,R.drawable.lindblad, emptyList()),
+        "P11" to PilotoDTO("P11","Piastri","E07", listOf("C01"), listOf("C03","C12"),3,R.drawable.piastri, emptyList()),
+        "P12" to PilotoDTO("P12","Verstappen","E10", listOf("C04","C05","C16"), listOf("C01","C19"),3,R.drawable.verstappen, emptyList()),
+        "P13" to PilotoDTO("P13","Antonelli","E08", listOf("C14"), listOf("C08","C11"),3,R.drawable.antonelli, emptyList()),
+        "P14" to PilotoDTO("P14","Colapinto","E01", listOf("C09"), listOf("C17","C20"),3,R.drawable.colapinto, emptyList()),
+        "P15" to PilotoDTO("P15","Hulkenberg","E03", listOf("C07"), listOf("C06","C15"),3,R.drawable.hulkenberg, emptyList()),
+        "P16" to PilotoDTO("P16","Norris","E07", listOf("C01","C12"), listOf("C03","C19"),3,R.drawable.norris, emptyList()),
+        "P17" to PilotoDTO("P17","Russell","E08", listOf("C15"), listOf("C13","C08"),3,R.drawable.russell, emptyList()),
+        "P18" to PilotoDTO("P18","Bearman","E04", listOf("C05"), listOf("C04","C09"),3,R.drawable.bearman, emptyList()),
+        "P19" to PilotoDTO("P19","Gasly","E01", listOf("C14"), listOf("C07","C12"),3,R.drawable.gasly, emptyList()),
+        "P20" to PilotoDTO("P20","Lawson","E06", listOf("C21"), listOf("C10","C17"),3,R.drawable.lawson, emptyList()),
+        "P21" to PilotoDTO("P21","Ocon","E04", listOf("C11"), listOf("C06","C18"),3,R.drawable.ocon, emptyList()),
+        "P22" to PilotoDTO("P22","Sainz","E11", listOf("C12","C15"), listOf("C19"),3,R.drawable.sainz, emptyList())
     )
+
 
 
 }
