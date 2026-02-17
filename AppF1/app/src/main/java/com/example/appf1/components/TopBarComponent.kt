@@ -99,7 +99,7 @@ fun TopBarComponent(
                     }
                 )
                 DropdownMenuItem(
-                    text = { Text("Menu") },
+                    text = { Text("Regresar menu listas") },
                     onClick = { menuExpanded = false
                     onMenuClick()
                     }
