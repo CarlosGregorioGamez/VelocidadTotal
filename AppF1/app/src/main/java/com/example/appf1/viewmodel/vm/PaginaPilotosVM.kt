@@ -1,5 +1,6 @@
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.appf1.data.model.CarreraDTO
 import com.example.appf1.data.model.PilotoDTO
 import com.example.appf1.repository.PilotosRepository
 import com.example.appf1.repository.PilotosRepositoryMemory
@@ -40,6 +41,11 @@ class PaginaPilotosVM(
     fun getPilotoById(id: String): PilotoDTO? {
         return repository.getPilotoById(id)
     }
+
+    fun getCarrerasByPilot(pilotId: String): List<CarreraDTO> {
+        return repository.getCarrerasByPilot(pilotId)
+    }
+
 
     class PaginaPilotosVMFactory(
         private val repository: PilotosRepository = PilotosRepositoryMemory()

@@ -11,7 +11,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
@@ -32,7 +34,13 @@ import com.example.compose.onSurfaceLight
 import com.example.compose.surfaceContainerLight
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextAlign
+import com.example.appf1.components.TitleComponent
 import com.example.appf1.data.model.EquipoDTO
+import com.example.appf1.repository.MainListRepositoryMemory
 import com.example.appf1.repository.PilotosRepository
 import com.example.appf1.repository.PilotosRepositoryMemory
 
@@ -44,95 +52,129 @@ import com.example.appf1.repository.PilotosRepositoryMemory
 
 @Composable
 fun pagePilotos(
-    pilotId: String
+    pilotId: String,
+    onRaceClick: (String) -> Unit
 ) {
     val vm: PaginaPilotosVM = viewModel()
+
     LaunchedEffect(pilotId) {
         vm.loadPilot(pilotId)
     }
-    val driver = vm.selectedPilot.collectAsState().value
+
+    val driver by vm.selectedPilot.collectAsState()
+
     if (driver == null) {
         Column(
-            modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.Center,
+            modifier = Modifier
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState())
+                .padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally
-        ) {
+        )
+        {
             Text("Cargando...")
         }
-    } else {
-        val pilotos = vm.uiState.collectAsState().value
+        return
+    }
 
-        val sliderItems = pilotos.map { pilotoUI ->
-            CardSliderDetails(
-                id = pilotoUI.id,
-                imgId = R.drawable.piloto,
-                imgDesc = pilotoUI.name,
-                title = pilotoUI.name
-            )
-        }
+    val carrerasPiloto = vm.getCarrerasByPilot(driver!!.id)
 
+    val sliderItems = carrerasPiloto.map { carrera ->
+        CardSliderDetails(
+            id = carrera.id,
+            imgId = carrera.imgId,
+            imgDesc = carrera.name,
+            title = carrera.name
+        )
+    }
 
-        Column(
-            modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+
+        Card(
+            modifier = Modifier
+                .fillMaxWidth(),
+            shape = RoundedCornerShape(16.dp),
+            colors = CardDefaults.cardColors(
+                containerColor = surfaceContainerLight
+            ),
+            elevation = CardDefaults.cardElevation(defaultElevation = 6.dp)
         ) {
-            Card(
+            Column(
                 modifier = Modifier
-                    .padding(24.dp)
-                    .height(400.dp)
-                    .fillMaxWidth(),
-                shape = RoundedCornerShape(16.dp),
-                colors = CardDefaults.cardColors(
-                    containerColor = surfaceContainerLight
-                ),
-                elevation = CardDefaults.cardElevation(defaultElevation = 6.dp)
+                    .fillMaxWidth()
+                    .padding(16.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Column(
-                    modifier = Modifier.fillMaxSize(),
-                    verticalArrangement = Arrangement.Center,
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    Image(
-                        painter = painterResource(driver.imgId),
-                        contentDescription = "Foto de ${driver.name}",
-                        modifier = Modifier.size(180.dp)
-                    )
-
-                    Spacer(modifier = Modifier.height(16.dp))
-
-                    Text(
-                        text = stringResource(R.string.object_name) + " : ${driver.name}",
-                        color = onSurfaceLight
-                    )
-                    Text(
-                        text = stringResource(R.string.team_name) + " : ${driver.team}",
-                        color = onSurfaceLight
-                    )
-                    Text(
-                        text = stringResource(R.string.victories_name) + " : ${driver.wins}",
-                        color = onSurfaceLight
-                    )
-                    Text(
-                        text = stringResource(R.string.podium_name) + " : ${driver.podiums}",
-                        color = onSurfaceLight
-                    )
-                    Text(
-                        text = stringResource(R.string.polepos_name) + " : ${driver.poles}",
-                        color = onSurfaceLight
-                    )
-                }
+                Image(
+                    painter = painterResource(driver!!.imgId),
+                    contentDescription = driver!!.name,
+                    modifier = Modifier.size(180.dp)
+                )
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-                // SliderComponent esto luego se cambia por las carreras que gano.
-                SliderComponent(
-                    cardsInfo = sliderItems,
-                    onCardClick = { card ->
-                        vm.loadPilot(card.id)
-                    }
+                val carrerasBase = MainListRepositoryMemory.carrerasBase
+
+                val winsNombres = driver!!.wins.mapNotNull { id ->
+                    carrerasBase[id]?.name
+                }
+
+                val podiumsNombres = driver!!.podiums.mapNotNull { id ->
+                    carrerasBase[id]?.name
+                }
+
+                val teamName = MainListRepositoryMemory.equiposBase[driver!!.team]?.name ?: driver!!.team
+
+                Text(
+                    text = stringResource(R.string.object_name) + " : ${driver!!.name}",
+                    color = onSurfaceLight
+                )
+
+
+                Text(
+                    text = stringResource(R.string.team_name) + " : $teamName",
+                    color = onSurfaceLight
+                )
+
+                Spacer(Modifier.height(8.dp))
+
+                Text(
+                    text = "Victorias:\n${winsNombres.joinToString("\n")}",
+                    color = onSurfaceLight,
+                    modifier = Modifier.fillMaxWidth(),
+                    textAlign = TextAlign.Center
+                )
+                Spacer(Modifier.height(8.dp))
+                Text(
+                    text = "Podios:\n${podiumsNombres.joinToString("\n")}",
+                    color = onSurfaceLight,
+                    modifier = Modifier.fillMaxWidth(),
+                    textAlign = TextAlign.Center
+                )
+                Spacer(Modifier.height(8.dp))
+                Text(
+                    text = stringResource(R.string.polepos_name) + " : ${driver!!.poles}",
+                    color = onSurfaceLight
                 )
             }
         }
+
+        Spacer(modifier = Modifier.height(40.dp))
+
+        TitleComponent("Carreras puntuadas")
+
+        Spacer(modifier = Modifier.height(40.dp))
+
+        SliderComponent(
+            cardsInfo = sliderItems,
+            onCardClick = { card ->
+                onRaceClick(card.id)
+            }
+        )
     }
 }
