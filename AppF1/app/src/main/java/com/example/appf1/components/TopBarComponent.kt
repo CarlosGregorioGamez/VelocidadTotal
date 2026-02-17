@@ -60,7 +60,8 @@ fun TopBarF1(title: String) {
 fun TopBarComponent(
     topBarTitle: String,
     navIcon: () -> Unit = {},
-    onPerfilClick: () -> Unit = {}
+    onPerfilClick: () -> Unit = {},
+    onMenuClick: () -> Unit = {}
 ) {
     var menuExpanded by remember { mutableStateOf(false) }
 
@@ -98,8 +99,10 @@ fun TopBarComponent(
                     }
                 )
                 DropdownMenuItem(
-                    text = { Text("Salir") },
-                    onClick = { menuExpanded = false }
+                    text = { Text("Menu") },
+                    onClick = { menuExpanded = false
+                    onMenuClick()
+                    }
                 )
             }
         }
