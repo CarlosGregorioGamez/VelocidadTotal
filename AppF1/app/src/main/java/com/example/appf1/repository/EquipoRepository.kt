@@ -5,10 +5,13 @@ import com.example.appf1.data.model.PilotoDTO
 
 interface EquipoRepository {
 
-    fun getAllEquipos(): List<EquipoDTO>
+    fun getAllEquipos(onError: (Throwable) -> Unit,
+                      onSuccess: (List<EquipoDTO>) -> Unit)
 
-    fun getEquipoById(id: String): EquipoDTO?
+    fun getEquipoById(id: String, onError: (Throwable) -> Unit,
+                      onSuccess:()-> Unit): EquipoDTO?
 
-    fun getPilotosByTeam(id: String): List<PilotoDTO>
+    fun getPilotosByTeam(id: String,onError: (Throwable) -> Unit,
+                         onSuccess:()-> Unit): List<PilotoDTO>
 
 }

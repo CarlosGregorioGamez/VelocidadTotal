@@ -17,6 +17,7 @@ import com.example.appf1.pages.pagePerfil
 import com.example.appf1.pages.pagePilotos
 import com.example.appf1.pages.pagePrincipal
 import com.example.appf1.repository.RetrofitCarrerasRepository
+import com.example.appf1.repository.RetrofitEquiposRepository
 import com.example.appf1.repository.RetrofitPilotosRepository
 
 @Composable
@@ -27,6 +28,7 @@ fun AppNavGraph(
     val context = LocalContext.current
     val pilotosRepositorio= remember { RetrofitPilotosRepository(context) }
     val carrearasRepositorio= remember { RetrofitCarrerasRepository(context) }
+    val equiposRepositorio= remember { RetrofitEquiposRepository(context) }
     NavHost(
         navController = navController,
     startDestination = Routes.LOGIN,
@@ -93,6 +95,7 @@ fun AppNavGraph(
             val teamId = backStackEntry.arguments?.getString("teamId") ?: ""
             pageEquipos(
                 teamId,
+                repository = equiposRepositorio,
                 onPilotClick = { pilotId ->
                     navController.navigate("${Routes.PILOT_DETAIL}/$pilotId")
                 }

@@ -21,6 +21,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -32,6 +33,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.appf1.R
 import com.example.appf1.components.CardSliderDetails
 import com.example.appf1.components.SliderComponent
+import com.example.appf1.repository.EquipoRepository
 import com.example.appf1.viewmodel.vm.PaginaEquiposVM
 import com.example.compose.onSurfaceLight
 import com.example.compose.surfaceContainerLight
@@ -46,9 +48,10 @@ import com.example.compose.surfaceContainerLight
 @Composable
 fun pageEquipos(
     equipoId: String,
-    onPilotClick: (String) -> Unit
+    onPilotClick: (String) -> Unit,
+    repository: EquipoRepository
 ) {
-    val vm: PaginaEquiposVM = viewModel()
+    val vm= remember{ PaginaEquiposVM(repository) }
 
     LaunchedEffect(equipoId) {
         vm.loadEquipos(equipoId)

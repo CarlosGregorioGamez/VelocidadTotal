@@ -1,6 +1,7 @@
 package com.example.appf1.remote
 
 import com.example.appf1.remote.api.CarrerasApiService
+import com.example.appf1.remote.api.EquiposApiService
 import com.example.appf1.remote.api.PilotosapiService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -37,5 +38,8 @@ object RetrofitClient {
     }
     val carrerasApiService: CarrerasApiService by lazy(LazyThreadSafetyMode.NONE) {
         retrofit.create(CarrerasApiService::class.java)
+    }
+    val equiposApiService: EquiposApiService by lazy (LazyThreadSafetyMode.NONE) {
+        retrofit.create(EquiposApiService::class.java)
     }
 }

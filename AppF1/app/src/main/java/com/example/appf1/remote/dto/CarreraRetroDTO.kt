@@ -2,7 +2,7 @@ package com.example.appf1.remote.dto
 
 import com.google.gson.annotations.SerializedName
 
-data class CarreraRetroDto(
+data class CarreraRetroDTO(
     @SerializedName("id") val id: String,
     @SerializedName("name")val name: String,
     @SerializedName("editions")val editions: Int = 0,
