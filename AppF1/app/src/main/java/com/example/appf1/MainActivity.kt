@@ -64,7 +64,13 @@ class MainActivity : ComponentActivity() {
                         TopBarComponent(
                             topBarTitle = title,
                             navIcon = { navController.popBackStack() },
-                            onPerfilClick = { navController.navigate(Routes.PERFIL) }
+                            onPerfilClick = { navController.navigate(Routes.PERFIL) },
+                            onMenuClick = {
+                                navController.navigate(Routes.MAIN_MENU) {
+                                    popUpTo(Routes.MAIN_MENU)
+                                    launchSingleTop = true
+                                }
+                            }
                         )
                     }
                 }
@@ -75,7 +81,6 @@ class MainActivity : ComponentActivity() {
                 )
             }
         }
-
 
     }
     }

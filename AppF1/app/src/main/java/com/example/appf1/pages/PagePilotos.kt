@@ -115,15 +115,24 @@ fun pagePilotos(
 
         Spacer(modifier = Modifier.height(40.dp))
 
-        TitleComponent("Carreras puntuadas")
+        TitleComponent("Carreras en el top 3")
 
-        Spacer(modifier = Modifier.height(40.dp))
+        Spacer(modifier = Modifier.height(24.dp))
 
-        SliderComponent(
-            cardsInfo = sliderItems,
-            onCardClick = { card ->
-                onRaceClick(card.id)
-            }
-        )
+        if (sliderItems.isEmpty()) {
+            Text(
+                text = "Sin resultados en el top 3",
+                color = onSurfaceLight,
+                modifier = Modifier.padding(16.dp),
+                textAlign = TextAlign.Center
+            )
+        } else {
+            SliderComponent(
+                cardsInfo = sliderItems,
+                onCardClick = { card ->
+                    onRaceClick(card.id)
+                }
+            )
+        }
     }
 }

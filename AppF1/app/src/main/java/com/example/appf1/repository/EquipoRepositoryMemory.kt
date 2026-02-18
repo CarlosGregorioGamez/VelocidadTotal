@@ -15,8 +15,9 @@ class EquipoRepositoryMemory : EquipoRepository {
         val equipo = MainListRepositoryMemory.equiposBase[id] ?: return emptyList()
 
         return equipo.drivers.mapNotNull { pilotoId ->
-            MainListRepositoryMemory().pilotosBase[pilotoId]
+            MainListRepositoryMemory.pilotosBase[pilotoId]
         }
     }
+
 }
 

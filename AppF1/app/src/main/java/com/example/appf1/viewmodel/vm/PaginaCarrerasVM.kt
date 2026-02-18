@@ -5,6 +5,7 @@ import com.example.appf1.data.model.CarreraDTO
 import com.example.appf1.data.model.PilotoDTO
 import com.example.appf1.repository.CarreraRepository
 import com.example.appf1.repository.CarrerasRepositoryMemory
+import com.example.appf1.repository.MainListRepositoryMemory
 import com.example.appf1.viewmodel.uistate.PaginaCarrerasUIState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -40,7 +41,7 @@ class PaginaCarrerasVM(private val repo: CarreraRepository = CarrerasRepositoryM
 
 
     fun loadCarrera(id: String) {
-        _selectedRace.value = repo.getCarreraById(id)
+        _selectedRace.value = MainListRepositoryMemory.carrerasBase[id]
     }
 
     fun getCarreraById(id: String): CarreraDTO? {
