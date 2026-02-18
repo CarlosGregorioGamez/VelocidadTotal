@@ -5,9 +5,9 @@ import com.example.appf1.data.model.PilotoDTO
 
 interface CarreraRepository {
 
-    fun getAllCarreras(): List<CarreraDTO>
+    suspend fun getAllCarreras(): List<CarreraDTO>
 
-    fun getCarreraById(id: String): CarreraDTO?
+    suspend fun getCarreraById(id: String): CarreraDTO?
 
     fun getWinnerCarrera(carrera: CarreraDTO): String
 
