@@ -24,103 +24,101 @@ interface AppF1Service {
         @Query("limit") limit: Int = 50,
         @Query("offset") offset: Int = 0
     ): Response<PilotoListResponse>
-}
 
-@GET("carrera/{id}")
-suspend fun getCarrera(@Path("id") id: String): Response<CarreraResponse>
 
-@GET("piloto")
-suspend fun getCarreraList(
-    @Query("limit") limit: Int = 50,
-    @Query("offset") offset: Int = 0
-): Response<CarreraListResponse>
-}
+    @GET("carrera/{id}")
+    suspend fun getCarrera(@Path("id") id: String): Response<CarreraResponse>
 
-@GET("piloto/{id}")
-suspend fun getEquipo(@Path("id") id: String): Response<EquipoResponse>
+    @GET("carrera")
+    suspend fun getCarreraList(
+        @Query("limit") limit: Int = 50,
+        @Query("offset") offset: Int = 0
+    ): Response<CarreraListResponse>
 
-@GET("piloto")
-suspend fun getEquipoList(
-    @Query("limit") limit: Int = 50,
-    @Query("offset") offset: Int = 0
-): Response<EquipoListResponse>
-}
 
-data class PilotoResponse(
-    val id: String,
-    val name: String,
-    val team: String,
-    @SerializedName("victorias") val wins: List<WinsEntry> = emptyList(),
-    @SerializedName("podios") val podios: List<PodiumEntry> = emptyList(),
-    val poles: Int = 0,
-    val imgId: Int,
-)
+    @GET("equipo/{id}")
+    suspend fun getEquipo(@Path("id") id: String): Response<EquipoResponse>
 
-data class CarreraResponse(
-    val id: String,
-    val name: String,
-    val editions: Int = 0,
-    val country: String = "",
-    val winner: String = "",
-    val podium: List<String> = emptyList(),
-    val length: Double = 0.0,
-    val imgId: Int
-)
+    @GET("equipo")
+    suspend fun getEquipoList(
+        @Query("limit") limit: Int = 50,
+        @Query("offset") offset: Int = 0
+    ): Response<EquipoListResponse>
 
-data class EquipoResponse(
-    val id: String,
-    val name: String,val drivers: List<String> = emptyList(),
-    val championships: Int = 0,
-    val wins: Int = 0,
-    val podiums: Int = 0,
-    val imgId: Int
+
+    data class PilotoResponse(
+        val id: String,
+        val name: String,
+        val team: String,
+        val wins: List<WinsEntry> = emptyList(),
+        val podium: List<PodiumEntry> = emptyList(),
+        val poles: Int = 0,
+        val imgId: Int,
     )
 
-data class LoginDTO(
-    @SerializedName("email") val email: String,
-    @SerializedName("password") val password: String
-)
+    data class CarreraResponse(
+        val id: String,
+        val name: String,
+        val editions: Int = 0,
+        val country: String = "",
+        val winner: String = "",
+        val podium: List<String> = emptyList(),
+        val length: Double = 0.0,
+        val imgId: Int
+    )
 
-class WinsEntry(
-    @SerializedName("wins") val wins: List<String>
-)
+    data class EquipoResponse(
+        val id: String,
+        val name: String, val drivers: List<String> = emptyList(),
+        val championships: Int = 0,
+        val wins: Int = 0,
+        val podiums: Int = 0,
+        val imgId: Int
+    )
 
-class PodiumEntry {
-    @SerializedName("podium")
-    val podium: List<String> = emptyList()
+    data class LoginDTO(
+        @SerializedName("email") val email: String,
+        @SerializedName("password") val password: String
+    )
+
+    class WinsEntry(
+         val wins: List<String>
+    )
+
+    class PodiumEntry {
+        val podiums: List<String> = emptyList()
+    }
+
+
+    data class LoginResponseDTO(
+        val user: UserDTO
+    )
+
+    data class PilotoListResponse(
+        val results: List<PilotoListItem>
+    )
+
+    data class PilotoListItem(
+        val name: String,
+        val url: String
+    )
+
+    data class EquipoListResponse(
+        val results: List<EquipoListItem>
+    )
+
+    data class EquipoListItem(
+        val name: String,
+        val url: String
+    )
+
+
+    data class CarreraListResponse(
+        val results: List<CarreraListItem>
+    )
+
+    data class CarreraListItem(
+        val name: String,
+        val url: String
+    )
 }
-
-
-data class LoginResponseDTO(
-    val user: UserDTO
-)
-
-data class PilotoListResponse(
-    val results: List<PilotoListItem>
-)
-
-data class PilotoListItem(
-    val name: String,
-    val url: String
-)
-
-data class EquipoListResponse(
-    val results: List<EquipoListItem>
-)
-
-data class EquipoListItem(
-    val name: String,
-    val url: String
-)
-
-
-data class CarreraListResponse(
-    val results: List<CarreraListItem>
-)
-
-data class CarreraListItem(
-    val name: String,
-    val url: String
-)
-
-

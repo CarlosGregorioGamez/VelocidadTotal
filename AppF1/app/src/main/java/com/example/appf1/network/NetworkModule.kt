@@ -23,5 +23,7 @@ object NetworkModule {
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
-    //val AppF1Service: AppF1Service = retrofit.create(AppF1Service::class.java)
+    val appF1Service: AppF1Service by lazy {
+        retrofit.create(AppF1Service::class.java)
+    }
 }
