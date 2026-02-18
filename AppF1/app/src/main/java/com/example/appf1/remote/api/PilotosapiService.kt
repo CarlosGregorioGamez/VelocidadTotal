@@ -8,6 +8,5 @@ import retrofit2.http.GET
 interface PilotosapiService {
     @GET("json/pilotos")
     suspend fun getPilotos(): Response<List<PilotoRetroDTO>>
-
 }
 
