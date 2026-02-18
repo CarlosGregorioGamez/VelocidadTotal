@@ -16,48 +16,66 @@ class PaginaPilotosVM(
     val uiState: StateFlow<List<PaginaPilotosUIState>> = _uiState
     private val _selectedPilot = MutableStateFlow<PilotoDTO?>(null)
     val selectedPilot: StateFlow<PilotoDTO?> = _selectedPilot
+    private var pilotosCargados = false
+
 
     init {
         cargarPilotos()
     }
 
     private fun cargarPilotos() {
-        _uiState.value = repository.getAllPilotos().map { piloto ->
-            PaginaPilotosUIState(
-                id = piloto.id,
-                name = piloto.name,
-                team = piloto.team,
-                wins = piloto.wins,
-                podiums = piloto.podiums,
-                poles = piloto.poles
-            )
-        }
+        repository.getAllPilotos(
+            onError = { e ->
+                _uiState.value = emptyList()
+            },
+            onSuccess = { pilotos ->
+                _uiState.value = pilotos.map { piloto ->
+                    PaginaPilotosUIState(
+                        id = piloto.id,
+                        name = piloto.name,
+                        team = piloto.team,
+                        wins = piloto.wins,
+                        podiums = piloto.podiums,
+                        poles = piloto.poles
+                    )
+                }
+            }
+        )
     }
 
     fun loadPilot(id: String) {
-        _selectedPilot.value = repository.getPilotoById(id)
+
+        if (!pilotosCargados) {
+            repository.getAllPilotos(
+                onError = { _selectedPilot.value = null },
+                onSuccess = {
+                    pilotosCargados = true
+                    loadPilot(id) // volver a intentar
+                }
+            )
+            return
+        }
+
+        repository.getPilotoById(
+            id = id,
+            onError = { _selectedPilot.value = null },
+            onSuccess = {}
+        )?.let {
+            _selectedPilot.value = it
+        }
     }
 
-    fun getPilotoById(id: String): PilotoDTO? {
-        return repository.getPilotoById(id)
-    }
+
+
+
+
 
     fun getCarrerasByPilot(pilotId: String): List<CarreraDTO> {
-        return repository.getCarrerasByPilot(pilotId)
-    }
-
-
-    class PaginaPilotosVMFactory(
-        private val repository: PilotosRepository = PilotosRepositoryMemory()
-    ) : ViewModelProvider.Factory {
-
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(PaginaPilotosVM::class.java)) {
-                @Suppress("UNCHECKED_CAST")
-                return PaginaPilotosVM(repository) as T
-            }
-            throw IllegalArgumentException("Unknown ViewModel class")
-        }
+        return repository.getCarrerasByPilot(
+            pilotId = pilotId,
+            onError = {},
+            onSuccess = {}
+        )
     }
 }
 

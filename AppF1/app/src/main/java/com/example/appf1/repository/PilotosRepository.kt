@@ -3,7 +3,10 @@ import com.example.appf1.data.model.CarreraDTO
 import com.example.appf1.data.model.PilotoDTO
 
 interface PilotosRepository {
-    fun getAllPilotos(): List<PilotoDTO>
-    fun getPilotoById(id: String): PilotoDTO?
-    fun getCarrerasByPilot(pilotId: String): List<CarreraDTO>
+    fun getAllPilotos(onError: (Throwable) -> Unit,
+                      onSuccess: (List<PilotoDTO>) -> Unit)
+    fun getPilotoById(id: String, onError: (Throwable) -> Unit,
+                      onSuccess: () -> Unit): PilotoDTO?
+    fun getCarrerasByPilot(pilotId: String, onError: (Throwable) -> Unit,
+                           onSuccess: () -> Unit): List<CarreraDTO>
 }

@@ -3,6 +3,7 @@ package com.example.appf1.navigation
 import android.app.Activity
 import android.widget.Toast
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavHostController
@@ -15,6 +16,7 @@ import com.example.appf1.pages.pageEquipos
 import com.example.appf1.pages.pagePerfil
 import com.example.appf1.pages.pagePilotos
 import com.example.appf1.pages.pagePrincipal
+import com.example.appf1.repository.RetrofitPilotosRepository
 
 @Composable
 fun AppNavGraph(
@@ -22,7 +24,7 @@ fun AppNavGraph(
     modifier: Modifier = Modifier
 ){
     val context = LocalContext.current
-
+    val pilotosRepositorio= remember { RetrofitPilotosRepository(context) }
     NavHost(
         navController = navController,
     startDestination = Routes.LOGIN,
@@ -61,6 +63,7 @@ fun AppNavGraph(
             val pilotId = backStackEntry.arguments?.getString("pilotId") ?: ""
             pagePilotos(
                 pilotId = pilotId,
+                repository = pilotosRepositorio,
                 onRaceClick = { raceId ->
                     navController.navigate("${Routes.RACE_DETAIL}/$raceId")
                 }
