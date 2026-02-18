@@ -2,6 +2,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.appf1.data.model.CarreraDTO
 import com.example.appf1.data.model.PilotoDTO
+import com.example.appf1.repository.MainListRepositoryMemory
 import com.example.appf1.repository.PilotosRepository
 import com.example.appf1.repository.PilotosRepositoryMemory
 import com.example.appf1.viewmodel.uistate.PaginaPilotosUIState
@@ -25,12 +26,16 @@ class PaginaPilotosVM(
     }
 
     fun getCarrerasByPilot(pilotId: String): List<CarreraDTO> {
-        return repository.getCarrerasByPilot(
-            pilotId = pilotId,
-            onError = {},
-            onSuccess = {}
-        )
+
+        val piloto = _selectedPilot.value ?: return emptyList()
+
+        val carrerasIds = piloto.wins + piloto.podiums
+
+        return carrerasIds.mapNotNull { id ->
+            MainListRepositoryMemory.carrerasBase[id]
+        }
     }
+
 }
 
 
