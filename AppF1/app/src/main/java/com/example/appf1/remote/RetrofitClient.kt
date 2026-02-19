@@ -3,6 +3,7 @@ package com.example.appf1.remote
 import com.example.appf1.remote.api.CarrerasApiService
 import com.example.appf1.remote.api.EquiposApiService
 import com.example.appf1.remote.api.PilotosapiService
+import com.example.appf1.remote.api.UsuariosApiService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -41,5 +42,9 @@ object RetrofitClient {
     }
     val equiposApiService: EquiposApiService by lazy (LazyThreadSafetyMode.NONE) {
         retrofit.create(EquiposApiService::class.java)
+    }
+
+    val usuariosApiService: UsuariosApiService by lazy (LazyThreadSafetyMode.NONE) {
+        retrofit.create(UsuariosApiService::class.java)
     }
 }

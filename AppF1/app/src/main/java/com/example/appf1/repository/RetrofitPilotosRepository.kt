@@ -8,7 +8,6 @@ import com.example.appf1.remote.RetrofitClient
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import okhttp3.Dispatcher
 
 
 class RetrofitPilotosRepository(

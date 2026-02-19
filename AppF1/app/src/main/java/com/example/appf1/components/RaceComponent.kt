@@ -54,7 +54,7 @@ fun race(carrera: CarreraDTO) {
             Text(text = carrera.name, modifier = Modifier.fillMaxWidth())
             Text(text = carrera.editions.toString(), modifier = Modifier.fillMaxWidth())
             Text(text = carrera.country, modifier = Modifier.fillMaxWidth())
-            Text(text = carrera.winner.toString(), modifier = Modifier.fillMaxWidth())
+            Text(text = carrera.winner, modifier = Modifier.fillMaxWidth())
             Text(text = carrera.podium.toString(), modifier = Modifier.fillMaxWidth())
             Text(text = carrera.length.toString() + "km", modifier = Modifier.fillMaxWidth())
 

@@ -2,27 +2,25 @@ package com.example.appf1.viewmodel.vm
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.appf1.repository.UserRepostoryMemory
+import com.example.appf1.repository.RetrofitLoginRepository
 import com.example.appf1.viewmodel.uistate.LoginUIState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 
-class LoginVM (private val userRepostoryMemory: UserRepostoryMemory): ViewModel(){
+class LoginVM (private val retrofitLoginRepository: RetrofitLoginRepository): ViewModel(){
     private val _uiState = MutableStateFlow(LoginUIState())
 
     val uiState: StateFlow<LoginUIState> = _uiState.asStateFlow()
 
     fun login(onSuccess: () -> Unit) {
-        val email = uiState.value.email
-        val password = uiState.value.password
+        val id = uiState.value.id
 
         _uiState.update { it.copy(isLoading = true, error = null) }
 
-        userRepostoryMemory.login(
-            email = email,
-            password = password,
+        retrofitLoginRepository.getUser(
+            id = id,
             onError = { throwable ->
                 _uiState.update {
                     it.copy(
@@ -61,7 +59,7 @@ class LoginVM (private val userRepostoryMemory: UserRepostoryMemory): ViewModel(
 }
 
 class LoginVMFactory(
-    private val repository: UserRepostoryMemory
+    private val repository: RetrofitLoginRepository
 ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(LoginVM::class.java)) {
