@@ -37,6 +37,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import com.example.appf1.components.TitleComponent
 import com.example.appf1.data.model.EquipoDTO
@@ -53,10 +54,10 @@ import com.example.appf1.repository.PilotosRepositoryMemory
 @Composable
 fun pagePilotos(
     pilotId: String,
+    repository: PilotosRepository,
     onRaceClick: (String) -> Unit
 ) {
-    val vm: PaginaPilotosVM = viewModel()
-
+    val vm = remember { PaginaPilotosVM(repository)}
     LaunchedEffect(pilotId) {
         vm.loadPilot(pilotId)
     }

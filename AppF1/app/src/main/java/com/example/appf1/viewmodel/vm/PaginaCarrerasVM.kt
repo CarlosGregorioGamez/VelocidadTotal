@@ -14,46 +14,19 @@ import kotlinx.coroutines.flow.asStateFlow
 class PaginaCarrerasVM(private val repo: CarreraRepository = CarrerasRepositoryMemory()
 ) : ViewModel() {
     private val _uiState = MutableStateFlow<List<PaginaCarrerasUIState>>(emptyList())
-
     val uiState: StateFlow<List<PaginaCarrerasUIState>> = _uiState
 
     private val _selectedRace = MutableStateFlow<CarreraDTO?>(null)
     val selectedRace: StateFlow<CarreraDTO?> = _selectedRace
 
-    init {
-        cargarCarreras()
-    }
-
-    fun cargarCarreras() {
-        _uiState.value = repo.getAllCarreras().map { carrera ->
-            PaginaCarrerasUIState(
-                id = carrera.id,
-                name = carrera.name,
-                editions = carrera.editions,
-                country = carrera.country,
-                winner = carrera.winner,
-                podium = carrera.podium,
-                length = carrera.length,
-                imgId = carrera.imgId
-            )
-        }
-    }
-
-
     fun loadCarrera(id: String) {
-        _selectedRace.value = MainListRepositoryMemory.carrerasBase[id]
-    }
-
-    fun getCarreraById(id: String): CarreraDTO? {
-        return repo.getCarreraById(id)
-    }
-
-    fun getWinnerCarrera(carrera: CarreraDTO): String {
-        return repo.getWinnerCarrera(carrera)
-    }
-
-    fun getPodiumCarrera(carrera: CarreraDTO): List<String> {
-        return repo.getPodiumCarrera(carrera)
+        repo.getAllCarreras(
+            onError = { _selectedRace.value = null },
+            onSuccess = { carreras ->
+                val carrera = carreras.find { it.id == id }
+                _selectedRace.value = carrera
+            }
+        )
     }
 
 }

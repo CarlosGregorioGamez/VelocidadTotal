@@ -18,6 +18,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -29,7 +30,9 @@ import com.example.appf1.R
 import com.example.appf1.components.CardSliderDetails
 import com.example.appf1.components.SliderComponent
 import com.example.appf1.components.TitleComponent
+import com.example.appf1.repository.CarreraRepository
 import com.example.appf1.repository.MainListRepositoryMemory
+import com.example.appf1.repository.PilotosRepository
 import com.example.appf1.viewmodel.vm.PaginaCarrerasVM
 import com.example.compose.onPrimaryLight
 import com.example.compose.onSurfaceLight
@@ -44,9 +47,10 @@ import com.example.compose.surfaceContainerLight
 @Composable
 fun pageCarreras(
     carreraId: String,
+    repository: CarreraRepository,
     onPilotClick: (String) -> Unit
 ) {
-    val vm: PaginaCarrerasVM = viewModel()
+    val vm= remember { PaginaCarrerasVM(repository) }
 
     LaunchedEffect(carreraId) {
         vm.loadCarrera(carreraId)

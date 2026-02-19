@@ -8,6 +8,5 @@ data class PilotoDTO(
     val wins: List<String> = emptyList(),
     val podiums: List<String> = emptyList(),
     val poles: Int = 0,
-    val imgId: Int,
-    val carreras: List<String> = emptyList()
+    val imgId: Int
 )

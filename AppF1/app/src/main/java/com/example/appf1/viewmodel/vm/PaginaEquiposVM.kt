@@ -5,6 +5,7 @@ import com.example.appf1.data.model.EquipoDTO
 import com.example.appf1.data.model.PilotoDTO
 import com.example.appf1.repository.EquipoRepository
 import com.example.appf1.repository.EquipoRepositoryMemory
+import com.example.appf1.repository.MainListRepositoryMemory
 import com.example.appf1.viewmodel.uistate.PaginaEquiposUIState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -21,34 +22,21 @@ class PaginaEquiposVM(
     private val _selectedTeam = MutableStateFlow<EquipoDTO?>(null)
     val selectedTeam: StateFlow<EquipoDTO?> = _selectedTeam
 
-    init {
-        cargarEquipos()
+    fun loadEquipos(id: String) {
+        repo.getAllEquipos(
+            onError = { _selectedTeam.value = null },
+            onSuccess = { equipos ->
+                val equipo = equipos.find { it.id == id }
+                _selectedTeam.value = equipo
+            }
+        )
     }
 
-    fun cargarEquipos() {
-        _uiState.value = repo.getAllEquipos().map { equipo ->
-            PaginaEquiposUIState(
-                id = equipo.id,
-                name = equipo.name,
-                drivers = equipo.drivers,
-                championships = equipo.championships,
-                wins = equipo.wins,
-                podiums = equipo.podiums,
-                imgId = equipo.imgId
-            )
+    fun getPilotosByTeam(id: String): List<PilotoDTO> {
+        val equipo = _selectedTeam.value ?: return emptyList()
+
+        return equipo.drivers.mapNotNull { pilotoId ->
+            MainListRepositoryMemory.pilotosBase[pilotoId]
         }
     }
-
-    fun loadEquipos(id: String) {
-        _selectedTeam.value = repo.getEquipoById(id)
-    }
-
-    fun getEquipoById(id: String): EquipoDTO?{
-        return repo.getEquipoById(id)
-    }
-
-    fun getPilotosByTeam(id: String): List<PilotoDTO>{
-        return  repo.getPilotosByTeam(id)
-    }
-
 }

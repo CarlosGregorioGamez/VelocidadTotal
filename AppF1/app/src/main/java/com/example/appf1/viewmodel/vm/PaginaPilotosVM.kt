@@ -2,6 +2,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.appf1.data.model.CarreraDTO
 import com.example.appf1.data.model.PilotoDTO
+import com.example.appf1.repository.MainListRepositoryMemory
 import com.example.appf1.repository.PilotosRepository
 import com.example.appf1.repository.PilotosRepositoryMemory
 import com.example.appf1.viewmodel.uistate.PaginaPilotosUIState
@@ -18,47 +19,27 @@ class PaginaPilotosVM(
     private val _selectedPilot = MutableStateFlow<PilotoDTO?>(null)
     val selectedPilot: StateFlow<PilotoDTO?> = _selectedPilot
 
-    init {
-        cargarPilotos()
-    }
-
-    private fun cargarPilotos() {
-        _uiState.value = repository.getAllPilotos().map { piloto ->
-            PaginaPilotosUIState(
-                id = piloto.id,
-                name = piloto.name,
-                team = piloto.team,
-                wins = piloto.wins,
-                podiums = piloto.podiums,
-                poles = piloto.poles
-            )
-        }
-    }
-
     fun loadPilot(id: String) {
-        _selectedPilot.value = repository.getPilotoById(id)
-    }
-
-    fun getPilotoById(id: String): PilotoDTO? {
-        return repository.getPilotoById(id)
+        repository.getAllPilotos(
+            onError = { _selectedPilot.value = null },
+            onSuccess = { pilotos ->
+                val piloto = pilotos.find { it.id == id }
+                _selectedPilot.value = piloto
+            }
+        )
     }
 
     fun getCarrerasByPilot(pilotId: String): List<CarreraDTO> {
-        return repository.getCarrerasByPilot(pilotId)
-    }
 
+        val piloto = _selectedPilot.value ?: return emptyList()
 
-    class PaginaPilotosVMFactory(
-        private val repository: PilotosRepository = PilotosRepositoryMemory()
-    ) : ViewModelProvider.Factory {
+        val carrerasIds = piloto.wins + piloto.podiums
 
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(PaginaPilotosVM::class.java)) {
-                @Suppress("UNCHECKED_CAST")
-                return PaginaPilotosVM(repository) as T
-            }
-            throw IllegalArgumentException("Unknown ViewModel class")
+        return carrerasIds.mapNotNull { id ->
+            MainListRepositoryMemory.carrerasBase[id]
         }
     }
+
 }
+
 
