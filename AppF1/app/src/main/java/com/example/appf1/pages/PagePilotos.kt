@@ -77,10 +77,10 @@ fun pagePilotos(
         }
     } else {
         val sliderPilotoItem = vm.uiState.collectAsState().value.map { pilotoUI ->
-            val carrera = vm.getPilotoById(pilotoUI.id)
+            val piloto = vm.loadPilot(pilotoUI.id)
             CardSliderDetails(
                 id = pilotoUI.id,
-                imgId = carrera?.imgId ?: R.drawable.williams,
+                imgId = pilotoUI.imgId,
                 imgDesc = pilotoUI.name,
                 title = pilotoUI.name
             )
@@ -120,7 +120,7 @@ fun pagePilotos(
 
         Spacer(modifier = Modifier.height(24.dp))
 
-        if (sliderItems.isEmpty()) {
+        if (sliderPilotoItem.isEmpty()) {
             Text(
                 text = "Sin resultados en el top 3",
                 color = onSurfaceLight,
@@ -129,7 +129,7 @@ fun pagePilotos(
             )
         } else {
             SliderComponent(
-                cardsInfo = sliderItems,
+                cardsInfo = sliderPilotoItem,
                 onCardClick = { card ->
                     onRaceClick(card.id)
                 }

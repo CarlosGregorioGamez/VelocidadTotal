@@ -12,7 +12,7 @@ class PerfilRepositoryMemory : PerfilRepository{
         onError: (Throwable) -> Unit,
         onSuccess: (UserDTO) -> Unit
     ) {
-        val user = users.find { it.id == id }
+        val user = users.find { it.id.equals(id) }
         if (user != null) {
             onSuccess(user)
         } else {
