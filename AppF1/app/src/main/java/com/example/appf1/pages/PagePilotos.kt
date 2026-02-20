@@ -75,35 +75,20 @@ fun pagePilotos(
         {
             Text("Cargando...")
         }
-        return
-    }
-
-    val carrerasPiloto = vm.getCarrerasByPilot(driver!!.id)
-
-    val sliderItems = carrerasPiloto.map { carrera ->
-        CardSliderDetails(
-            id = carrera.id,
-            imgId = carrera.imgId,
-            imgDesc = carrera.name,
-            title = carrera.name
-        )
-    }
-
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .verticalScroll(rememberScrollState())
-            .padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Card(
-            modifier = Modifier
-                .fillMaxWidth(),
-            shape = RoundedCornerShape(16.dp),
-            colors = CardDefaults.cardColors(
-                containerColor = surfaceContainerLight
-            ),
-            elevation = CardDefaults.cardElevation(defaultElevation = 6.dp)
+    } else {
+        val sliderPilotoItem = vm.uiState.collectAsState().value.map { pilotoUI ->
+            val piloto = vm.loadPilot(pilotoUI.id)
+            CardSliderDetails(
+                id = pilotoUI.id,
+                imgId = pilotoUI.imgId,
+                imgDesc = pilotoUI.name,
+                title = pilotoUI.name
+            )
+        }
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Column(
                 modifier = Modifier
@@ -119,49 +104,12 @@ fun pagePilotos(
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-                val carrerasBase = MainListRepositoryMemory.carrerasBase
-
-                val winsNombres = driver!!.wins.mapNotNull { id ->
-                    carrerasBase[id]?.name
-                }
-
-                val podiumsNombres = driver!!.podiums.mapNotNull { id ->
-                    carrerasBase[id]?.name
-                }
-
-                val teamName =
-                    MainListRepositoryMemory.equiposBase[driver!!.team]?.name ?: driver!!.team
-
-                Text(
-                    text = stringResource(R.string.object_name) + " : ${driver!!.name}",
-                    color = onSurfaceLight
-                )
-
-
-                Text(
-                    text = stringResource(R.string.team_name) + " : $teamName",
-                    color = onSurfaceLight
-                )
-
-                Spacer(Modifier.height(8.dp))
-
-                Text(
-                    text = "Victorias:\n${winsNombres.joinToString("\n")}",
-                    color = onSurfaceLight,
-                    modifier = Modifier.fillMaxWidth(),
-                    textAlign = TextAlign.Center
-                )
-                Spacer(Modifier.height(8.dp))
-                Text(
-                    text = "Podios:\n${podiumsNombres.joinToString("\n")}",
-                    color = onSurfaceLight,
-                    modifier = Modifier.fillMaxWidth(),
-                    textAlign = TextAlign.Center
-                )
-                Spacer(Modifier.height(8.dp))
-                Text(
-                    text = stringResource(R.string.polepos_name) + " : ${driver!!.poles}",
-                    color = onSurfaceLight
+                // SliderComponent esto luego se cambia por las carreras que gano.
+                SliderComponent(
+                    cardsInfo = sliderPilotoItem,
+                    onCardClick = { card ->
+                        vm.loadPilot(card.id)
+                    }
                 )
             }
         }
@@ -172,7 +120,7 @@ fun pagePilotos(
 
         Spacer(modifier = Modifier.height(24.dp))
 
-        if (sliderItems.isEmpty()) {
+        if (sliderPilotoItem.isEmpty()) {
             Text(
                 text = "Sin resultados en el top 3",
                 color = onSurfaceLight,
@@ -181,7 +129,7 @@ fun pagePilotos(
             )
         } else {
             SliderComponent(
-                cardsInfo = sliderItems,
+                cardsInfo = sliderPilotoItem,
                 onCardClick = { card ->
                     onRaceClick(card.id)
                 }

@@ -6,14 +6,15 @@ class UserRepostoryMemory : UserRepository {
 
     private val users: ArrayList<UserDTO> = ArrayList()
 
-    companion object{
+    companion object {
         val usuarios = ArrayList<UserDTO>(
             listOf(
-                UserDTO(0, "1@mail.com", "abc123."),
-               // UserDTO(1, "Estudiante 2", "Taller 10"),
-               // UserDTO(2, "Estudiante 3", "Taller 10"),
-                // UserDTO(3, "Estudiante 4", "Taller 10")
-            ))
+                UserDTO("0", "1@mail.com", "abc123."),
+                UserDTO("1", "mail@ejemplo.com", "4321"),
+                UserDTO("2", "Pedro@gmail.com", "1234"),
+                UserDTO("3", "correo@correo.com", "0000")
+            )
+        )
         var currId = 4
     }
 
@@ -21,7 +22,7 @@ class UserRepostoryMemory : UserRepository {
         for (i in 1..10) {
             users.add(
                 UserDTO(
-                    id = i,
+                    id = i.toString(),
                     email = "user$i@example.com",
                     password = "password$i",
                 )
@@ -30,7 +31,7 @@ class UserRepostoryMemory : UserRepository {
     }
 
     override fun getUser(
-        id: Int,
+        id: String,
         onError: (Throwable) -> Unit,
         onSuccess: (UserDTO) -> Unit
     ) {
@@ -42,7 +43,7 @@ class UserRepostoryMemory : UserRepository {
         }
     }
 
-    override fun login(
+    fun login(
         email: String,
         password: String,
         onError: (Throwable) -> Unit,
@@ -55,7 +56,4 @@ class UserRepostoryMemory : UserRepository {
             onError(Throwable("Error en los datos"))
         }
     }
-
-
-
 }

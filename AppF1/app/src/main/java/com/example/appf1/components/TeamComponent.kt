@@ -42,8 +42,8 @@ fun team(constructor: EquipoDTO) {
     ) {
         Column {
             Text(text = constructor.name, modifier = Modifier.fillMaxWidth())
-            Text(text = constructor.drivers[0].toString(), modifier = Modifier.fillMaxWidth())
-            Text(text = constructor.drivers[1].toString(), modifier = Modifier.fillMaxWidth())
+            Text(text = constructor.drivers[0], modifier = Modifier.fillMaxWidth())
+            Text(text = constructor.drivers[1], modifier = Modifier.fillMaxWidth())
             Text(text = constructor.championships.toString(), modifier = Modifier.fillMaxWidth())
             Text(text = constructor.wins.toString(), modifier = Modifier.fillMaxWidth())
             Text(text = constructor.podiums.toString(), modifier = Modifier.fillMaxWidth())
