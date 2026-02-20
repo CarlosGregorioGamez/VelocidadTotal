@@ -6,12 +6,13 @@ import com.example.appf1.data.model.PilotoDTO
 import com.example.appf1.repository.CarreraRepository
 import com.example.appf1.repository.CarrerasRepositoryMemory
 import com.example.appf1.repository.MainListRepositoryMemory
+import com.example.appf1.repository.RetrofitCarrerasRepository
 import com.example.appf1.viewmodel.uistate.PaginaCarrerasUIState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
-class PaginaCarrerasVM(private val repo: CarreraRepository = CarrerasRepositoryMemory()
+class PaginaCarrerasVM(private val repo: RetrofitCarrerasRepository
 ) : ViewModel() {
     private val _uiState = MutableStateFlow<List<PaginaCarrerasUIState>>(emptyList())
     val uiState: StateFlow<List<PaginaCarrerasUIState>> = _uiState

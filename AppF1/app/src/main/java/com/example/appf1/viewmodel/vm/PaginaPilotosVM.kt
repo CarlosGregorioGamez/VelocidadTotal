@@ -1,17 +1,17 @@
+package com.example.appf1.viewmodel.vm
+
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import com.example.appf1.data.model.CarreraDTO
 import com.example.appf1.data.model.PilotoDTO
 import com.example.appf1.repository.MainListRepositoryMemory
-import com.example.appf1.repository.PilotosRepository
-import com.example.appf1.repository.PilotosRepositoryMemory
+import com.example.appf1.repository.RetrofitPilotosRepository
 import com.example.appf1.viewmodel.uistate.PaginaPilotosUIState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
 class PaginaPilotosVM(
-    private val repository: PilotosRepository = PilotosRepositoryMemory()
+    private val repository: RetrofitPilotosRepository
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow<List<PaginaPilotosUIState>>(emptyList())

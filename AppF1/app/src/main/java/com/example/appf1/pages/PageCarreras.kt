@@ -33,6 +33,7 @@ import com.example.appf1.components.TitleComponent
 import com.example.appf1.repository.CarreraRepository
 import com.example.appf1.repository.MainListRepositoryMemory
 import com.example.appf1.repository.PilotosRepository
+import com.example.appf1.repository.RetrofitCarrerasRepository
 import com.example.appf1.viewmodel.vm.PaginaCarrerasVM
 import com.example.compose.onPrimaryLight
 import com.example.compose.onSurfaceLight
@@ -47,7 +48,7 @@ import com.example.compose.surfaceContainerLight
 @Composable
 fun pageCarreras(
     carreraId: String,
-    repository: CarreraRepository,
+    repository: RetrofitCarrerasRepository,
     onPilotClick: (String) -> Unit
 ) {
     val vm= remember { PaginaCarrerasVM(repository) }

@@ -34,6 +34,7 @@ import com.example.appf1.R
 import com.example.appf1.components.CardSliderDetails
 import com.example.appf1.components.SliderComponent
 import com.example.appf1.repository.EquipoRepository
+import com.example.appf1.repository.RetrofitEquiposRepository
 import com.example.appf1.viewmodel.vm.PaginaEquiposVM
 import com.example.compose.onSurfaceLight
 import com.example.compose.surfaceContainerLight
@@ -49,7 +50,7 @@ import com.example.compose.surfaceContainerLight
 fun pageEquipos(
     equipoId: String,
     onPilotClick: (String) -> Unit,
-    repository: EquipoRepository
+    repository: RetrofitEquiposRepository
 ) {
     val vm= remember{ PaginaEquiposVM(repository) }
 

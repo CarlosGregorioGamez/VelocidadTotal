@@ -6,13 +6,14 @@ import com.example.appf1.data.model.PilotoDTO
 import com.example.appf1.repository.EquipoRepository
 import com.example.appf1.repository.EquipoRepositoryMemory
 import com.example.appf1.repository.MainListRepositoryMemory
+import com.example.appf1.repository.RetrofitEquiposRepository
 import com.example.appf1.viewmodel.uistate.PaginaEquiposUIState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
 class PaginaEquiposVM(
-    private val repo: EquipoRepository = EquipoRepositoryMemory()
+    private val repo: RetrofitEquiposRepository
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow<List<PaginaEquiposUIState>>(emptyList())
