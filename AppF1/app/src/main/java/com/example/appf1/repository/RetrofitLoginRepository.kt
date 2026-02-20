@@ -6,27 +6,33 @@ import com.example.appf1.remote.RetrofitClient
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
-class RetrofitLoginRepository(private val context: Context): UserRepository {
+class RetrofitLoginRepository(private val context: Context) {
 
     private val apiUser = RetrofitClient.usuariosApiService
 
-    override fun getUser(
-        id: String,
+    fun getUser(
+        email: String,
+        passwd: String,
         onError: (Throwable) -> Unit,
         onSuccess: (UserDTO) -> Unit
     ) {
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                val userResponse = apiUser.getUser(id)
-
+                val userResponse = apiUser.getAllUsers()
                 if (userResponse.isSuccessful) {
                     val user = userResponse.body()
+                        ?.firstOrNull { it.email == email && it.passwd == passwd }
                     if (user != null) {
-                        onSuccess(UserDTO(user.id, user.email, user.passwd))
+                        withContext(Dispatchers.Main) {
+                            onSuccess(UserDTO(user.id, user.email, user.passwd))
+                        }
                     }
                 } else {
-                    onError(Exception("HTTP ${userResponse.code()}"))
+                    withContext(Dispatchers.Main) {
+                        onError(Exception("HTTP ${userResponse.code()}"))
+                    }
                 }
             } catch (e: Exception) {
                 onError(e)

@@ -2,7 +2,7 @@ package com.example.appf1.repository
 
 import com.example.appf1.data.model.UserDTO
 
-class UserRepostoryMemory : UserRepository {
+class UserRepositoryMemory : UserRepository {
 
     private val users: ArrayList<UserDTO> = ArrayList()
 
@@ -40,20 +40,6 @@ class UserRepostoryMemory : UserRepository {
             onSuccess(user)
         } else {
             onError(Throwable("User not found"))
-        }
-    }
-
-    fun login(
-        email: String,
-        password: String,
-        onError: (Throwable) -> Unit,
-        onSuccess: (UserDTO) -> Unit
-    ) {
-        val user = usuarios.find { it.email == email && it.password == password }
-        if (user != null) {
-            onSuccess(user)
-        } else {
-            onError(Throwable("Error en los datos"))
         }
     }
 }
