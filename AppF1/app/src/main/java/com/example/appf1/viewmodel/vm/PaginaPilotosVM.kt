@@ -14,32 +14,34 @@ class PaginaPilotosVM(
     private val repository: RetrofitPilotosRepository
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow<List<PaginaPilotosUIState>>(emptyList())
-    val uiState: StateFlow<List<PaginaPilotosUIState>> = _uiState.asStateFlow()
     private val _selectedPilot = MutableStateFlow<PilotoDTO?>(null)
-    val selectedPilot: StateFlow<PilotoDTO?> = _selectedPilot
+    val selectedPilot: StateFlow<PilotoDTO?> = _selectedPilot.asStateFlow()
+
+    private val _top3Races = MutableStateFlow<List<CarreraDTO>>(emptyList())
+    val top3Races: StateFlow<List<CarreraDTO>> = _top3Races.asStateFlow()
 
     fun loadPilot(id: String) {
         repository.getAllPilotos(
-            onError = { _selectedPilot.value = null },
+            onError = {
+                _selectedPilot.value = null
+                _top3Races.value = emptyList()
+            },
             onSuccess = { pilotos ->
                 val piloto = pilotos.find { it.id == id }
                 _selectedPilot.value = piloto
+
+                piloto?.let {
+                    val carrerasIds = (it.wins + it.podiums).distinct()
+
+                    val carreras = carrerasIds.mapNotNull { carreraId ->
+                        MainListRepositoryMemory.carrerasBase[carreraId]
+                    }
+
+                    _top3Races.value = carreras
+                } ?: run {
+                    _top3Races.value = emptyList()
+                }
             }
         )
     }
-
-    fun getCarrerasByPilot(pilotId: String): List<CarreraDTO> {
-
-        val piloto = _selectedPilot.value ?: return emptyList()
-
-        val carrerasIds = piloto.wins + piloto.podiums
-
-        return carrerasIds.mapNotNull { id ->
-            MainListRepositoryMemory.carrerasBase[id]
-        }
-    }
-
 }
-
-

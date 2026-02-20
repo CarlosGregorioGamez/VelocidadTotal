@@ -51,7 +51,7 @@ fun pageCarreras(
     repository: RetrofitCarrerasRepository,
     onPilotClick: (String) -> Unit
 ) {
-    val vm= remember { PaginaCarrerasVM(repository) }
+    val vm = remember { PaginaCarrerasVM(repository) }
 
     LaunchedEffect(carreraId) {
         vm.loadCarrera(carreraId)
@@ -163,11 +163,11 @@ fun pageCarreras(
         TitleComponent("Top 3 pilotos en esta carrera")
 
         Spacer(modifier = Modifier.height(40.dp))
-            SliderComponent(
-                cardsInfo = sliderPilotos,
-                onCardClick = { card ->
-                    onPilotClick(card.id)
-                }
-            )
-        }
+        SliderComponent(
+            cardsInfo = sliderPilotos,
+            onCardClick = { card ->
+                onPilotClick(card.id)
+            }
+        )
+    }
 }

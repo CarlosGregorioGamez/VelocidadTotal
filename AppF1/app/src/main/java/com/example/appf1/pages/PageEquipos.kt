@@ -52,7 +52,7 @@ fun pageEquipos(
     onPilotClick: (String) -> Unit,
     repository: RetrofitEquiposRepository
 ) {
-    val vm= remember{ PaginaEquiposVM(repository) }
+    val vm = remember { PaginaEquiposVM(repository) }
 
     LaunchedEffect(equipoId) {
         vm.loadEquipos(equipoId)
