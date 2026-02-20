@@ -4,28 +4,23 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.appf1.data.model.UserDTO
+import com.example.appf1.repository.RetrofitLoginRepository
 import com.example.appf1.repository.UserRepositoryMemory
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
-class PerfilVM(private val repository: UserRepositoryMemory) : ViewModel() {
+class PerfilVM(private val repository: RetrofitLoginRepository) : ViewModel() {
 
-        private val _uiState = MutableStateFlow<UserDTO?>(null)
-        val uiState: StateFlow<UserDTO?> = _uiState.asStateFlow()
+    private val _uiState = MutableStateFlow<UserDTO?>(null)
+    val uiState: StateFlow<UserDTO?> = _uiState.asStateFlow()
 
-        init {
-            loadDefaultUser()
-        }
+    private val _error = MutableStateFlow<String?>(null)
+    val error: StateFlow<String?> = _error.asStateFlow()
 
-        private fun loadDefaultUser() {
-            try {
-                val defaultUser = UserRepositoryMemory.usuarios[0]
-                _uiState.value = defaultUser
-            } catch (e: Exception) {
-                Log.e("PerfilVM", "No hay usuario disponible: ${e.message}")
-            }
-        }
+    fun loadUser(user: UserDTO) {
+        _uiState.value = user
+    }
 
     fun updateEmail(newEmail: String) {
         _uiState.value = _uiState.value?.copy(email = newEmail)
@@ -35,17 +30,26 @@ class PerfilVM(private val repository: UserRepositoryMemory) : ViewModel() {
         _uiState.value = _uiState.value?.copy(password = newPassword)
     }
 
-    fun saveChanges() {
-        Log.d("PerfilVM", "Datos guardados: ${_uiState.value}")
+    fun saveChanges(onSuccess: () -> Unit = {}) {
+        val user = _uiState.value ?: return
+
+
+        _error.value = null
+
+        repository.updateUser(user,
+            onSuccess = {
+                onSuccess()
+            },
+            onError = { throwable ->
+                _error.value = throwable.message
+            }
+        )
     }
-
-    }
-
-
+}
 
 
 class PerfilVMFactory(
-    private val repository: UserRepositoryMemory
+    private val repository: RetrofitLoginRepository
 ) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
