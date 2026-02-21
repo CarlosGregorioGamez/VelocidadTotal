@@ -33,7 +33,7 @@ class PerfilVM(private val repository: RetrofitLoginRepository) : ViewModel() {
         _uiState.value = _uiState.value?.copy(password = newPassword)
     }
 
-    fun saveChanges(onSuccess: () -> Unit = {}) {
+    fun saveChanges(onSuccess: () -> Unit = {}, onError: () -> Unit = {}) {
         val user = _uiState.value ?: return
 
         _error.value = null
@@ -41,6 +41,7 @@ class PerfilVM(private val repository: RetrofitLoginRepository) : ViewModel() {
         repository.updateUser(user,
             onSuccess = {
                 SessionManager.currUser = user
+                onSuccess()
             },
             onError = { throwable ->
                 _error.value = throwable.message

@@ -40,6 +40,7 @@ fun pagePrincipal(
 
 ) {
     val uiState by loginVM.uiState.collectAsState()
+
     LaunchedEffect(Unit) {
         loginVM.resetFields()
     }
@@ -68,7 +69,7 @@ fun pagePrincipal(
             CustomButton(stringResource(id = R.string.confirm_button)) {
                 loginVM.login {
                     Log.d("LOGIN CORRECTO", "si si")
-                    onLoginSuccess()
+                   onLoginSuccess()
                 }
             }
             CustomButton(stringResource(id = R.string.exit_button)) {
