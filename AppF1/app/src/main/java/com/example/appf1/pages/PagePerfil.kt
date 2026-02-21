@@ -1,5 +1,6 @@
 package com.example.appf1.pages
 
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -24,7 +25,6 @@ import com.example.appf1.R
 import com.example.appf1.components.CustomButton
 import com.example.appf1.data.model.UserDTO
 import com.example.appf1.repository.RetrofitLoginRepository
-import com.example.appf1.repository.UserRepositoryMemory
 import com.example.appf1.viewmodel.vm.PerfilVM
 import com.example.appf1.viewmodel.vm.PerfilVMFactory
 import com.example.compose.backgroundLight
@@ -35,15 +35,11 @@ import com.example.compose.backgroundLight
 @Composable
 fun pagePerfil(
     perfilVM: PerfilVM = viewModel(factory = PerfilVMFactory(RetrofitLoginRepository(LocalContext.current))),
-    currentUser: UserDTO,
     onBackAction: () -> Unit
 ) {
 
-    LaunchedEffect(Unit) {
-        perfilVM.loadUser(currentUser)
-    }
-
     val user by perfilVM.uiState.collectAsState()
+    val context = LocalContext.current
 
     Column(
         modifier = Modifier.padding(top = 100.dp),
@@ -89,7 +85,21 @@ fun pagePerfil(
             verticalAlignment = Alignment.CenterVertically
         ) {
             CustomButton(stringResource(id = R.string.update_name)) {
-                perfilVM.saveChanges()
+                perfilVM.saveChanges(onSuccess = {
+                    Toast.makeText(
+                        context,
+                        "Se han actualizado sus datos correctamente",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                },
+                    onError = {
+                        Toast.makeText(
+                            context,
+                            "No se han podido actualizar los datos",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                )
             }
             CustomButton(stringResource(id = R.string.return_name)) {
                 onBackAction()

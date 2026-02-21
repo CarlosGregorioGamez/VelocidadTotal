@@ -1,11 +1,10 @@
 package com.example.appf1.viewmodel.vm
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.appf1.data.model.SessionManager
 import com.example.appf1.data.model.UserDTO
 import com.example.appf1.repository.RetrofitLoginRepository
-import com.example.appf1.repository.UserRepositoryMemory
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -17,6 +16,10 @@ class PerfilVM(private val repository: RetrofitLoginRepository) : ViewModel() {
 
     private val _error = MutableStateFlow<String?>(null)
     val error: StateFlow<String?> = _error.asStateFlow()
+
+    init {
+        _uiState.value = SessionManager.currUser
+    }
 
     fun loadUser(user: UserDTO) {
         _uiState.value = user
@@ -30,14 +33,14 @@ class PerfilVM(private val repository: RetrofitLoginRepository) : ViewModel() {
         _uiState.value = _uiState.value?.copy(password = newPassword)
     }
 
-    fun saveChanges(onSuccess: () -> Unit = {}) {
+    fun saveChanges(onSuccess: () -> Unit = {}, onError: () -> Unit = {}) {
         val user = _uiState.value ?: return
-
 
         _error.value = null
 
         repository.updateUser(user,
             onSuccess = {
+                SessionManager.currUser = user
                 onSuccess()
             },
             onError = { throwable ->
