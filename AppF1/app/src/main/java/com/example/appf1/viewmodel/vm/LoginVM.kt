@@ -2,6 +2,7 @@ package com.example.appf1.viewmodel.vm
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.appf1.data.model.SessionManager
 import com.example.appf1.repository.RetrofitLoginRepository
 import com.example.appf1.viewmodel.uistate.LoginUIState
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -9,7 +10,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 
-class LoginVM (private val retrofitLoginRepository: RetrofitLoginRepository): ViewModel(){
+class LoginVM(private val retrofitLoginRepository: RetrofitLoginRepository) : ViewModel() {
     private val _uiState = MutableStateFlow(LoginUIState())
 
     val uiState: StateFlow<LoginUIState> = _uiState.asStateFlow()
@@ -34,6 +35,7 @@ class LoginVM (private val retrofitLoginRepository: RetrofitLoginRepository): Vi
                 android.util.Log.e("LOGIN", "Login fallido: ${throwable.message}")
             },
             onSuccess = { user ->
+                SessionManager.currUser = user
                 _uiState.update {
                     it.copy(
                         isLoading = false,
@@ -46,8 +48,8 @@ class LoginVM (private val retrofitLoginRepository: RetrofitLoginRepository): Vi
         )
     }
 
-    fun resetFields(){
-        _uiState.update { it.copy( email = "", password = "", error = null, isLoading = false) }
+    fun resetFields() {
+        _uiState.update { it.copy(email = "", password = "", error = null, isLoading = false) }
     }
 
     fun onEmailChange(newEmail: String) {

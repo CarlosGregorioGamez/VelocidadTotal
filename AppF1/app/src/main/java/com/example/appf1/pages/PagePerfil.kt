@@ -24,7 +24,6 @@ import com.example.appf1.R
 import com.example.appf1.components.CustomButton
 import com.example.appf1.data.model.UserDTO
 import com.example.appf1.repository.RetrofitLoginRepository
-import com.example.appf1.repository.UserRepositoryMemory
 import com.example.appf1.viewmodel.vm.PerfilVM
 import com.example.appf1.viewmodel.vm.PerfilVMFactory
 import com.example.compose.backgroundLight
@@ -35,13 +34,8 @@ import com.example.compose.backgroundLight
 @Composable
 fun pagePerfil(
     perfilVM: PerfilVM = viewModel(factory = PerfilVMFactory(RetrofitLoginRepository(LocalContext.current))),
-    currentUser: UserDTO,
     onBackAction: () -> Unit
 ) {
-
-    LaunchedEffect(Unit) {
-        perfilVM.loadUser(currentUser)
-    }
 
     val user by perfilVM.uiState.collectAsState()
 
