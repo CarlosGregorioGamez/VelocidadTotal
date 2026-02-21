@@ -1,6 +1,5 @@
 package com.example.appf1.pages
 
-import android.app.Activity
 import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -17,14 +16,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.appf1.R
 import com.example.appf1.viewmodel.vm.LoginVM
 import com.example.appf1.components.CustomButton
 import com.example.appf1.components.LoginComponent
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.appf1.repository.UserRepostoryMemory
+import com.example.appf1.repository.RetrofitLoginRepository
 import com.example.appf1.viewmodel.vm.LoginVMFactory
 
 
@@ -35,7 +33,7 @@ import com.example.appf1.viewmodel.vm.LoginVMFactory
 fun pagePrincipal(
     loginVM: LoginVM = viewModel(
         factory = LoginVMFactory(
-            repository = UserRepostoryMemory()
+            repository = RetrofitLoginRepository(LocalContext.current)
         )
     ), onLoginSuccess: () -> Unit,
     onexit : () -> Unit

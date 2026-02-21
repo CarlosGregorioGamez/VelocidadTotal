@@ -103,7 +103,8 @@ fun AppNavGraph(
         }
 
         composable(Routes.PERFIL) {
-            pagePerfil(onBackAction = {
+            pagePerfil(
+                onBackAction = {
                 if (!navController.popBackStack()) {
                     Toast.makeText(context, "No se puede volver atras", Toast.LENGTH_LONG).show();
                 }

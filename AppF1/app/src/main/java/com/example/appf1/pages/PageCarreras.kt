@@ -33,6 +33,7 @@ import com.example.appf1.components.TitleComponent
 import com.example.appf1.repository.CarreraRepository
 import com.example.appf1.repository.MainListRepositoryMemory
 import com.example.appf1.repository.PilotosRepository
+import com.example.appf1.repository.RetrofitCarrerasRepository
 import com.example.appf1.viewmodel.vm.PaginaCarrerasVM
 import com.example.compose.onPrimaryLight
 import com.example.compose.onSurfaceLight
@@ -47,10 +48,10 @@ import com.example.compose.surfaceContainerLight
 @Composable
 fun pageCarreras(
     carreraId: String,
-    repository: CarreraRepository,
+    repository: RetrofitCarrerasRepository,
     onPilotClick: (String) -> Unit
 ) {
-    val vm= remember { PaginaCarrerasVM(repository) }
+    val vm = remember { PaginaCarrerasVM(repository) }
 
     LaunchedEffect(carreraId) {
         vm.loadCarrera(carreraId)
@@ -162,11 +163,11 @@ fun pageCarreras(
         TitleComponent("Top 3 pilotos en esta carrera")
 
         Spacer(modifier = Modifier.height(40.dp))
-            SliderComponent(
-                cardsInfo = sliderPilotos,
-                onCardClick = { card ->
-                    onPilotClick(card.id)
-                }
-            )
-        }
+        SliderComponent(
+            cardsInfo = sliderPilotos,
+            onCardClick = { card ->
+                onPilotClick(card.id)
+            }
+        )
+    }
 }

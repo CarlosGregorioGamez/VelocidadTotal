@@ -16,11 +16,14 @@ class LoginVM (private val retrofitLoginRepository: RetrofitLoginRepository): Vi
 
     fun login(onSuccess: () -> Unit) {
         val id = uiState.value.id
+        val email = uiState.value.email
+        val passwd = uiState.value.password
 
         _uiState.update { it.copy(isLoading = true, error = null) }
 
         retrofitLoginRepository.getUser(
-            id = id,
+            email = email,
+            passwd = passwd,
             onError = { throwable ->
                 _uiState.update {
                     it.copy(
